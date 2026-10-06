@@ -120,3 +120,26 @@ JSON simples, um por plataforma (útil para os temas do VS Code e do iTerm2):
 3. Faça o commit de `tokens/`, `build/` e `src/generated/` juntos.
 4. Se o token for do app, rode `npm run sync:app` e faça o commit no repositório do app também. O CI falha se `build/` estiver desatualizado ou se
    algum par de texto ficar abaixo do contraste mínimo.
+
+## Lançar uma versão
+
+1. Enquanto trabalha, anote as mudanças no `CHANGELOG.md`, na seção **"## Próxima versão"** (no topo).
+2. Na `main`, com tudo commitado, escolha o tipo da versão:
+
+```bash
+npm run release -- patch   # correções       0.3.2 → 0.3.3
+npm run release -- minor   # novidades       0.3.2 → 0.4.0
+npm run release -- major   # quebra a API    0.3.2 → 1.0.0
+```
+
+O script confere o git e o CHANGELOG, roda `npm run verify`, transforma "Próxima versão" na versão nova,
+sobe a versão no `package.json`, faz o commit `release: vX.Y.Z` e a tag, e **pergunta antes de enviar** ao
+GitHub. Depois do envio, o workflow **Publicar no npm** publica `@toski-labs/ds` sozinho (com provenance) e
+o Storybook é atualizado.
+
+- `--dry-run`: simula tudo sem mudar nada.
+- `--yes`: envia sem perguntar.
+
+Qual escolher: **patch** quando só corrige algo (um valor errado, um bug); **minor** quando adiciona algo sem
+quebrar quem já usa (token, ícone ou componente novo); **major** quando quem usa precisa mudar o código
+(renomear ou remover token, ícone, componente ou prop).

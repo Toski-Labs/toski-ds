@@ -9,6 +9,7 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 - `npm run release -- patch | minor | major`: confere o git e o CHANGELOG, roda a verificação, sobe a versão,
   faz o commit e a tag e envia ao GitHub (que publica no npm).
+- Seção "Lançar uma versão" na página "Como usar" do Storybook.
 
 ### Removido
 
