@@ -44,5 +44,8 @@ describe('movimento', () => {
     expect(css).toContain('--toski-motion-ball-duration: 1.8s;');
     expect(css).toContain('--toski-motion-ball-rise: 14px;');
     expect(css).toContain('--toski-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);');
+    expect(css).toContain('--toski-motion-fast: 100ms;');
+    expect(css).toContain('--toski-motion-base: 160ms;');
+    expect(css).toContain('--toski-motion-enter: 250ms;');
   });
 });

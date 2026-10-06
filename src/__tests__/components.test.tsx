@@ -26,6 +26,8 @@ describe('Button', () => {
     expect(cls).toContain('focus-visible:outline-2');
     expect(cls).toContain('min-w-11'); // 44px
     expect(cls).toContain('motion-reduce:transition-none');
+    expect(cls).toContain('active:scale-[0.97]');
+    expect(cls).toContain('transition-[color,background-color,border-color,transform]');
   });
 
   it('ícone do botão é decorativo', () => {

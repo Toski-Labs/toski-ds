@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { MotionTokens, BallDemo } from '../blocks';
+import { MotionTokens, BallDemo, WebMotionTokens, MenuDemo } from '../blocks';
 
 <Meta title="Tokens/Movimento" />
 
@@ -14,3 +14,28 @@ Com **reduzir movimento**, só a bolinha para; pontinhos e spinner continuam no 
 <BallDemo />
 
 <MotionTokens />
+
+## Interface web
+
+Durações e curvas da interface do site (só web, não existem no app). Em Tailwind: `duration-(--toski-motion-base)`,
+`ease-toski-out`.
+
+<WebMotionTokens />
+
+### Pressionar
+
+`buttonClasses()` transiciona cor, fundo, borda e `transform`, e aplica `active:scale-[0.97]` ao pressionar.
+Desligado com `motion-reduce`.
+
+### Menus e popovers
+
+Utilitário `toski-menu`: entra com `toski-menu-in` (`--toski-motion-base`, `--toski-ease-out`) e sai com
+`toski-menu-out` (`--toski-motion-fast`) quando o elemento recebe `data-closing`. Remova o elemento depois da
+animação (~100 ms). Ajuste a direção com `--menu-from` (padrão `-6px`) e `--menu-origin` (padrão `top right`).
+Sem animação com "reduzir movimento".
+
+```html
+<ul class="toski-menu" data-closing>…</ul>
+```
+
+<MenuDemo />

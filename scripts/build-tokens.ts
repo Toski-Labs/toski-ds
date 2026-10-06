@@ -24,6 +24,7 @@ import {
   mobileRadiusNote,
   motion,
   radii,
+  webMotion,
   webRadii,
 } from '../src/tokens/index';
 
@@ -45,6 +46,7 @@ const bezier = (c: number[]) => `cubic-bezier(${c.join(', ')})`;
 const motionVars = [
   `  --toski-ease-in-out: ${bezier(motion.curve.easeInOut)};`,
   `  --toski-ease-out: ${bezier(motion.curve.easeOut)};`,
+  ...webMotion.map((m) => `  --toski-motion-${m.name}: ${Math.round(m.value * 1000)}ms;`),
   `  --toski-motion-ball-duration: ${motion.ball.slow.duration}s;`,
   `  --toski-motion-ball-rise: ${motion.ball.slow.rise}px;`,
   `  --toski-motion-ball-fast-duration: ${motion.ball.fast.duration}s;`,
@@ -56,6 +58,8 @@ const motionVars = [
   `  --toski-pressed-opacity: ${motion.interaction.pressedOpacity};`,
   `  --toski-disabled-opacity: ${motion.interaction.disabledOpacity};`,
 ].join('\n');
+
+const motionTheme = webMotion.map((m) => `  --toski-motion-${m.name}: ${Math.round(m.value * 1000)}ms;`).join('\n');
 
 function buildCss(): string {
   const brandVars = brand.map((b) => `  --toski-${b.name}: ${b.value};`).join('\n');
@@ -127,6 +131,8 @@ ${brandColors}
 
   --ease-toski-in-out: ${bezier(motion.curve.easeInOut)};
   --ease-toski-out: ${bezier(motion.curve.easeOut)};
+
+${motionTheme}
 
 ${radiusVars}
 

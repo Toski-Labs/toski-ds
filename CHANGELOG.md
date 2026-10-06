@@ -5,6 +5,18 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+- Tokens de duração da interface (só web): `--toski-motion-fast` (100ms), `--toski-motion-base` (160ms) e
+  `--toski-motion-enter` (250ms), em `tokens.css` e no `@theme`. Documentados em Tokens/Movimento, junto das curvas.
+- Utilitário `toski-menu` para menus e popovers: entrada com `toski-menu-in` e saída com `toski-menu-out`
+  (`data-closing`). Ajustável com `--menu-from` e `--menu-origin`; sem animação com "reduzir movimento".
+
+### Alterado
+
+- `buttonClasses()`: a transição cobre color, background-color, border-color e transform, e o botão encolhe a
+  97% ao ser pressionado (`active:scale-[0.97]`).
+
 ## 0.3.4 — 2026-10-06
 
 ### Adicionado

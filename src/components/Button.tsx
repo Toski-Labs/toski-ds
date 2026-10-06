@@ -33,7 +33,7 @@ const sizes: Record<ButtonSize, string> = {
 export function buttonClasses(variant: ButtonVariant = 'primary', size: ButtonSize = 'lg', className?: string) {
   return cx(
     'inline-flex min-w-11 items-center justify-center gap-2.5 rounded-button no-underline select-none',
-    'transition-colors duration-150 motion-reduce:transition-none',
+    'transition-[color,background-color,border-color,transform] duration-150 active:scale-[0.97] motion-reduce:transition-none',
     'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent',
     'disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50',
     variants[variant],

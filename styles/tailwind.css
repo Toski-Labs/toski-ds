@@ -72,3 +72,39 @@
     animation: none;
   }
 }
+
+/* Menus e popovers: entrada ao abrir, saída com [data-closing]. Parados com "reduzir movimento".
+   Ajuste a direção com --menu-from (deslocamento inicial) e --menu-origin (transform-origin). */
+@keyframes toski-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--menu-from, -6px)) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes toski-menu-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(var(--menu-from, -6px)) scale(0.98);
+  }
+}
+@utility toski-menu {
+  transform-origin: var(--menu-origin, top right);
+  animation: toski-menu-in var(--toski-motion-base) var(--toski-ease-out);
+  &[data-closing] {
+    animation: toski-menu-out var(--toski-motion-fast) var(--toski-ease-out) forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    &[data-closing] {
+      animation: none;
+    }
+  }
+}

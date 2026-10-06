@@ -1,4 +1,5 @@
-import { brand, colorValue, component, motion, webRadii, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
+import { useState } from 'react';
+import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
 import { ThemeFrame } from './ThemeFrame';
 
 function Swatch({ value, label }: { value: string; label?: string }) {
@@ -299,6 +300,64 @@ export function MotionTokens() {
           <TreeTable data={{ [k]: v }} swift="ToskiMotionTokens" />
         </div>
       ))}
+    </div>
+  );
+}
+
+export function WebMotionTokens() {
+  const rows: [string, string, string][] = [
+    ...webMotion.map((m): [string, string, string] => [`--toski-motion-${m.name}`, `${Math.round(m.value * 1000)}ms`, m.description]),
+    ['--toski-ease-out', `cubic-bezier(${motion.curve.easeOut.join(', ')})`, 'Entradas (abrir, aparecer)'],
+    ['--toski-ease-in-out', `cubic-bezier(${motion.curve.easeInOut.join(', ')})`, 'Movimentos que vão e voltam'],
+  ];
+  return (
+    <div className="sb-unstyled text-ink font-sans overflow-x-auto">
+      <table className="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr>
+            <th className="py-2 pr-4">Variável</th>
+            <th className="py-2 pr-4">Valor</th>
+            <th className="py-2">Uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([name, value, use]) => (
+            <tr key={name} className="border-t border-line">
+              <td className="py-1.5 pr-4"><code>{name}</code></td>
+              <td className="py-1.5 pr-4 tabular-nums">{value}</td>
+              <td className="py-1.5 text-muted">{use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function MenuDemo() {
+  const [open, setOpen] = useState(true);
+  const [closing, setClosing] = useState(false);
+  const toggle = () => {
+    if (open) {
+      setClosing(true);
+      setTimeout(() => {
+        setOpen(false);
+        setClosing(false);
+      }, 100);
+    } else setOpen(true);
+  };
+  return (
+    <div className="sb-unstyled flex min-h-40 flex-col items-end gap-2 font-sans text-ink">
+      <button type="button" onClick={toggle} className="rounded-button bg-tint px-4 py-2 text-sm font-medium">
+        {open ? 'Fechar menu' : 'Abrir menu'}
+      </button>
+      {open && (
+        <ul className="toski-menu w-48 rounded-card border border-line bg-surface p-2 text-sm shadow-lg" data-closing={closing ? '' : undefined}>
+          <li className="px-3 py-2">Perfil</li>
+          <li className="px-3 py-2">Ajustes</li>
+          <li className="px-3 py-2">Sair</li>
+        </ul>
+      )}
     </div>
   );
 }

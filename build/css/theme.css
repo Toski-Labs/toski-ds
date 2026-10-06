@@ -46,6 +46,10 @@
   --ease-toski-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   --ease-toski-out: cubic-bezier(0, 0, 0.58, 1);
 
+  --toski-motion-fast: 100ms;
+  --toski-motion-base: 160ms;
+  --toski-motion-enter: 250ms;
+
   --radius-icon: 12px;
   --radius-button: 14px;
   --radius-card: 18px;

@@ -16,7 +16,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Botão (`<button>`) ou link com cara de botão (quando recebe `href`). Tamanhos lg 54px e md 48px, raio 14. Foco visível com contorno accent; transição desligada com "reduzir movimento".',
+          'Botão (`<button>`) ou link com cara de botão (quando recebe `href`). Tamanhos lg 54px e md 48px, raio 14. Ao pressionar encolhe a 97% (`active:scale-[0.97]`) e a transição cobre cor, fundo, borda e transform. Foco visível com contorno accent; transição desligada com "reduzir movimento".',
       },
     },
   },

@@ -110,6 +110,13 @@ export const webRadii = Object.entries(raw.web.radius).map(([name, t]) => ({
   description: t.description,
 }));
 
+/** Durações de interface só da web, em segundos (pressionar, abrir menu, entradas). */
+export const webMotion = Object.entries(raw.web.motion as Record<string, { value: number; description: string }>).map(([name, t]) => ({
+  name,
+  value: t.value,
+  description: t.description,
+}));
+
 export const layout = Object.entries(raw.web.layout).map(([name, t]) => ({
   name,
   value: t.value,
