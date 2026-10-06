@@ -1,11 +1,16 @@
 # Toski DS
 
+[![npm](https://img.shields.io/npm/v/@toski-labs/ds?label=npm&color=A9541F)](https://www.npmjs.com/package/@toski-labs/ds)
+[![CI](https://github.com/Toski-Labs/toski-ds/actions/workflows/ci.yml/badge.svg)](https://github.com/Toski-Labs/toski-ds/actions/workflows/ci.yml)
+[![Storybook](https://img.shields.io/badge/Storybook-online-DB9A5B)](https://toski-labs.github.io/toski-ds/)
+[![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-6B5648)](LICENSE)
+
 **Português** · [English](README.en.md)
 
 Design system da **Toski Labs**: uma fonte única para cores, tipografia, raios e componentes usados no
 site (Astro + Tailwind CSS 4), no app iOS (SwiftUI) e nos temas (VS Code e iTerm2).
 
-📖 **Storybook:** https://toski-labs.github.io/toski-ds/
+📖 **Storybook:** https://toski-labs.github.io/toski-ds/ · 📦 **npm:** [`@toski-labs/ds`](https://www.npmjs.com/package/@toski-labs/ds)
 
 ## O que tem aqui
 
