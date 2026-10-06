@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.3.3 — 2026-10-06
+
 ### Adicionado
 
 - `npm run release -- patch | minor | major`: confere o git e o CHANGELOG, roda a verificação, sobe a versão,
