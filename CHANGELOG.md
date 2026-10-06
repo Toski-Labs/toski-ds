@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.4.2 — 2026-10-06
+
 ### Corrigido
 
 - `CheckList`: o `<ul>` ganha `role="list"`. O Tailwind tira os marcadores (`list-style: none`) e, sem eles,

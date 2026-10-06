@@ -1,6 +1,6 @@
 {
   "name": "@toski-labs/ds",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Toski DS — design system da Toski Labs: tokens (web, Tailwind CSS 4, SwiftUI) e componentes React.",
   "keywords": [
     "design-system",
