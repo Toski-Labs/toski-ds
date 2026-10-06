@@ -24,6 +24,7 @@ import {
   mobileRadiusNote,
   motion,
   radii,
+  webRadii,
 } from '../src/tokens/index';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -58,7 +59,7 @@ const motionVars = [
 
 function buildCss(): string {
   const brandVars = brand.map((b) => `  --toski-${b.name}: ${b.value};`).join('\n');
-  const radiusVars = radii.map((r) => `  --toski-radius-${r.name}: ${px(r.value)};`).join('\n');
+  const radiusVars = [...radii, ...webRadii].map((r) => `  --toski-radius-${r.name}: ${px(r.value)};`).join('\n');
   const layoutVars = layout.map((l) => `  --toski-${l.name}: ${px(l.value)};`).join('\n');
   return `/* ${HEADER} */
 
@@ -141,7 +142,7 @@ function webData() {
     light: mode('light'),
     dark: mode('dark'),
     font: { family: font.family, stack: font.web, weights: font.weights },
-    radius: Object.fromEntries(radii.map((r) => [r.name, r.value])),
+    radius: Object.fromEntries([...radii, ...webRadii].map((r) => [r.name, r.value])),
     layout: Object.fromEntries(layout.map((l) => [l.name, l.value])),
     motion: stripDescriptions(motion),
     icons: iconEntries.map((i) => i.web),

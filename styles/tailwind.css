@@ -32,9 +32,11 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+  /* Anel de foco arredondado. Elementos com raio próprio (classes rounded-*) mantêm o deles. */
   :focus-visible {
     outline: 2px solid var(--toski-accent);
     outline-offset: 3px;
+    border-radius: var(--toski-radius-focus);
   }
   ::selection {
     background: var(--toski-hero);

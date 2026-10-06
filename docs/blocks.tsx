@@ -1,4 +1,4 @@
-import { brand, colorValue, component, motion, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
+import { brand, colorValue, component, motion, webRadii, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
 import { ThemeFrame } from './ThemeFrame';
 
 function Swatch({ value, label }: { value: string; label?: string }) {
@@ -143,7 +143,10 @@ export function Weights() {
 export function Radii({ platform = 'web' }: { platform?: Platform }) {
   const list =
     platform === 'web'
-      ? radii.map((r) => ({ ...r, code: `rounded-${r.name}` }))
+      ? [
+          ...radii.map((r) => ({ ...r, code: `rounded-${r.name}` })),
+          ...webRadii.map((r) => ({ ...r, code: `var(--toski-radius-${r.name})` })),
+        ]
       : [
           ...radii.map((r) => ({ ...r, name: r.mobileName, code: `ToskiRadius.${r.mobileName}` })),
           ...mobileRadii.map((r) => ({

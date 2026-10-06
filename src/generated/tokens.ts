@@ -88,7 +88,8 @@ export const tokens = {
     "icon": 12,
     "button": 14,
     "card": 18,
-    "panel": 28
+    "panel": 28,
+    "focus": 6
   },
   "layout": {
     "container": 1168,

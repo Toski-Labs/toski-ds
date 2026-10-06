@@ -87,7 +87,8 @@ O CI falha se `build/` estiver desatualizado ou se algum par de texto ficar abai
 ## Acessibilidade
 
 - Contraste conferido no CI nos dois temas.
-- Foco visível (contorno `accent`, 2px) em tudo que é interativo.
+- Foco visível em tudo que é interativo: contorno `accent` de 2px, afastado 3px, anel de foco arredondado
+  (6px, `--toski-radius-focus`) nos estilos de base.
 - Botões com 48px ou mais de altura (área de toque mínima de 44px).
 - Animações e transições desligadas com `prefers-reduced-motion`.
 - Ícones e mascote decorativos por padrão (`aria-hidden`); passe `label` quando carregarem significado.

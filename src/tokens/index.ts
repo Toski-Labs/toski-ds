@@ -103,6 +103,13 @@ export const mobileRadii = Object.entries(raw.mobile.radius as Record<string, Ra
 
 export const mobileRadiusNote = (raw.mobile.radius as Record<string, unknown>).$description as string;
 
+/** Raios só da web (ex.: anel de foco). */
+export const webRadii = Object.entries(raw.web.radius).map(([name, t]) => ({
+  name,
+  value: t.value,
+  description: t.description,
+}));
+
 export const layout = Object.entries(raw.web.layout).map(([name, t]) => ({
   name,
   value: t.value,

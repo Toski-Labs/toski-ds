@@ -10,6 +10,12 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 - Release no GitHub a cada versão, com as notas do CHANGELOG e o link do npm (`release.yml` +
   `scripts/release-notes.mjs`). Rodando o workflow à mão, cria as Releases que faltam das tags antigas.
 - Selos de npm, CI, Storybook e licença no README.
+- Token `--toski-radius-focus` (6px, só web).
+
+### Corrigido
+
+- Anel de foco arredondado (6px) nos estilos de base: `:focus-visible` agora usa `border-radius:
+  var(--toski-radius-focus)`. Elementos com raio próprio (classes `rounded-*`) mantêm o deles.
 
 ## 0.3.3 — 2026-10-06
 

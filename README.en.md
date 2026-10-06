@@ -78,7 +78,7 @@ To change a token: edit `tokens/tokens.json`, run `npm run tokens:build` and `np
 
 ## Accessibility
 
-Contrast checked in CI for both themes · visible focus ring · 48px+ buttons (44px minimum touch target) ·
+Contrast checked in CI for both themes · visible focus ring (2px `accent` outline, 6px rounded corners via `--toski-radius-focus`) · 48px+ buttons (44px minimum touch target) ·
 animations and transitions off with `prefers-reduced-motion` · icons and mascot are decorative by default
 (`aria-hidden`), pass `label` when they carry meaning.
 
