@@ -1,0 +1,173 @@
+{
+  "$description": "Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão. Plataforma: mobile (iOS).",
+  "brand": {
+    "caramelo": "#DB9A5B",
+    "ferrugem": "#A9541F",
+    "creme": "#F4E4CC",
+    "papel": "#F7F1E8",
+    "carvao": "#231B17"
+  },
+  "light": {
+    "background": "#F7F1E8",
+    "surface": "#FFFFFF",
+    "tint": "#F3E4CF",
+    "heroBackground": "#EFDCC2",
+    "textPrimary": "#231B17",
+    "textSecondary": "#6B5648",
+    "border": "#E6D8C4",
+    "accent": "#A9541F",
+    "onAccent": "#FFF8EE",
+    "critical": "#A3341A",
+    "criticalBackground": "#F8E0D4",
+    "criticalBorder": "#EBC0AA",
+    "success": "#3F6E3B",
+    "successBackground": "#E4EEDC",
+    "segmentSelected": "#FFFFFF",
+    "tabBar": "#FFFDF9",
+    "tabIdle": "#7D6858",
+    "mascotOutline": "transparent",
+    "mascotNose": "#231B17",
+    "onCritical": "#FFF8EE",
+    "switchOff": "#DCCDB9",
+    "toastBackground": "#231B17",
+    "toastText": "#F7F1E8",
+    "toastAction": "#E8B27C",
+    "scrim": "rgba(20,14,10,0.45)",
+    "ballOutline": "#F7F1E8"
+  },
+  "dark": {
+    "background": "#231B17",
+    "surface": "#2E241D",
+    "tint": "#3A2D23",
+    "heroBackground": "#33271F",
+    "textPrimary": "#F7F1E8",
+    "textSecondary": "#C2AE98",
+    "border": "#43352B",
+    "accent": "#DB9A5B",
+    "onAccent": "#231B17",
+    "critical": "#F09A78",
+    "criticalBackground": "#45261A",
+    "criticalBorder": "#6A3A26",
+    "success": "#9CC48F",
+    "successBackground": "#2C3A27",
+    "segmentSelected": "#4A3A2E",
+    "tabBar": "#1B1511",
+    "tabIdle": "#A08B78",
+    "mascotOutline": "#F4E4CC",
+    "mascotNose": "#100C0A",
+    "onCritical": "#231B17",
+    "switchOff": "#5A4A3D",
+    "toastBackground": "#F7F1E8",
+    "toastText": "#231B17",
+    "toastAction": "#A9541F",
+    "scrim": "rgba(20,14,10,0.45)",
+    "ballOutline": "#F4E4CC"
+  },
+  "pet": {
+    "avatars": [
+      "#DB9A5B",
+      "#8FA07C",
+      "#E2C79A",
+      "#C9B8A6",
+      "#B7C4D1",
+      "#D8C0D6"
+    ],
+    "calendarDots": {
+      "light": [
+        "#C27A3A",
+        "#6F8A5C"
+      ],
+      "dark": [
+        "#DB9A5B",
+        "#9DB089"
+      ]
+    },
+    "onAvatar": "#231B17"
+  },
+  "blackFriday": {
+    "background": "#120D0A",
+    "surface": "#2E241D",
+    "accent": "#DB9A5B",
+    "text": "#F7F1E8",
+    "textSecondary": "#CDB9A3"
+  },
+  "font": {
+    "family": "Outfit",
+    "weights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    }
+  },
+  "typography": {
+    "largeTitle": {
+      "size": 28,
+      "weight": 600,
+      "tracking": -0.01
+    },
+    "title": {
+      "size": 22,
+      "weight": 600
+    },
+    "headline": {
+      "size": 17,
+      "weight": 600
+    },
+    "body": {
+      "size": 16,
+      "weight": 400
+    },
+    "callout": {
+      "size": 15,
+      "weight": 400
+    },
+    "subheadline": {
+      "size": 14,
+      "weight": 400
+    },
+    "footnote": {
+      "size": 13,
+      "weight": 400
+    },
+    "sectionLabel": {
+      "size": 13,
+      "weight": 600,
+      "tracking": 0.06,
+      "uppercase": true
+    },
+    "caption": {
+      "size": 12,
+      "weight": 400
+    },
+    "tabLabel": {
+      "size": 11,
+      "weight": 500
+    }
+  },
+  "radius": {
+    "iconBox": 12,
+    "button": 14,
+    "card": 18,
+    "sheet": 28,
+    "chip": 999,
+    "input": 14,
+    "appIcon": 22
+  },
+  "spacing": {
+    "xs": 4,
+    "s": 8,
+    "m": 12,
+    "l": 16,
+    "xl": 20,
+    "xxl": 24,
+    "screenPadding": 20
+  },
+  "size": {
+    "minTouchTarget": 44,
+    "primaryButtonHeight": 54,
+    "avatarSmall": 24,
+    "avatar": 48,
+    "avatarLarge": 76
+  }
+}

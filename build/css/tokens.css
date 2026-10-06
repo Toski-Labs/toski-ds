@@ -1,0 +1,125 @@
+/* Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão. */
+
+/* Tema claro (padrão) + tokens que não mudam com o tema */
+:root {
+  color-scheme: light dark;
+
+  /* Marca */
+  --toski-caramelo: #DB9A5B;
+  --toski-ferrugem: #A9541F;
+  --toski-creme: #F4E4CC;
+  --toski-papel: #F7F1E8;
+  --toski-carvao: #231B17;
+
+  /* Fonte, raios e layout */
+  --toski-font-sans: "Outfit Variable", Outfit, system-ui, sans-serif;
+  --toski-radius-icon: 12px;
+  --toski-radius-button: 14px;
+  --toski-radius-card: 18px;
+  --toski-radius-panel: 28px;
+  --toski-container: 1168px;
+  --toski-gutter: 24px;
+
+  /* Cores semânticas */
+  --toski-background: #F7F1E8;
+  --toski-surface: #FFFFFF;
+  --toski-tint: #F3E4CF;
+  --toski-hero: #EFDCC2;
+  --toski-ink: #231B17;
+  --toski-muted: #6B5648;
+  --toski-line: #E6D8C4;
+  --toski-accent: #A9541F;
+  --toski-on-accent: #FFF8EE;
+  --toski-critical: #A3341A;
+  --toski-critical-bg: #F8E0D4;
+  --toski-critical-line: #EBC0AA;
+  --toski-success: #3F6E3B;
+  --toski-success-bg: #E4EEDC;
+  --toski-segment: #FFFFFF;
+  --toski-tabbar: #FFFDF9;
+  --toski-tab-idle: #7D6858;
+  --toski-mascot-outline: transparent;
+  --toski-mascot-nose: #231B17;
+  --toski-accent-hover: #7E3C14;
+  --toski-accent-text: #94481A;
+  --toski-link: #94481A;
+  --toski-ball-outline: #EFDCC2;
+  --toski-phone-ring: transparent;
+  --toski-footer: #231B17;
+  --toski-footer-ink: #F7F1E8;
+  --toski-footer-muted: #C2AE98;
+  --toski-footer-line: #43352B;
+}
+
+/* Escuro pelo sistema, a menos que a pessoa tenha escolhido "Claro" (data-theme="light") */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --toski-background: #231B17;
+    --toski-surface: #2E241D;
+    --toski-tint: #3A2D23;
+    --toski-hero: #33271F;
+    --toski-ink: #F7F1E8;
+    --toski-muted: #C2AE98;
+    --toski-line: #43352B;
+    --toski-accent: #DB9A5B;
+    --toski-on-accent: #231B17;
+    --toski-critical: #F09A78;
+    --toski-critical-bg: #45261A;
+    --toski-critical-line: #6A3A26;
+    --toski-success: #9CC48F;
+    --toski-success-bg: #2C3A27;
+    --toski-segment: #4A3A2E;
+    --toski-tabbar: #1B1511;
+    --toski-tab-idle: #A08B78;
+    --toski-mascot-outline: #F4E4CC;
+    --toski-mascot-nose: #100C0A;
+    --toski-accent-hover: #E8B27C;
+    --toski-accent-text: #DB9A5B;
+    --toski-link: #E8B27C;
+    --toski-ball-outline: #F4E4CC;
+    --toski-phone-ring: #43352B;
+    --toski-footer: #1B1511;
+    --toski-footer-ink: #F7F1E8;
+    --toski-footer-muted: #C2AE98;
+    --toski-footer-line: #43352B;
+  }
+}
+
+/* Escuro escolhido manualmente */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --toski-background: #231B17;
+  --toski-surface: #2E241D;
+  --toski-tint: #3A2D23;
+  --toski-hero: #33271F;
+  --toski-ink: #F7F1E8;
+  --toski-muted: #C2AE98;
+  --toski-line: #43352B;
+  --toski-accent: #DB9A5B;
+  --toski-on-accent: #231B17;
+  --toski-critical: #F09A78;
+  --toski-critical-bg: #45261A;
+  --toski-critical-line: #6A3A26;
+  --toski-success: #9CC48F;
+  --toski-success-bg: #2C3A27;
+  --toski-segment: #4A3A2E;
+  --toski-tabbar: #1B1511;
+  --toski-tab-idle: #A08B78;
+  --toski-mascot-outline: #F4E4CC;
+  --toski-mascot-nose: #100C0A;
+  --toski-accent-hover: #E8B27C;
+  --toski-accent-text: #DB9A5B;
+  --toski-link: #E8B27C;
+  --toski-ball-outline: #F4E4CC;
+  --toski-phone-ring: #43352B;
+  --toski-footer: #1B1511;
+  --toski-footer-ink: #F7F1E8;
+  --toski-footer-muted: #C2AE98;
+  --toski-footer-line: #43352B;
+}
+
+/* Claro escolhido manualmente */
+:root[data-theme="light"] {
+  color-scheme: light;
+}

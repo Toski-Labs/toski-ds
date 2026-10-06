@@ -1,42 +1,93 @@
-# PetHealthTracker — assets de design
+# Toski DS
 
-Pacote com a logo, a mascote (Paçoca), os ícones do app, as animações e os tokens de cor/tipografia. Fonte da verdade visual: canvas "PetHealthTracker — Telas do App". O app se chama PetHealthTracker; Toski Labs é a empresa. O código usa o prefixo `Toski` (`Toski.accent`, `ToskiMascot`) porque as cores, a fonte e a mascote são o design system da Toski Labs.
+**Português** · [English](README.en.md)
 
-## Estrutura
+Design system da **Toski Labs**: uma fonte única para cores, tipografia, raios e componentes usados no
+site (Astro + Tailwind CSS 4), no app iOS (SwiftUI) e nos temas (VS Code e iTerm2).
 
+📖 **Storybook:** https://toski-labs.github.io/toski-ds/
+
+## O que tem aqui
+
+| Pasta | Conteúdo |
+|---|---|
+| `tokens/tokens.json` | **Fonte da verdade**: marca, cores claro/escuro (compartilhadas, só web e só mobile), fonte, raios, layout, tokens do app e os pares de contraste conferidos no CI |
+| `build/` | Gerado a partir dos tokens (não edite à mão) |
+| `build/css/tokens.css` | Variáveis `--toski-*` (claro em `:root`; escuro pelo sistema ou com `data-theme="dark"`) |
+| `build/css/theme.css` | Bloco `@theme` do Tailwind CSS 4 (cores, `--radius-*`, `--font-sans`) |
+| `build/swift/ToskiColors.swift` | SwiftUI (nomes do app): cores claro/escuro, raios, espaçamentos, tamanhos e estilos de texto |
+| `build/json/web.json` · `mobile.json` | JSON simples por plataforma (temas do VS Code e do iTerm2, scripts) |
+| `styles/tailwind.css` | Tudo o que um projeto com Tailwind CSS 4 precisa importar |
+| `src/components/` | Componentes React + TypeScript + Tailwind CSS 4 |
+| `assets/` | SVGs da Paçoca e do ícone do app (para o Xcode) |
+| `docs/` | Páginas do Storybook (Introdução, Como usar, Cores, Tipografia, Raios) |
+
+Componentes: `Button` (primary, secondary, light; lg 54px e md 48px), `Pill` (status, outline, tag, plus),
+`Card` (surface, plain, hero, dashed; raios card 18 e panel 28), `IconBox`, `Kicker`, `SectionHeading`,
+`CheckList`, `Icon` (ícones de traço em SVG inline), `AppIcon` e `Mascot` (Paçoca).
+
+## Uso rápido
+
+```bash
+npm install github:Toski-Labs/toski-ds#v0.1.0 @fontsource-variable/outfit
 ```
-svg/
-  pacoca-bolinha-claro.svg        Mascote completa, tema claro (login, estados vazios)
-  pacoca-bolinha-escuro.svg       Mascote completa, tema escuro (corpo com contorno creme)
-  pacoca-sem-bolinha-claro.svg    Só a Paçoca — camada fixa para animar a bolinha
-  pacoca-sem-bolinha-escuro.svg
-  bolinha-claro.svg               Só a bolinha — camada animada
-  bolinha-escuro.svg
-  pacoca-bolinha-chao-claro.svg   Bolinha caída no canto (tela de Erro)
-  pacoca-bolinha-chao-escuro.svg
-  icone-caramelo.svg              Ícone do app padrão (1024) — estilo Claro (Any)
-  icone-caramelo-escuro.svg       Ícone padrão, estilo Escuro (Dark, iOS 18+), fundo transparente
-  icone-caramelo-colorido.svg     Ícone padrão, estilo Colorido (Tinted, iOS 18+), tons de cinza
-  icone-focinho.svg               Ícone alternativo (Plus)
-  icone-papel.svg                 Ícone alternativo (Plus)
-tokens/
-  tokens.json                     Cores (claro/escuro), tipografia, raios, espaçamentos
-swift/
-  Color+Toski.swift               Cores e fontes prontas para SwiftUI (sem Asset Catalog)
-  ToskiMascot.swift               Mascote animada, LoadingView, pontinhos e ícone de sincronização
-animacoes.md                      Especificação de cada animação
+
+```css
+/* CSS principal */
+@import "tailwindcss";
+@import "@fontsource-variable/outfit";
+@import "@toski-labs/ds/tailwind.css";
 ```
 
-## Como usar no Xcode
+```tsx
+import { Button, SectionHeading } from '@toski-labs/ds';
 
-1. Arrastar os SVGs de `svg/` para o `Assets.xcassets`, marcar **Preserve Vector Data** e, nos pares claro/escuro, **Appearances: Any, Dark** (claro em Any, escuro em Dark). Nomes sugeridos: `PacocaBolinha`, `PacocaSemBolinha`, `Bolinha`, `PacocaBolinhaChao`.
-2. Ícone do app: no AppIcon, marcar **Appearances: Any, Dark, Tinted** e exportar em PNG 1024×1024: `icone-caramelo.svg` em Any, `icone-caramelo-escuro.svg` em Dark (PNG com fundo transparente) e `icone-caramelo-colorido.svg` em Tinted (tons de cinza). `icone-focinho` e `icone-papel` entram como ícones alternativos (`CFBundleAlternateIcons`), só na versão clara; no modo Escuro/Colorido o iOS gera a variação deles.
-3. Copiar `swift/Color+Toski.swift` e `swift/ToskiMascot.swift` para o projeto.
-4. Fonte Outfit: baixar do Google Fonts (licença OFL), adicionar os `.ttf` (Regular, Medium, SemiBold, Bold) ao projeto e ao `Info.plist` em *Fonts provided by application*.
+<SectionHeading kicker="Projetos" title="O que sai do laboratório" />
+<Button href="/pethealthtracker" icon="arrow-right">Conhecer</Button>
+```
 
-## Regras
+```swift
+// SwiftUI: copie build/swift/ToskiColors.swift para o projeto
+Text("Olá").foregroundStyle(ToskiColors.textPrimary)
+```
 
-- A mascote nunca muda de cor fora dos temas definidos aqui.
-- No tema claro o corpo não tem contorno; no escuro tem contorno creme (#F4E4CC).
-- O contorno da bolinha usa a cor do fundo (claro: #F7F1E8), para "descolar" ela do corpo.
-- Toda animação respeita **Reduzir movimento**: a bolinha fica parada.
+Mais detalhes na página [Como usar](https://toski-labs.github.io/toski-ds/?path=/docs/como-usar--docs).
+
+## Desenvolvimento
+
+Requer Node 22.
+
+```bash
+npm install
+npm run dev              # Storybook em http://localhost:6006
+npm run tokens:build     # gera build/ a partir de tokens/tokens.json
+npm run contrast         # confere o contraste dos pares de tokens
+npm run verify           # tudo o que o CI roda
+```
+
+### Mudar um token
+
+1. Edite `tokens/tokens.json`.
+2. Rode `npm run tokens:build` e `npm run contrast`.
+3. Registre a mudança com `npm run changeset`.
+4. Faça o commit de `tokens/`, `build/` e `src/generated/` juntos.
+
+O CI falha se `build/` estiver desatualizado ou se algum par de texto ficar abaixo de 4,5:1
+(3:1 para texto grande e ícones).
+
+## Acessibilidade
+
+- Contraste conferido no CI nos dois temas.
+- Foco visível (contorno `accent`, 2px) em tudo que é interativo.
+- Botões com 48px ou mais de altura (área de toque mínima de 44px).
+- Animações e transições desligadas com `prefers-reduced-motion`.
+- Ícones e mascote decorativos por padrão (`aria-hidden`); passe `label` quando carregarem significado.
+
+## Versões
+
+[Versionamento Semântico](https://semver.org/lang/pt-BR/) com [Changesets](https://github.com/changesets/changesets).
+Veja o [CHANGELOG](CHANGELOG.md).
+
+## Licença
+
+[MIT](LICENSE) © 2026 Toski Labs

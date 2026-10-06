@@ -1,0 +1,71 @@
+/*
+  Toski DS para projetos com Tailwind CSS 4.
+
+    @import "tailwindcss";
+    @import "@fontsource-variable/outfit";
+    @import "@toski-labs/ds/tailwind.css";
+
+  Traz as variáveis --toski-* (claro/escuro), o @theme (bg-surface, rounded-card, font-sans…),
+  estilos de base acessíveis e faz o Tailwind ler as classes dos componentes React do pacote.
+*/
+@import "../build/css/tokens.css";
+@import "../build/css/theme.css";
+
+/* Classes usadas pelos componentes do pacote */
+@source "../dist";
+
+/* Container padrão: 1120px de conteúdo + 24px de margem de cada lado */
+@utility page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--toski-background);
+    color: var(--toski-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--toski-accent);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--toski-hero);
+    color: var(--toski-ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Bolinha da Paçoca (Mascot ball="bounce"). Parada com "reduzir movimento". */
+@keyframes toski-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  45%,
+  60% {
+    transform: translateY(-14px);
+  }
+}
+@utility toski-ball {
+  animation: toski-bounce 1.8s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

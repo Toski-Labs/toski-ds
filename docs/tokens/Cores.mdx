@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { BrandPalette, SemanticPalette, ContrastTable, MobileExtras } from '../blocks';
+
+<Meta title="Tokens/Cores" />
+
+# Cores
+
+Os tokens são divididos em três grupos em `tokens/tokens.json`:
+
+- **`color`**: compartilhados entre web e mobile (mesmo valor; o nome muda: `ink` na web, `textPrimary` no app);
+- **`web.color`**: só da web (hover, links, rodapé, mock de iPhone…);
+- **`mobile.color`**: só do app (toast, interruptor, scrim…).
+
+`ball-outline` existe nas duas plataformas com valores diferentes no claro: na web é igual ao `hero`
+(`#EFDCC2`), no app é igual ao fundo (`#F7F1E8`).
+
+## Marca
+
+Iguais nos dois temas e nas duas plataformas. Tailwind: `bg-caramelo`, `text-ferrugem`… · Swift: `ToskiColors.caramelo`.
+
+<BrandPalette />
+
+## Web
+
+CSS: `var(--toski-surface)` · Tailwind: `bg-surface`, `text-ink`, `border-line`…
+
+<SemanticPalette platform="web" />
+
+## Mobile (iOS)
+
+Swift: `ToskiColors.surface`, `ToskiColors.textPrimary`… (nomes iguais aos do app)
+
+<SemanticPalette platform="mobile" />
+
+### Pets, Black Friday, espaçamentos e tamanhos (só mobile)
+
+<MobileExtras />
+
+## Contraste
+
+Pares conferidos no CI (`npm run contrast`), com o nome de cada plataforma. Texto: mínimo **4,5:1**.
+Texto grande, ícones e foco: **3:1** (linhas em fonte maior). Na web, use `accent-text` (não `accent`)
+para texto pequeno sobre `tint` e `hero`.
+
+### Web
+
+<ContrastTable platform="web" />
+
+### Mobile
+
+<ContrastTable platform="mobile" />

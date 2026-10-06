@@ -1,0 +1,53 @@
+/* Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão. */
+/* Use depois de @import "tailwindcss" e de tokens.css. */
+
+/* Cores semânticas: bg-surface, text-muted, border-line, bg-accent… (mudam com o tema) */
+@theme inline {
+  --color-background: var(--toski-background);
+  --color-surface: var(--toski-surface);
+  --color-tint: var(--toski-tint);
+  --color-hero: var(--toski-hero);
+  --color-ink: var(--toski-ink);
+  --color-muted: var(--toski-muted);
+  --color-line: var(--toski-line);
+  --color-accent: var(--toski-accent);
+  --color-on-accent: var(--toski-on-accent);
+  --color-critical: var(--toski-critical);
+  --color-critical-bg: var(--toski-critical-bg);
+  --color-critical-line: var(--toski-critical-line);
+  --color-success: var(--toski-success);
+  --color-success-bg: var(--toski-success-bg);
+  --color-segment: var(--toski-segment);
+  --color-tabbar: var(--toski-tabbar);
+  --color-tab-idle: var(--toski-tab-idle);
+  --color-mascot-outline: var(--toski-mascot-outline);
+  --color-mascot-nose: var(--toski-mascot-nose);
+  --color-accent-hover: var(--toski-accent-hover);
+  --color-accent-text: var(--toski-accent-text);
+  --color-link: var(--toski-link);
+  --color-ball-outline: var(--toski-ball-outline);
+  --color-phone-ring: var(--toski-phone-ring);
+  --color-footer: var(--toski-footer);
+  --color-footer-ink: var(--toski-footer-ink);
+  --color-footer-muted: var(--toski-footer-muted);
+  --color-footer-line: var(--toski-footer-line);
+}
+
+/* Valores fixos: cores da marca, fonte, raios (rounded-card…) e layout (max-w-page, px-gutter) */
+@theme {
+  --color-caramelo: #DB9A5B;
+  --color-ferrugem: #A9541F;
+  --color-creme: #F4E4CC;
+  --color-papel: #F7F1E8;
+  --color-carvao: #231B17;
+
+  --font-sans: "Outfit Variable", Outfit, system-ui, sans-serif;
+
+  --radius-icon: 12px;
+  --radius-button: 14px;
+  --radius-card: 18px;
+  --radius-panel: 28px;
+
+  --container-page: 1168px;
+  --spacing-gutter: 24px;
+}

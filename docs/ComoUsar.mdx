@@ -1,0 +1,100 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Como usar" />
+
+# Como usar
+
+## 1. Instalar
+
+Enquanto o pacote não está no npm, instale direto do GitHub (fixe uma versão pela tag):
+
+```bash
+npm install github:Toski-Labs/toski-ds#v0.1.0
+npm install @fontsource-variable/outfit
+```
+
+Requer React 18+ e Tailwind CSS 4.
+
+## 2. Importar o CSS (projetos com Tailwind CSS 4)
+
+No CSS principal (no site: `src/styles/global.css`):
+
+```css
+@import "tailwindcss";
+@import "@fontsource-variable/outfit";
+@import "@toski-labs/ds/tailwind.css";
+```
+
+Isso traz:
+
+- as variáveis `--toski-*` (claro em `:root`, escuro pelo sistema ou com `data-theme="dark"` no `<html>`);
+- o `@theme` do Tailwind: `bg-surface`, `text-muted`, `border-line`, `bg-accent`, `text-accent-text`,
+  `rounded-card`, `rounded-panel`, `font-sans`, `max-w-page`, `px-gutter`…;
+- estilos de base (fundo, texto, foco visível, reduzir movimento) e o utilitário `page` (container de 1168px);
+- o `@source` que faz o Tailwind gerar as classes usadas pelos componentes do pacote.
+
+Sem Tailwind, importe só as variáveis: `@import "@toski-labs/ds/tokens.css";`
+
+### Tema claro / escuro
+
+O tema segue o sistema. Para forçar, ponha `data-theme="light"` ou `data-theme="dark"` no `<html>`
+(antes da página aparecer, para não piscar).
+
+## 3. Usar os componentes
+
+```tsx
+import { Button, Card, Kicker, SectionHeading } from '@toski-labs/ds';
+
+export function Projetos() {
+  return (
+    <section className="page py-24">
+      <SectionHeading kicker="Projetos" title="O que sai do laboratório" lead="Apps pequenos, feitos com cuidado." />
+      <Card className="mt-8 p-6">
+        <Kicker>iPhone</Kicker>
+        <Button href="/pethealthtracker" icon="arrow-right">Conhecer</Button>
+      </Card>
+    </section>
+  );
+}
+```
+
+No Astro, use os componentes React com a integração `@astrojs/react` (`client:*` só se precisarem de
+interação; os do Toski DS são estáticos).
+
+Os valores também estão disponíveis em JS: `import { tokens } from '@toski-labs/ds'`.
+
+## 4. Usar no Swift (SwiftUI)
+
+Copie `build/swift/ToskiColors.swift` para o projeto do Xcode (ou adicione o repositório como submódulo
+e referencie o arquivo). Ele traz os tokens compartilhados e os só do app, **com os nomes do app**
+(`textPrimary`, `textSecondary`, `border`, `heroBackground`…). As cores mudam sozinhas entre claro e escuro:
+
+```swift
+Text("Olá")
+    .font(ToskiFont.headline.font)
+    .foregroundStyle(ToskiColors.textPrimary)
+    .padding(ToskiSpacing.l)
+    .background(ToskiColors.surface, in: .rect(cornerRadius: ToskiRadius.card))
+```
+
+Também gera `ToskiRadius`, `ToskiSpacing`, `ToskiSize`, `ToskiFont` (estilos do app) e as cores dos pets
+e da Black Friday. A fonte Outfit precisa estar no app (.ttf em *Fonts provided by application*).
+
+> O app hoje tem `Color+Toski.swift` (enum `Toski`). O `ToskiColors.swift` não conflita com ele
+> (outro nome, sem extensões), então dá para migrar aos poucos.
+
+## 5. Outros usos
+
+JSON simples, um por plataforma (útil para os temas do VS Code e do iTerm2):
+
+- `build/json/web.json` — marca, cores claro/escuro (nomes da web), fonte, raios e layout;
+- `build/json/mobile.json` — marca, cores claro/escuro (nomes do app), pets, Black Friday, tipografia,
+  raios, espaçamentos e tamanhos.
+
+## Mudar um token
+
+1. Edite `tokens/tokens.json`: em `color` se valer para web e mobile (com `mobileName` se o nome do app
+   for diferente), em `web.color` ou `mobile.color` se for só de uma plataforma.
+2. Rode `npm run tokens:build` e `npm run contrast`.
+3. Faça o commit de `tokens/`, `build/` e `src/generated/` juntos. O CI falha se `build/` estiver desatualizado ou se
+   algum par de texto ficar abaixo do contraste mínimo.

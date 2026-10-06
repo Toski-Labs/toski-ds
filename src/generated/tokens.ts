@@ -1,0 +1,100 @@
+// Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão.
+// Tokens da web, exportados pelo pacote como `tokens`.
+
+export const tokens = {
+  "brand": {
+    "caramelo": "#DB9A5B",
+    "ferrugem": "#A9541F",
+    "creme": "#F4E4CC",
+    "papel": "#F7F1E8",
+    "carvao": "#231B17"
+  },
+  "light": {
+    "background": "#F7F1E8",
+    "surface": "#FFFFFF",
+    "tint": "#F3E4CF",
+    "hero": "#EFDCC2",
+    "ink": "#231B17",
+    "muted": "#6B5648",
+    "line": "#E6D8C4",
+    "accent": "#A9541F",
+    "on-accent": "#FFF8EE",
+    "critical": "#A3341A",
+    "critical-bg": "#F8E0D4",
+    "critical-line": "#EBC0AA",
+    "success": "#3F6E3B",
+    "success-bg": "#E4EEDC",
+    "segment": "#FFFFFF",
+    "tabbar": "#FFFDF9",
+    "tab-idle": "#7D6858",
+    "mascot-outline": "transparent",
+    "mascot-nose": "#231B17",
+    "accent-hover": "#7E3C14",
+    "accent-text": "#94481A",
+    "link": "#94481A",
+    "ball-outline": "#EFDCC2",
+    "phone-ring": "transparent",
+    "footer": "#231B17",
+    "footer-ink": "#F7F1E8",
+    "footer-muted": "#C2AE98",
+    "footer-line": "#43352B"
+  },
+  "dark": {
+    "background": "#231B17",
+    "surface": "#2E241D",
+    "tint": "#3A2D23",
+    "hero": "#33271F",
+    "ink": "#F7F1E8",
+    "muted": "#C2AE98",
+    "line": "#43352B",
+    "accent": "#DB9A5B",
+    "on-accent": "#231B17",
+    "critical": "#F09A78",
+    "critical-bg": "#45261A",
+    "critical-line": "#6A3A26",
+    "success": "#9CC48F",
+    "success-bg": "#2C3A27",
+    "segment": "#4A3A2E",
+    "tabbar": "#1B1511",
+    "tab-idle": "#A08B78",
+    "mascot-outline": "#F4E4CC",
+    "mascot-nose": "#100C0A",
+    "accent-hover": "#E8B27C",
+    "accent-text": "#DB9A5B",
+    "link": "#E8B27C",
+    "ball-outline": "#F4E4CC",
+    "phone-ring": "#43352B",
+    "footer": "#1B1511",
+    "footer-ink": "#F7F1E8",
+    "footer-muted": "#C2AE98",
+    "footer-line": "#43352B"
+  },
+  "font": {
+    "family": "Outfit",
+    "stack": [
+      "Outfit Variable",
+      "Outfit",
+      "system-ui",
+      "sans-serif"
+    ],
+    "weights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    }
+  },
+  "radius": {
+    "icon": 12,
+    "button": 14,
+    "card": 18,
+    "panel": 28
+  },
+  "layout": {
+    "container": 1168,
+    "gutter": 24
+  }
+} as const;
+
+export type ToskiTokens = typeof tokens;
+export type ToskiColorName = keyof typeof tokens.light;

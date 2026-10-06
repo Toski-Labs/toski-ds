@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Mascot } from '../src/components/Mascot';
+
+<Meta title="Introdução" />
+
+<div style={{ maxWidth: 220 }}>
+  <Mascot label="Paçoca, a mascote da Toski Labs" />
+</div>
+
+# Toski DS
+
+O design system da **Toski Labs**: uma fonte única para cores, tipografia, raios e componentes usados no
+site (Astro + Tailwind CSS 4), no app iOS (SwiftUI) e nos temas (VS Code e iTerm2).
+
+- **Tokens** em `tokens/tokens.json`, com modo claro e escuro.
+- **Gerados a partir dos tokens** (`npm run tokens:build`): variáveis CSS `--toski-*`, bloco `@theme` do
+  Tailwind CSS 4, `ToskiColors.swift` para SwiftUI e um JSON simples.
+- **Componentes React** com TypeScript e Tailwind CSS 4: Button, Pill, Card, IconBox, Kicker,
+  SectionHeading, CheckList, Icon, AppIcon e Mascot.
+- **Acessibilidade**: contraste conferido no CI (4,5:1 para texto, 3:1 para texto grande e ícones),
+  foco visível, áreas de toque de 44px e `prefers-reduced-motion`.
+
+Use o botão de tema na barra de cima (pincel) para ver tudo em **Claro** ou **Escuro**. Cada componente
+também tem uma história "Claro e escuro" com os dois lado a lado.
+
+Código: [github.com/Toski-Labs/toski-ds](https://github.com/Toski-Labs/toski-ds) · Licença MIT © 2026 Toski Labs

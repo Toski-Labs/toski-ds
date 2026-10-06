@@ -1,0 +1,83 @@
+{
+  "name": "@toski-labs/ds",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Toski DS — design system da Toski Labs: tokens (web, Tailwind CSS 4, SwiftUI) e componentes React.",
+  "license": "MIT",
+  "author": "Toski Labs <toskilabs@gmail.com>",
+  "homepage": "https://toski-labs.github.io/toski-ds/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Toski-Labs/toski-ds.git"
+  },
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tailwind.css": "./styles/tailwind.css",
+    "./tokens.css": "./build/css/tokens.css",
+    "./theme.css": "./build/css/theme.css",
+    "./web.json": "./build/json/web.json",
+    "./mobile.json": "./build/json/mobile.json",
+    "./ToskiColors.swift": "./build/swift/ToskiColors.swift",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "build",
+    "styles",
+    "assets"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "tokens:build": "tsx scripts/build-tokens.ts",
+    "tokens:check": "tsx scripts/build-tokens.ts --check",
+    "contrast": "tsx scripts/check-contrast.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "npm run tokens:build && vite build && tsc -p tsconfig.build.json",
+    "dev": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
+    "verify": "npm run tokens:check && npm run contrast && npm run typecheck && npm run test && npm run build",
+    "changeset": "changeset",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "tailwindcss": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.0",
+    "@fontsource-variable/outfit": "^5.3.0",
+    "@storybook/addon-a11y": "^10.0.0",
+    "@storybook/addon-docs": "^10.0.0",
+    "@storybook/addon-themes": "^10.0.0",
+    "@storybook/react-vite": "^10.0.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.0",
+    "jsdom": "^30.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "storybook": "^10.0.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.0.0",
+    "vitest": "^5.0.0"
+  }
+}

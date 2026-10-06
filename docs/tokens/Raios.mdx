@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Radii, Layout } from '../blocks';
+
+<Meta title="Tokens/Raios e layout" />
+
+# Raios e layout
+
+## Raios — web
+
+CSS: `var(--toski-radius-card)` · Tailwind: `rounded-card`.
+
+<Radii platform="web" />
+
+## Raios — mobile
+
+Swift: `ToskiRadius.card`. Mesmos valores; `icon` se chama `iconBox` e `panel` se chama `sheet` no app.
+Só no app: `chip` (cápsula), `input` e `appIcon`.
+
+<Radii platform="mobile" />
+
+## Layout (web)
+
+<Layout />
+
+No Tailwind: `max-w-page` e `px-gutter`, ou o utilitário `page` (largura máxima + margem lateral).
+No app, os espaçamentos estão em `ToskiSpacing` (veja Tokens/Cores).

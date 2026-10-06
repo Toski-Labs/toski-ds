@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Tokens, contraste, testes e build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: build/ está atualizado com tokens/tokens.json
+        run: npm run tokens:check
+
+      - name: Contraste mínimo (4,5:1 texto · 3:1 texto grande e ícones)
+        run: npm run contrast
+
+      - name: Tipos
+        run: npm run typecheck
+
+      - name: Testes
+        run: npm test
+
+      - name: Build da biblioteca
+        run: npm run build
+
+      - name: Build do Storybook
+        run: npm run build-storybook

@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypeScale, Weights, MobileTypeScale } from '../blocks';
+
+<Meta title="Tokens/Tipografia" />
+
+# Tipografia
+
+Fonte única: **Outfit** (variável). Na web vem de `@fontsource-variable/outfit` e entra como
+`--font-sans` (`font-sans` no Tailwind). No iOS: `ToskiFont.family`.
+
+## Pesos
+
+<Weights />
+
+## Web — tamanhos usados nos componentes
+
+<TypeScale />
+
+## Mobile — estilos do app
+
+No Swift: `Text("Hoje").font(ToskiFont.headline.font)`. Para `sectionLabel`, use também
+`.tracking(ToskiFont.sectionLabel.trackingPoints)` e `.textCase(.uppercase)`.
+
+<MobileTypeScale />

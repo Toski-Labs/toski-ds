@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "@fontsource-variable/outfit";
+@import "../styles/tailwind.css";
+
+/* No Storybook as classes vêm do código-fonte (e das páginas de docs) */
+@source "../src";
+@source "../docs";
+
+/* Páginas de documentação seguem o tema escolhido na barra */
+.sbdocs-wrapper {
+  background: var(--toski-background) !important;
+}
+.sbdocs-content {
+  color: var(--toski-ink);
+  font-family: var(--font-sans);
+}
+.sbdocs-content :where(h1, h2, h3, h4, p, li, td, th, strong):not(.sb-unstyled, .sb-unstyled *) {
+  color: var(--toski-ink) !important;
+  font-family: var(--font-sans) !important;
+}
+.sbdocs-content :where(a) {
+  color: var(--toski-link) !important;
+}
+.sbdocs-content :where(code):not(.sb-unstyled *) {
+  background: var(--toski-tint) !important;
+  color: var(--toski-ink) !important;
+  border-color: var(--toski-line) !important;
+}
+.sbdocs-content :where(table tr):not(.sb-unstyled *) {
+  background: transparent !important;
+}
+.sbdocs-content :where(td, th):not(.sb-unstyled *) {
+  border-color: var(--toski-line) !important;
+}
