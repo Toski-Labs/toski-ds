@@ -86,7 +86,8 @@ animations and transitions off with `prefers-reduced-motion` · icons and mascot
 
 Write your changes under "## Próxima versão" in `CHANGELOG.md`, then on `main` run
 `npm run release -- patch | minor | major` (`--dry-run` to simulate). It checks git and the changelog, runs
-`npm run verify`, bumps the version, commits, tags and pushes; the **Publicar no npm** workflow publishes to npm.
+`npm run verify`, bumps the version, commits, tags and pushes; the **Publicar no npm** workflow publishes to npm and
+creates the [GitHub Release](https://github.com/Toski-Labs/toski-ds/releases) with the changelog notes.
 
 ## Versioning
 

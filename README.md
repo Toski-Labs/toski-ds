@@ -105,7 +105,8 @@ O CI falha se `build/` estiver desatualizado ou se algum par de texto ficar abai
 
    O script confere o git e o CHANGELOG, roda `npm run verify`, sobe a versão, faz o commit `release: vX.Y.Z`
    e a tag, e pergunta antes de enviar ao GitHub. Use `--dry-run` para simular.
-3. O workflow **Publicar no npm** (`.github/workflows/release.yml`) publica `@toski-labs/ds` com provenance.
+3. O workflow **Publicar no npm** (`.github/workflows/release.yml`) publica `@toski-labs/ds` com provenance e
+   cria a [Release no GitHub](https://github.com/Toski-Labs/toski-ds/releases) com as notas do CHANGELOG.
 
 ## Versões
 

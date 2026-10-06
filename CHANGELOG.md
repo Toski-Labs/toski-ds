@@ -5,6 +5,12 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+- Release no GitHub a cada versão, com as notas do CHANGELOG e o link do npm (`release.yml` +
+  `scripts/release-notes.mjs`). Rodando o workflow à mão, cria as Releases que faltam das tags antigas.
+- Selos de npm, CI, Storybook e licença no README.
+
 ## 0.3.3 — 2026-10-06
 
 ### Adicionado

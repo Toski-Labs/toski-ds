@@ -134,8 +134,9 @@ npm run release -- major   # quebra a API    0.3.2 → 1.0.0
 
 O script confere o git e o CHANGELOG, roda `npm run verify`, transforma "Próxima versão" na versão nova,
 sobe a versão no `package.json`, faz o commit `release: vX.Y.Z` e a tag, e **pergunta antes de enviar** ao
-GitHub. Depois do envio, o workflow **Publicar no npm** publica `@toski-labs/ds` sozinho (com provenance) e
-o Storybook é atualizado.
+GitHub. Depois do envio, o workflow **Publicar no npm** publica `@toski-labs/ds` sozinho (com provenance),
+cria a [Release no GitHub](https://github.com/Toski-Labs/toski-ds/releases) com as notas do CHANGELOG e o
+Storybook é atualizado.
 
 - `--dry-run`: simula tudo sem mudar nada.
 - `--yes`: envia sem perguntar.

@@ -1,21 +1,30 @@
 name: Publicar no npm
 
-# Publica @toski-labs/ds quando uma tag vX.Y.Z é enviada (git push origin vX.Y.Z).
-# Usa "trusted publishing" do npm (OIDC): sem token guardado no GitHub, com provenance automático.
+# Ao enviar uma tag vX.Y.Z (npm run release faz isso):
+#   1. publica @toski-labs/ds no npm ("trusted publishing" via OIDC: sem token guardado, com provenance);
+#   2. cria a Release no GitHub com as notas daquela versão tiradas do CHANGELOG.md.
+#
+# Rodando à mão (Actions → Publicar no npm → Run workflow), só cria as Releases que faltam
+# para todas as tags vX.Y.Z existentes. Não publica nada no npm.
+#
 # Configuração única no npmjs.com: pacote @toski-labs/ds → Settings → Trusted Publisher →
 # GitHub Actions · organização Toski-Labs · repositório toski-ds · workflow release.yml
 
 on:
   push:
     tags: ['v*.*.*']
+  workflow_dispatch:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   publish:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v5
 
@@ -49,3 +58,47 @@ jobs:
       # prepublishOnly roda npm run verify (tokens, contraste, tipos, testes e build)
       - if: steps.published.outputs.exists != 'true'
         run: npm publish
+
+  github-release:
+    needs: publish
+    # Também roda à mão (workflow_dispatch), quando o publish é pulado
+    if: always() && (needs.publish.result == 'success' || needs.publish.result == 'skipped')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+
+      - name: Criar as Releases que faltam
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            TAGS="$GITHUB_REF_NAME"
+          else
+            TAGS="$(git tag --list 'v*.*.*' --sort=v:refname)"
+          fi
+          LATEST="$(git tag --list 'v*.*.*' --sort=-v:refname | head -n 1)"
+
+          for TAG in $TAGS; do
+            VERSION="${TAG#v}"
+            if gh release view "$TAG" >/dev/null 2>&1; then
+              echo "✓ $TAG já tem Release"
+              continue
+            fi
+            if npm view "@toski-labs/ds@$VERSION" version 2>/dev/null | grep -qx "$VERSION"; then
+              export NPM_PUBLISHED=1
+            else
+              export NPM_PUBLISHED=0
+            fi
+            node scripts/release-notes.mjs "$VERSION" > notes.md
+            if [ "$TAG" = "$LATEST" ]; then MAKE_LATEST=true; else MAKE_LATEST=false; fi
+            gh release create "$TAG" --title "$TAG" --notes-file notes.md --verify-tag --latest="$MAKE_LATEST"
+            echo "→ Release $TAG criada"
+          done
