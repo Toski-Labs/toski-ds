@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { LightAndDark } from '../../docs/ThemeFrame';
-import { Icon, iconNames } from './Icon';
+import { Icon, iconData, iconNames } from './Icon';
 
 const meta = {
   title: 'Componentes/Icon',
@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Ícones de traço em SVG inline (24×24, cor = currentColor). Decorativos por padrão; passe `label` quando o ícone carregar significado sozinho.',
+          'Ícones de traço em SVG inline (24×24, cor = currentColor), os mesmos desenhos do app iOS (`icons/svg/`). Nome em inglês na web e em português no app (abaixo de cada ícone). Decorativos por padrão; passe `label` quando o ícone carregar significado sozinho.',
       },
     },
   },
@@ -29,9 +29,10 @@ export const Default: Story = { decorators: [(S) => <span className="text-accent
 const Gallery = () => (
   <ul className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-3">
     {iconNames.map((n) => (
-      <li key={n} className="flex flex-col items-center gap-2 rounded-card bg-surface p-4 text-ink">
+      <li key={n} className="flex flex-col items-center gap-1.5 rounded-card bg-surface p-4 text-ink">
         <Icon name={n} />
-        <code className="text-xs text-muted">{n}</code>
+        <code className="text-xs">{n}</code>
+        <code className="text-[11px] text-muted">{iconData[n].mobile ?? 'só web'}</code>
       </li>
     ))}
   </ul>

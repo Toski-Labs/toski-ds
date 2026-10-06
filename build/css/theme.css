@@ -43,6 +43,9 @@
 
   --font-sans: "Outfit Variable", Outfit, system-ui, sans-serif;
 
+  --ease-toski-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-toski-out: cubic-bezier(0, 0, 0.58, 1);
+
   --radius-icon: 12px;
   --radius-button: 14px;
   --radius-card: 18px;

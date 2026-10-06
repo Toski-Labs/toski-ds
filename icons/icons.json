@@ -1,0 +1,253 @@
+{
+  "$description": "Ícones de traço do Toski DS. Cada SVG em icons/svg/ é a fonte do desenho (24×24, stroke = currentColor no uso). \"web\" é o nome no componente Icon (inglês); \"mobile\" é o nome no app (arquivo em docs/design/assets/svg/icons/ e case do ToskiIcon). width e stroke-width do SVG são o tamanho e o traço padrão do canvas. Sem \"mobile\" = só web.",
+  "ajuda": {
+    "web": "help",
+    "mobile": "ajuda"
+  },
+  "ajustes": {
+    "web": "settings",
+    "mobile": "ajustes"
+  },
+  "alerta": {
+    "web": "alert",
+    "mobile": "alerta"
+  },
+  "arquivo": {
+    "web": "archive",
+    "mobile": "arquivo"
+  },
+  "baixar": {
+    "web": "download",
+    "mobile": "baixar"
+  },
+  "banho": {
+    "web": "bath",
+    "mobile": "banho"
+  },
+  "bug": {
+    "web": "bug",
+    "mobile": "bug"
+  },
+  "busca": {
+    "web": "search",
+    "mobile": "busca"
+  },
+  "cachorro": {
+    "web": "dog",
+    "mobile": "cachorro"
+  },
+  "cadeado": {
+    "web": "lock",
+    "mobile": "cadeado"
+  },
+  "calendario-exportar": {
+    "web": "calendar-export",
+    "mobile": "calendario-exportar"
+  },
+  "calendario-ponto": {
+    "web": "calendar-dot",
+    "mobile": "calendario-ponto"
+  },
+  "calendario": {
+    "web": "calendar",
+    "mobile": "calendario"
+  },
+  "camera": {
+    "web": "camera",
+    "mobile": "camera"
+  },
+  "celular": {
+    "web": "phone",
+    "mobile": "celular"
+  },
+  "check": {
+    "web": "check",
+    "mobile": "check"
+  },
+  "chevron-baixo": {
+    "web": "chevron-down",
+    "mobile": "chevron-baixo"
+  },
+  "chevron-direita": {
+    "web": "chevron-right",
+    "mobile": "chevron-direita"
+  },
+  "chevron-esquerda": {
+    "web": "chevron-left",
+    "mobile": "chevron-esquerda"
+  },
+  "chip": {
+    "web": "microchip",
+    "mobile": "chip"
+  },
+  "compartilhar": {
+    "web": "share",
+    "mobile": "compartilhar"
+  },
+  "contato": {
+    "web": "contact",
+    "mobile": "contato"
+  },
+  "copiar": {
+    "web": "copy",
+    "mobile": "copiar"
+  },
+  "coracao": {
+    "web": "heart",
+    "mobile": "coracao"
+  },
+  "documento-linhas": {
+    "web": "document-lines",
+    "mobile": "documento-linhas"
+  },
+  "documento-riscado": {
+    "web": "document-off",
+    "mobile": "documento-riscado"
+  },
+  "documento": {
+    "web": "document",
+    "mobile": "documento"
+  },
+  "editar": {
+    "web": "edit",
+    "mobile": "editar"
+  },
+  "estrela": {
+    "web": "star",
+    "mobile": "estrela"
+  },
+  "fechar": {
+    "web": "close",
+    "mobile": "fechar"
+  },
+  "filtro": {
+    "web": "filter",
+    "mobile": "filtro"
+  },
+  "gato": {
+    "web": "cat",
+    "mobile": "gato"
+  },
+  "globo": {
+    "web": "globe",
+    "mobile": "globo"
+  },
+  "info": {
+    "web": "info",
+    "mobile": "info"
+  },
+  "inicio": {
+    "web": "home",
+    "mobile": "inicio"
+  },
+  "lembrete-desligado": {
+    "web": "bell-off",
+    "mobile": "lembrete-desligado"
+  },
+  "lembrete": {
+    "web": "bell",
+    "mobile": "lembrete"
+  },
+  "link-externo": {
+    "web": "external-link",
+    "mobile": "link-externo"
+  },
+  "local": {
+    "web": "location",
+    "mobile": "local"
+  },
+  "mais-opcoes": {
+    "web": "more",
+    "mobile": "mais-opcoes"
+  },
+  "mais": {
+    "web": "plus",
+    "mobile": "mais"
+  },
+  "mensagem": {
+    "web": "message",
+    "mobile": "mensagem"
+  },
+  "neve": {
+    "web": "snow",
+    "mobile": "neve"
+  },
+  "peso": {
+    "web": "weight",
+    "mobile": "peso"
+  },
+  "pessoas": {
+    "web": "people",
+    "mobile": "pessoas"
+  },
+  "pets": {
+    "web": "paw",
+    "mobile": "pets"
+  },
+  "plano": {
+    "web": "plan",
+    "mobile": "plano"
+  },
+  "proximo": {
+    "web": "next",
+    "mobile": "proximo"
+  },
+  "racao": {
+    "web": "food",
+    "mobile": "racao"
+  },
+  "recibo": {
+    "web": "receipt",
+    "mobile": "recibo"
+  },
+  "relogio": {
+    "web": "clock",
+    "mobile": "relogio"
+  },
+  "remedio": {
+    "web": "medicine",
+    "mobile": "remedio"
+  },
+  "repetir": {
+    "web": "repeat",
+    "mobile": "repetir"
+  },
+  "spinner": {
+    "web": "spinner",
+    "mobile": "spinner"
+  },
+  "tema": {
+    "web": "theme",
+    "mobile": "tema"
+  },
+  "tosa": {
+    "web": "grooming",
+    "mobile": "tosa"
+  },
+  "vacina": {
+    "web": "vaccine",
+    "mobile": "vacina"
+  },
+  "vet": {
+    "web": "vet",
+    "mobile": "vet"
+  },
+  "arrow-down": {
+    "web": "arrow-down"
+  },
+  "arrow-up": {
+    "web": "arrow-up"
+  },
+  "arrow-right": {
+    "web": "arrow-right"
+  },
+  "flask": {
+    "web": "flask"
+  },
+  "list": {
+    "web": "list"
+  },
+  "mail": {
+    "web": "mail"
+  }
+}

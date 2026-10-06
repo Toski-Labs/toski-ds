@@ -3,6 +3,31 @@
 Todas as mudanças relevantes do Toski DS. O projeto segue o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 Novas entradas são geradas pelo [Changesets](https://github.com/changesets/changesets) (`npm run changeset`).
 
+## 0.3.0 — 2026-10-06
+
+### Adicionado
+
+- Ícones: os 57 ícones do app (`icons/svg/`, desenhos do canvas) mais 7 só da web, num conjunto único com nome
+  em inglês na web e em português no app (`icons/icons.json`). `sync:app` copia os SVGs para o app.
+- Movimento (`motion`): curvas, bolinha (lenta 1,8 s / 14 e rápida 1,2 s / 16), pontinhos, spinner, painel,
+  toast e opacidades de pressionado/desabilitado. Na web viram `--toski-motion-*` e `--toski-ease-*`
+  (Tailwind: `ease-toski-in-out`, `ease-toski-out`); no Swift, `ToskiMotionTokens`.
+- Medidas dos componentes do app (`mobile.component`): botões, pílula, botões circulares, chips, tags,
+  linhas, formulário, segmentado, stepper, campo, barra de progresso, pontinhos, spinner, barra de abas,
+  painel inferior, toast e mascote. No Swift, `ToskiComponent` (`build/swift/ToskiTokens.swift`).
+- `font.sans.naturalLineHeight` (1,26).
+- Páginas "Movimento" e "Medidas do app" no Storybook; galeria de ícones com os dois nomes.
+
+### Mudado
+
+- `Icon` da web passa a usar os desenhos do app. Mesmos nomes de antes, traços um pouco diferentes em
+  check, chevron-down, clock, copy, heart, phone, paw, share, calendar e bell.
+- A bolinha da web lê a duração, a altura e a curva dos tokens de movimento.
+
+### Removido
+
+- `iconPaths` (use `iconData`).
+
 ## 0.2.0 — 2026-10-06
 
 ### Adicionado

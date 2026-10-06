@@ -93,7 +93,145 @@ export const tokens = {
   "layout": {
     "container": 1168,
     "gutter": 24
-  }
+  },
+  "motion": {
+    "curve": {
+      "easeInOut": [
+        0.42,
+        0,
+        0.58,
+        1
+      ],
+      "easeOut": [
+        0,
+        0,
+        0.58,
+        1
+      ]
+    },
+    "ball": {
+      "keyframes": [
+        0,
+        0.45,
+        0.6,
+        1
+      ],
+      "viewBoxWidth": 222,
+      "slow": {
+        "duration": 1.8,
+        "rise": 14
+      },
+      "fast": {
+        "duration": 1.2,
+        "rise": 16
+      }
+    },
+    "dots": {
+      "duration": 1.2,
+      "delays": [
+        0,
+        0.2,
+        0.4
+      ],
+      "keyframes": [
+        0,
+        0.4,
+        0.8,
+        1
+      ],
+      "low": 0.25,
+      "high": 1
+    },
+    "spinner": {
+      "duration": 0.9
+    },
+    "panel": {
+      "duration": 0.3,
+      "reducedDuration": 0.2,
+      "dragReturnDuration": 0.2
+    },
+    "toast": {
+      "enterDuration": 0.25,
+      "curve": "easeOut",
+      "slide": 16,
+      "reducedDuration": 0.2,
+      "visible": {
+        "withoutAction": 4,
+        "withAction": 6,
+        "voiceOver": 10
+      }
+    },
+    "interaction": {
+      "pressedOpacity": 0.7,
+      "disabledOpacity": 0.5
+    }
+  },
+  "icons": [
+    "help",
+    "settings",
+    "alert",
+    "archive",
+    "download",
+    "bath",
+    "bug",
+    "search",
+    "dog",
+    "lock",
+    "calendar-export",
+    "calendar-dot",
+    "calendar",
+    "camera",
+    "phone",
+    "check",
+    "chevron-down",
+    "chevron-right",
+    "chevron-left",
+    "microchip",
+    "share",
+    "contact",
+    "copy",
+    "heart",
+    "document-lines",
+    "document-off",
+    "document",
+    "edit",
+    "star",
+    "close",
+    "filter",
+    "cat",
+    "globe",
+    "info",
+    "home",
+    "bell-off",
+    "bell",
+    "external-link",
+    "location",
+    "more",
+    "plus",
+    "message",
+    "snow",
+    "weight",
+    "people",
+    "paw",
+    "plan",
+    "next",
+    "food",
+    "receipt",
+    "clock",
+    "medicine",
+    "repeat",
+    "spinner",
+    "theme",
+    "grooming",
+    "vaccine",
+    "vet",
+    "arrow-down",
+    "arrow-up",
+    "arrow-right",
+    "flask",
+    "list",
+    "mail"
+  ]
 } as const;
 
 export type ToskiTokens = typeof tokens;

@@ -9,7 +9,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Enquanto o pacote não está no npm, instale direto do GitHub (fixe uma versão pela tag):
 
 ```bash
-npm install github:Toski-Labs/toski-ds#v0.2.0
+npm install github:Toski-Labs/toski-ds#v0.3.0
 npm install @fontsource-variable/outfit
 ```
 
@@ -83,16 +83,27 @@ e da Black Friday. A fonte Outfit precisa estar no app (.ttf em *Fonts provided 
 > O app hoje tem `Color+Toski.swift` (enum `Toski`). O `ToskiColors.swift` não conflita com ele
 > (outro nome, sem extensões), então dá para migrar aos poucos.
 
-### Tokens dos testes do app
+Também gera `build/swift/ToskiTokens.swift`, com as medidas dos componentes do app (`ToskiComponent`) e as
+animações (`ToskiMotionTokens`).
+
+### Tokens dos testes do app e ícones
 
 Os testes do PetHealthTracker leem `docs/design/assets/tokens/tokens.json`. Esse arquivo agora é gerado
-pelo DS (`build/json/app-tokens.json`, no formato que o app espera). Depois de mudar um token:
+pelo DS (`build/json/app-tokens.json`, no formato que o app espera). Os ícones também vêm do DS: cada SVG de
+`icons/svg/` com nome no app vai para `docs/design/assets/svg/icons/`. Depois de mudar um token ou ícone:
 
 ```bash
 npm run tokens:build
 npm run sync:app            # copia para ../../mobile/PetHealthTracker
 npm run sync:app -- --check # só confere se o app está igual ao DS
 ```
+
+Se algum ícone mudou, rode no app `python3 scripts/generate-icon-paths.py` para atualizar o `ToskiIconData.swift`.
+
+### Ícones
+
+Um conjunto só, com o nome de cada plataforma: `calendar` na web é `calendario` no app (`ToskiIcon.calendario`).
+O mapa está em `icons/icons.json` e na história Componentes/Icon.
 
 ## 5. Outros usos
 

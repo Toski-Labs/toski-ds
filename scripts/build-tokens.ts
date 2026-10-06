@@ -10,7 +10,21 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { brand, colors, font, layout, mobile, mobileColors, mobileRadii, mobileRadiusNote, radii } from '../src/tokens/index';
+import { readdirSync } from 'node:fs';
+import {
+  brand,
+  colors,
+  component,
+  font,
+  iconEntries,
+  layout,
+  mobile,
+  mobileColors,
+  mobileRadii,
+  mobileRadiusNote,
+  motion,
+  radii,
+} from '../src/tokens/index';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HEADER = 'Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão.';
@@ -25,6 +39,22 @@ const fontStack = font.web.map((f) => (/\s/.test(f) ? `"${f}"` : f)).join(', ');
 function cssVars(mode: 'light' | 'dark', indent: string): string {
   return colors.map((c) => `${indent}--toski-${c.name}: ${c[mode]};`).join('\n');
 }
+
+const bezier = (c: number[]) => `cubic-bezier(${c.join(', ')})`;
+const motionVars = [
+  `  --toski-ease-in-out: ${bezier(motion.curve.easeInOut)};`,
+  `  --toski-ease-out: ${bezier(motion.curve.easeOut)};`,
+  `  --toski-motion-ball-duration: ${motion.ball.slow.duration}s;`,
+  `  --toski-motion-ball-rise: ${motion.ball.slow.rise}px;`,
+  `  --toski-motion-ball-fast-duration: ${motion.ball.fast.duration}s;`,
+  `  --toski-motion-ball-fast-rise: ${motion.ball.fast.rise}px;`,
+  `  --toski-motion-dots-duration: ${motion.dots.duration}s;`,
+  `  --toski-motion-spinner-duration: ${motion.spinner.duration}s;`,
+  `  --toski-motion-toast-duration: ${motion.toast.enterDuration}s;`,
+  `  --toski-motion-toast-slide: ${motion.toast.slide}px;`,
+  `  --toski-pressed-opacity: ${motion.interaction.pressedOpacity};`,
+  `  --toski-disabled-opacity: ${motion.interaction.disabledOpacity};`,
+].join('\n');
 
 function buildCss(): string {
   const brandVars = brand.map((b) => `  --toski-${b.name}: ${b.value};`).join('\n');
@@ -43,6 +73,9 @@ ${brandVars}
   --toski-font-sans: ${fontStack};
 ${radiusVars}
 ${layoutVars}
+
+  /* Movimento */
+${motionVars}
 
   /* Cores semânticas */
 ${cssVars('light', '  ')}
@@ -91,6 +124,9 @@ ${brandColors}
 
   --font-sans: ${fontStack};
 
+  --ease-toski-in-out: ${bezier(motion.curve.easeInOut)};
+  --ease-toski-out: ${bezier(motion.curve.easeOut)};
+
 ${radiusVars}
 
 ${layoutVars}
@@ -107,7 +143,21 @@ function webData() {
     font: { family: font.family, stack: font.web, weights: font.weights },
     radius: Object.fromEntries(radii.map((r) => [r.name, r.value])),
     layout: Object.fromEntries(layout.map((l) => [l.name, l.value])),
+    motion: stripDescriptions(motion),
+    icons: iconEntries.map((i) => i.web),
   };
+}
+
+function stripDescriptions<T>(v: T): T {
+  if (Array.isArray(v)) return v.map(stripDescriptions) as T;
+  if (v && typeof v === 'object') {
+    return Object.fromEntries(
+      Object.entries(v as Record<string, unknown>)
+        .filter(([k]) => k !== 'description' && k !== '$description')
+        .map(([k, x]) => [k, stripDescriptions(x)]),
+    ) as T;
+  }
+  return v;
 }
 
 function buildWebJson(): string {
@@ -141,6 +191,9 @@ function mobileData() {
     shadow: mobile.shadow,
     spacing: mobile.spacing,
     size: mobile.size,
+    component: stripDescriptions(component),
+    motion: stripDescriptions(motion),
+    icons: Object.fromEntries(iconEntries.filter((i) => i.mobile).map((i) => [i.mobile, i.web])),
     rules: mobile.rules,
   };
 }
@@ -405,6 +458,96 @@ ${typeLines}
 `;
 }
 
+// ---------- Swift: medidas de componentes e movimento (emissor genérico) ----------
+
+const cap = (k: string) => k.charAt(0).toUpperCase() + k.slice(1);
+
+/** Objeto JSON → enums Swift aninhados. Números viram `type`; listas, `[type]`; textos, `String`. */
+function swiftTree(obj: Record<string, unknown>, type: 'CGFloat' | 'Double', indent: string): string {
+  const lines: string[] = [];
+  for (const [k, v] of Object.entries(obj)) {
+    if (k === '$description') continue;
+    if (k === 'description' && typeof v === 'string') {
+      lines.unshift(`${indent}/// ${v}`);
+      continue;
+    }
+    if (typeof v === 'number') lines.push(`${indent}public static let ${k}: ${type} = ${v}`);
+    else if (typeof v === 'string') lines.push(`${indent}public static let ${k} = ${JSON.stringify(v)}`);
+    else if (Array.isArray(v)) lines.push(`${indent}public static let ${k}: [${type}] = [${v.join(', ')}]`);
+    else if (v && typeof v === 'object') {
+      const inner = swiftTree(v as Record<string, unknown>, type, `${indent}    `);
+      const docs = inner.split('\n').filter((l) => l.trim().startsWith('///') && l.startsWith(`${indent}    ///`));
+      const body = inner.split('\n').filter((l) => !docs.includes(l)).join('\n');
+      lines.push(...docs.map((l) => l.replace(`${indent}    `, indent)), `${indent}public enum ${cap(k)} {`, body, `${indent}}`);
+    }
+  }
+  return lines.join('\n');
+}
+
+function buildSwiftExtras(): string {
+  return `//  ToskiTokens.swift
+//  ${HEADER}
+//  Plataforma: mobile (iOS). Medidas dos componentes e animações do app.
+//
+//  Uso: .frame(height: ToskiComponent.Button.Large.height)
+//       ToskiMotionTokens.Ball.Slow.duration
+
+import CoreGraphics
+
+/// ${String((component as Record<string, unknown>).$description)}
+public enum ToskiComponent {
+${swiftTree(component as Record<string, unknown>, 'CGFloat', '    ')}
+}
+
+/// ${motion.$description}
+public enum ToskiMotionTokens {
+${swiftTree(motion as unknown as Record<string, unknown>, 'Double', '    ')}
+}
+`;
+}
+
+// ---------- Ícones (web) ----------
+
+interface IconShape {
+  d?: string;
+  cx?: number;
+  cy?: number;
+  r?: number;
+}
+
+function parseSvg(file: string) {
+  const svg = readFileSync(file, 'utf8');
+  const root = svg.slice(0, svg.indexOf('>'));
+  const attr = (src: string, name: string) => src.match(new RegExp(`\\s${name}="([^"]*)"`))?.[1];
+  const shapes: IconShape[] = [];
+  for (const m of svg.matchAll(/<(path|circle)\b([^>]*)\/?>/g)) {
+    const a = m[2];
+    if (m[1] === 'path') shapes.push({ d: attr(a, 'd')!.replace(/\s+/g, ' ').trim() });
+    else shapes.push({ cx: Number(attr(a, 'cx')), cy: Number(attr(a, 'cy')), r: Number(attr(a, 'r')) });
+  }
+  const fill = attr(root, 'fill');
+  return {
+    size: Number(attr(root, 'width') ?? 24),
+    stroke: Number(attr(root, 'stroke-width') ?? 2),
+    filled: !!fill && fill !== 'none',
+    linejoin: attr(root, 'stroke-linejoin') ?? null,
+    shapes,
+  };
+}
+
+function buildIconsTs(): string {
+  const dir = join(root, 'icons/svg');
+  const files = new Set(readdirSync(dir).map((f) => f.replace(/\.svg$/, '')));
+  const data: Record<string, unknown> = {};
+  for (const entry of iconEntries) {
+    if (!files.has(entry.id)) throw new Error(`icons/icons.json cita ${entry.id}, mas não existe icons/svg/${entry.id}.svg`);
+    files.delete(entry.id);
+    data[entry.web] = { mobile: entry.mobile ?? null, ...parseSvg(join(dir, `${entry.id}.svg`)) };
+  }
+  if (files.size) throw new Error(`SVG sem entrada em icons/icons.json: ${[...files].join(', ')}`);
+  return `// ${HEADER}\n// Ícones de traço (icons/svg/*.svg + icons/icons.json). size/stroke = padrão do canvas.\n\nexport const iconData = ${JSON.stringify(data, null, 2)} as const;\n`;
+}
+
 // =====================================================================
 
 const outputs: Record<string, string> = {
@@ -413,8 +556,10 @@ const outputs: Record<string, string> = {
   'build/json/web.json': buildWebJson(),
   'build/json/mobile.json': buildMobileJson(),
   'build/swift/ToskiColors.swift': buildSwift(),
+  'build/swift/ToskiTokens.swift': buildSwiftExtras(),
   'build/json/app-tokens.json': buildAppJson(),
   'src/generated/tokens.ts': buildTs(),
+  'src/generated/icons.ts': buildIconsTs(),
 };
 
 const check = process.argv.includes('--check');

@@ -60,11 +60,12 @@
   }
   45%,
   60% {
-    transform: translateY(-14px);
+    transform: translateY(calc(-1 * var(--toski-motion-ball-rise)));
   }
 }
 @utility toski-ball {
-  animation: toski-bounce 1.8s ease-in-out infinite;
+  /* Como no app: a curva vale dentro de cada trecho (0–45%, 45–60%, 60–100%). */
+  animation: toski-bounce var(--toski-motion-ball-duration) var(--toski-ease-in-out) infinite;
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }

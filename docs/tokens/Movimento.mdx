@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { MotionTokens, BallDemo } from '../blocks';
+
+<Meta title="Tokens/Movimento" />
+
+# Movimento
+
+Animações da Paçoca e da interface, iguais na web e no app. Tempos em segundos; curvas no formato
+`cubic-bezier`. Na web: `var(--toski-motion-ball-duration)`, `var(--toski-ease-in-out)` (Tailwind:
+`ease-toski-in-out`). No Swift: `ToskiMotionTokens.Ball.Slow.duration`.
+
+Com **reduzir movimento**, só a bolinha para; pontinhos e spinner continuam no app porque indicam progresso.
+
+<BallDemo />
+
+<MotionTokens />

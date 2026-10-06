@@ -20,6 +20,20 @@
   --toski-container: 1168px;
   --toski-gutter: 24px;
 
+  /* Movimento */
+  --toski-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --toski-ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --toski-motion-ball-duration: 1.8s;
+  --toski-motion-ball-rise: 14px;
+  --toski-motion-ball-fast-duration: 1.2s;
+  --toski-motion-ball-fast-rise: 16px;
+  --toski-motion-dots-duration: 1.2s;
+  --toski-motion-spinner-duration: 0.9s;
+  --toski-motion-toast-duration: 0.25s;
+  --toski-motion-toast-slide: 16px;
+  --toski-pressed-opacity: 0.7;
+  --toski-disabled-opacity: 0.5;
+
   /* Cores semânticas */
   --toski-background: #F7F1E8;
   --toski-surface: #FFFFFF;

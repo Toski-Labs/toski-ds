@@ -5,6 +5,7 @@
  * - "web.color" e "mobile.color" são só de cada plataforma.
  */
 import raw from '../../tokens/tokens.json';
+import iconManifest from '../../icons/icons.json';
 import { contrastRatio, MIN_LARGE, MIN_TEXT } from './contrast';
 
 export type Mode = 'light' | 'dark';
@@ -153,3 +154,34 @@ export function contrastReport(platform?: Platform): ContrastResult[] {
     ...expand(p, raw.contrast[p].large as PairList, 'large'),
   ]);
 }
+
+// ---------- Movimento, medidas de componentes e ícones ----------
+
+type Json = number | string | boolean | Json[] | { [k: string]: Json };
+
+/** Animações (compartilhadas entre web e app). */
+export const motion = raw.motion as unknown as {
+  $description: string;
+  curve: Record<string, [number, number, number, number]>;
+  ball: { description: string; keyframes: number[]; viewBoxWidth: number; slow: { duration: number; rise: number }; fast: { duration: number; rise: number } };
+  dots: { description: string; duration: number; delays: number[]; keyframes: number[]; low: number; high: number };
+  spinner: { description: string; duration: number };
+  panel: { description: string; duration: number; reducedDuration: number; dragReturnDuration: number };
+  toast: { description: string; enterDuration: number; curve: string; slide: number; reducedDuration: number; visible: Record<string, number> };
+  interaction: { description: string; pressedOpacity: number; disabledOpacity: number };
+};
+
+/** Medidas dos componentes do app. */
+export const component = raw.mobile.component as unknown as Record<string, Json>;
+
+
+export interface IconEntry {
+  /** Nome do arquivo em icons/svg/ (o nome do app quando existe). */
+  id: string;
+  web: string;
+  mobile?: string;
+}
+
+export const iconEntries: IconEntry[] = Object.entries(iconManifest as Record<string, unknown>)
+  .filter(([k]) => !k.startsWith('$'))
+  .map(([id, v]) => ({ id, ...(v as { web: string; mobile?: string }) }));

@@ -1,4 +1,4 @@
-import { brand, colorValue, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
+import { brand, colorValue, component, motion, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
 import { ThemeFrame } from './ThemeFrame';
 
 function Swatch({ value, label }: { value: string; label?: string }) {
@@ -238,6 +238,90 @@ export function MobileExtras() {
       <div className="py-2 text-sm">
         <strong>ToskiSize</strong>: {Object.entries(mobile.size).map(([k, v]) => `${k} ${v}`).join(' · ')}
       </div>
+    </div>
+  );
+}
+
+type Tree = { [k: string]: unknown };
+
+function flatten(obj: Tree, prefix = ''): [string, string][] {
+  const rows: [string, string][] = [];
+  for (const [k, v] of Object.entries(obj)) {
+    if (k === '$description' || k === 'description') continue;
+    const key = prefix ? `${prefix}.${k}` : k;
+    if (v && typeof v === 'object' && !Array.isArray(v)) rows.push(...flatten(v as Tree, key));
+    else rows.push([key, Array.isArray(v) ? `[${v.join(', ')}]` : String(v)]);
+  }
+  return rows;
+}
+
+function TreeTable({ data, swift }: { data: Tree; swift: string }) {
+  return (
+    <div className="sb-unstyled text-ink font-sans overflow-x-auto">
+      <table className="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr>
+            <th className="py-2 pr-4">Token</th>
+            <th className="py-2 pr-4">Valor</th>
+            <th className="py-2">Swift</th>
+          </tr>
+        </thead>
+        <tbody>
+          {flatten(data).map(([k, v]) => {
+            const parts = k.split('.');
+            const last = parts.pop()!;
+            const path = [swift, ...parts.map((p) => p.charAt(0).toUpperCase() + p.slice(1)), last].join('.');
+            return (
+              <tr key={k} className="border-t border-line">
+                <td className="py-1.5 pr-4"><code>{k}</code></td>
+                <td className="py-1.5 pr-4 tabular-nums">{v}</td>
+                <td className="py-1.5 text-muted"><code>{path}</code></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function MotionTokens() {
+  const groups = Object.entries(motion).filter(([k]) => !k.startsWith('$')) as [string, Tree][];
+  return (
+    <div className="sb-unstyled text-ink font-sans flex flex-col gap-6">
+      {groups.map(([k, v]) => (
+        <div key={k} className="flex flex-col gap-2">
+          <p className="font-semibold">{k}</p>
+          {typeof v.description === 'string' && <p className="text-sm text-muted">{v.description}</p>}
+          <TreeTable data={{ [k]: v }} swift="ToskiMotionTokens" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function ComponentTokens() {
+  return <TreeTable data={component as Tree} swift="ToskiComponent" />;
+}
+
+export function BallDemo() {
+  return (
+    <div className="sb-unstyled flex items-end gap-8 font-sans text-ink">
+      {(['slow', 'fast'] as const).map((k) => (
+        <div key={k} className="flex flex-col items-center gap-2">
+          <svg width="60" height="80" viewBox="0 0 60 80" aria-hidden="true">
+            <g
+              style={{
+                animation: `toski-bounce ${motion.ball[k].duration}s var(--toski-ease-in-out) infinite`,
+                ['--toski-motion-ball-rise' as string]: `${motion.ball[k].rise * 2}px`,
+              }}
+            >
+              <circle cx="30" cy="62" r="14" fill="var(--toski-caramelo)" />
+            </g>
+          </svg>
+          <code className="text-xs text-muted">{k} · {motion.ball[k].duration}s · {motion.ball[k].rise}</code>
+        </div>
+      ))}
     </div>
   );
 }

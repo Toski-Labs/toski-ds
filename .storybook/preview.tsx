@@ -11,7 +11,7 @@ const preview: Preview = {
     backgrounds: { disable: true },
     options: {
       storySort: {
-        order: ['Introdução', 'Como usar', 'Tokens', ['Cores', 'Tipografia', 'Raios e layout'], 'Componentes', 'Marca'],
+        order: ['Introdução', 'Como usar', 'Tokens', ['Cores', 'Tipografia', 'Raios e layout', 'Movimento', 'Medidas do app'], 'Componentes', 'Marca'],
       },
     },
   },

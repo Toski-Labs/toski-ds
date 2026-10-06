@@ -235,6 +235,264 @@
     "avatar": 48,
     "avatarLarge": 76
   },
+  "component": {
+    "button": {
+      "large": {
+        "height": 54,
+        "radius": "button",
+        "fontSize": 17,
+        "secondaryFontSize": 16
+      },
+      "card": {
+        "height": 46,
+        "radius": "buttonSmall",
+        "fontSize": 15
+      },
+      "text": {
+        "height": 48,
+        "radius": "button",
+        "fontSize": 16,
+        "horizontalPadding": 4
+      },
+      "link": {
+        "height": 44,
+        "fontSize": 15
+      },
+      "linkSmall": {
+        "fontSize": 14
+      }
+    },
+    "pill": {
+      "height": 40,
+      "radius": 20,
+      "fontSize": 14,
+      "horizontalPadding": 16
+    },
+    "circleButton": {
+      "regular": 44,
+      "critical": 48
+    },
+    "chip": {
+      "filter": {
+        "height": 44,
+        "fontSize": 15,
+        "trailing": 16
+      },
+      "option": {
+        "height": 38,
+        "fontSize": 14.5,
+        "trailing": 14
+      },
+      "compact": {
+        "height": 36,
+        "fontSize": 14,
+        "trailing": 12
+      }
+    },
+    "tag": {
+      "small": {
+        "height": 26,
+        "fontSize": 12.5
+      },
+      "medium": {
+        "height": 32,
+        "fontSize": 14
+      }
+    },
+    "row": {
+      "height": 50,
+      "heightWithIcon": 48,
+      "iconSide": 30,
+      "gap": 8
+    },
+    "formRow": {
+      "height": 50,
+      "heightWithSubtitle": 58,
+      "verticalPadding": 10,
+      "subtitleFontSize": 12.5,
+      "valueButtonHeight": 36
+    },
+    "segmented": {
+      "itemHeight": 38,
+      "trackPadding": 3,
+      "fontSize": 14
+    },
+    "stepper": {
+      "side": 36
+    },
+    "textField": {
+      "height": 50,
+      "fontSize": 15.5,
+      "lineHeight": 1.4
+    },
+    "progressBar": {
+      "height": 6
+    },
+    "loadingDots": {
+      "diameter": 8,
+      "spacing": 8
+    },
+    "syncSpinner": {
+      "size": 14
+    },
+    "tabBar": {
+      "itemHeight": 49,
+      "topPadding": 8,
+      "borderHeight": 1,
+      "safeAreaOverlap": 8
+    },
+    "bottomPanel": {
+      "handleWidth": 40,
+      "handleHeight": 5,
+      "maxHeightFraction": 0.9,
+      "scrimOpacity": 0.45
+    },
+    "toast": {
+      "minHeight": 56,
+      "spacing": 10,
+      "leadingPadding": 16,
+      "padding": 6,
+      "offsetAboveTabBar": 16
+    },
+    "mascot": {
+      "width": 156,
+      "discSide": 200,
+      "fallenBallWidth": 168,
+      "ballSide": 37
+    }
+  },
+  "motion": {
+    "curve": {
+      "easeInOut": [
+        0.42,
+        0,
+        0.58,
+        1
+      ],
+      "easeOut": [
+        0,
+        0,
+        0.58,
+        1
+      ]
+    },
+    "ball": {
+      "keyframes": [
+        0,
+        0.45,
+        0.6,
+        1
+      ],
+      "viewBoxWidth": 222,
+      "slow": {
+        "duration": 1.8,
+        "rise": 14
+      },
+      "fast": {
+        "duration": 1.2,
+        "rise": 16
+      }
+    },
+    "dots": {
+      "duration": 1.2,
+      "delays": [
+        0,
+        0.2,
+        0.4
+      ],
+      "keyframes": [
+        0,
+        0.4,
+        0.8,
+        1
+      ],
+      "low": 0.25,
+      "high": 1
+    },
+    "spinner": {
+      "duration": 0.9
+    },
+    "panel": {
+      "duration": 0.3,
+      "reducedDuration": 0.2,
+      "dragReturnDuration": 0.2
+    },
+    "toast": {
+      "enterDuration": 0.25,
+      "curve": "easeOut",
+      "slide": 16,
+      "reducedDuration": 0.2,
+      "visible": {
+        "withoutAction": 4,
+        "withAction": 6,
+        "voiceOver": 10
+      }
+    },
+    "interaction": {
+      "pressedOpacity": 0.7,
+      "disabledOpacity": 0.5
+    }
+  },
+  "icons": {
+    "ajuda": "help",
+    "ajustes": "settings",
+    "alerta": "alert",
+    "arquivo": "archive",
+    "baixar": "download",
+    "banho": "bath",
+    "bug": "bug",
+    "busca": "search",
+    "cachorro": "dog",
+    "cadeado": "lock",
+    "calendario-exportar": "calendar-export",
+    "calendario-ponto": "calendar-dot",
+    "calendario": "calendar",
+    "camera": "camera",
+    "celular": "phone",
+    "check": "check",
+    "chevron-baixo": "chevron-down",
+    "chevron-direita": "chevron-right",
+    "chevron-esquerda": "chevron-left",
+    "chip": "microchip",
+    "compartilhar": "share",
+    "contato": "contact",
+    "copiar": "copy",
+    "coracao": "heart",
+    "documento-linhas": "document-lines",
+    "documento-riscado": "document-off",
+    "documento": "document",
+    "editar": "edit",
+    "estrela": "star",
+    "fechar": "close",
+    "filtro": "filter",
+    "gato": "cat",
+    "globo": "globe",
+    "info": "info",
+    "inicio": "home",
+    "lembrete-desligado": "bell-off",
+    "lembrete": "bell",
+    "link-externo": "external-link",
+    "local": "location",
+    "mais-opcoes": "more",
+    "mais": "plus",
+    "mensagem": "message",
+    "neve": "snow",
+    "peso": "weight",
+    "pessoas": "people",
+    "pets": "paw",
+    "plano": "plan",
+    "proximo": "next",
+    "racao": "food",
+    "recibo": "receipt",
+    "relogio": "clock",
+    "remedio": "medicine",
+    "repetir": "repeat",
+    "spinner": "spinner",
+    "tema": "theme",
+    "tosa": "grooming",
+    "vacina": "vaccine",
+    "vet": "vet"
+  },
   "rules": {
     "pdf": "O PDF usa sempre os valores claros dos tokens, nunca o tema do aparelho.",
     "appleButton": "Botão \"Continuar com a Apple\" segue a diretriz da Apple e fica fora da paleta: claro = fundo #000000, texto #FFFFFF; escuro = fundo #FFFFFF, texto #000000."

@@ -1,0 +1,14 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ComponentTokens } from '../blocks';
+
+<Meta title="Tokens/Medidas do app" />
+
+# Medidas dos componentes do app
+
+Alturas, tamanhos de texto e espaçamentos dos componentes SwiftUI do PetHealthTracker, em pt. Toque mínimo
+de 44 pt mesmo quando o desenho é menor (`ToskiSize.minTouchTarget`). No Swift: `ToskiComponent`, em
+`build/swift/ToskiTokens.swift`.
+
+Na web, o `Button` usa as mesmas alturas: `lg` = 54 (como `button.large`) e `md` = 48 (como `button.text`).
+
+<ComponentTokens />

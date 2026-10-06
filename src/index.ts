@@ -5,7 +5,7 @@ export { IconBox, type IconBoxProps } from './components/IconBox';
 export { Kicker, type KickerProps } from './components/Kicker';
 export { SectionHeading, type SectionHeadingProps } from './components/SectionHeading';
 export { CheckList, type CheckListProps } from './components/CheckList';
-export { Icon, iconPaths, iconNames, type IconName, type IconProps } from './components/Icon';
+export { Icon, iconData, iconNames, type IconName, type IconProps } from './components/Icon';
 export { Mascot, mascotPaths, type MascotProps } from './components/Mascot';
 export { AppIcon, type AppIconProps } from './components/AppIcon';
 export { tokens, type ToskiTokens, type ToskiColorName } from './generated/tokens';
