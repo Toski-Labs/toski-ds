@@ -1,7 +1,18 @@
 # Changelog
 
 Todas as mudanças relevantes do Toski DS. O projeto segue o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
-Novas entradas são geradas pelo [Changesets](https://github.com/changesets/changesets) (`npm run changeset`).
+Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` transforma essa seção na versão nova.
+
+## Próxima versão
+
+### Adicionado
+
+- `npm run release -- patch | minor | major`: confere o git e o CHANGELOG, roda a verificação, sobe a versão,
+  faz o commit e a tag e envia ao GitHub (que publica no npm).
+
+### Removido
+
+- Changesets (substituído pelo `npm run release`).
 
 ## 0.3.2 — 2026-10-06
 

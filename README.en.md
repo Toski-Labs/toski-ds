@@ -67,8 +67,8 @@ npm run sync:app         # copy tokens and icons into the PetHealthTracker app
 npm run verify           # everything CI runs
 ```
 
-To change a token: edit `tokens/tokens.json`, run `npm run tokens:build` and `npm run contrast`, add a
-changeset (`npm run changeset`) and commit `tokens/`, `build/` and `src/generated/` together. CI fails if
+To change a token: edit `tokens/tokens.json`, run `npm run tokens:build` and `npm run contrast`, note it in
+`CHANGELOG.md` under "## Próxima versão" and commit `tokens/`, `build/` and `src/generated/` together. CI fails if
 `build/` is stale or if any text pair drops below 4.5:1 (3:1 for large text and icons).
 
 ## Accessibility
@@ -79,12 +79,13 @@ animations and transitions off with `prefers-reduced-motion` · icons and mascot
 
 ## Releasing
 
-Bump the version (`npx changeset version`), commit, `git tag vX.Y.Z` and `git push origin main --tags`.
-The **Publicar no npm** workflow verifies and publishes `@toski-labs/ds` to npm with provenance.
+Write your changes under "## Próxima versão" in `CHANGELOG.md`, then on `main` run
+`npm run release -- patch | minor | major` (`--dry-run` to simulate). It checks git and the changelog, runs
+`npm run verify`, bumps the version, commits, tags and pushes; the **Publicar no npm** workflow publishes to npm.
 
 ## Versioning
 
-[Semantic Versioning](https://semver.org/) with [Changesets](https://github.com/changesets/changesets).
+[Semantic Versioning](https://semver.org/).
 See the [CHANGELOG](CHANGELOG.md).
 
 ## License

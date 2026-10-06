@@ -73,7 +73,7 @@ npm run verify           # tudo o que o CI roda
 
 1. Edite `tokens/tokens.json`.
 2. Rode `npm run tokens:build` e `npm run contrast`.
-3. Registre a mudança com `npm run changeset`.
+3. Anote a mudança no `CHANGELOG.md`, em "## Próxima versão".
 4. Faça o commit de `tokens/`, `build/` e `src/generated/` juntos.
 
 O CI falha se `build/` estiver desatualizado ou se algum par de texto ficar abaixo de 4,5:1
@@ -89,15 +89,22 @@ O CI falha se `build/` estiver desatualizado ou se algum par de texto ficar abai
 
 ## Lançar uma versão
 
-1. `npm run changeset` durante o trabalho; na hora de lançar, `npx changeset version` (sobe a versão e
-   atualiza o CHANGELOG).
-2. Commit, `git tag vX.Y.Z` e `git push origin main --tags`.
-3. O workflow **Publicar no npm** (`.github/workflows/release.yml`) roda a verificação e publica
-   `@toski-labs/ds` no npm, com provenance.
+1. Enquanto trabalha, anote as mudanças no `CHANGELOG.md`, na seção **"## Próxima versão"**.
+2. Na `main`, com tudo commitado:
+
+   ```bash
+   npm run release -- patch   # correções      (0.3.2 → 0.3.3)
+   npm run release -- minor   # novidades      (0.3.2 → 0.4.0)
+   npm run release -- major   # quebra a API   (0.3.2 → 1.0.0)
+   ```
+
+   O script confere o git e o CHANGELOG, roda `npm run verify`, sobe a versão, faz o commit `release: vX.Y.Z`
+   e a tag, e pergunta antes de enviar ao GitHub. Use `--dry-run` para simular.
+3. O workflow **Publicar no npm** (`.github/workflows/release.yml`) publica `@toski-labs/ds` com provenance.
 
 ## Versões
 
-[Versionamento Semântico](https://semver.org/lang/pt-BR/) com [Changesets](https://github.com/changesets/changesets).
+[Versionamento Semântico](https://semver.org/lang/pt-BR/).
 Veja o [CHANGELOG](CHANGELOG.md).
 
 ## Licença
