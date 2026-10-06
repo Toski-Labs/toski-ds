@@ -37,5 +37,15 @@ jobs:
             echo "Tag $GITHUB_REF_NAME, mas o package.json está em $VERSION"; exit 1
           fi
 
+      - name: Essa versão já está no npm?
+        id: published
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@toski-labs/ds@$VERSION" version >/dev/null 2>&1; then
+            echo "A versão $VERSION já está no npm (publicada à mão). Nada a fazer."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          fi
+
       # prepublishOnly roda npm run verify (tokens, contraste, tipos, testes e build)
-      - run: npm publish
+      - if: steps.published.outputs.exists != 'true'
+        run: npm publish

@@ -3,6 +3,13 @@
 Todas as mudanças relevantes do Toski DS. O projeto segue o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 Novas entradas são geradas pelo [Changesets](https://github.com/changesets/changesets) (`npm run changeset`).
 
+## 0.3.2 — 2026-10-06
+
+### Corrigido
+
+- `release.yml` pula a publicação quando a versão já está no npm (a 0.3.1 foi publicada à mão e o workflow
+  tentou publicá-la de novo). Primeira versão publicada pelo GitHub Actions, com trusted publishing.
+
 ## 0.3.1 — 2026-10-06
 
 ### Mudado
