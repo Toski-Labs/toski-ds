@@ -11,6 +11,7 @@
   --color-muted: var(--toski-muted);
   --color-line: var(--toski-line);
   --color-accent: var(--toski-accent);
+  --color-accent-hover: var(--toski-accent-hover);
   --color-on-accent: var(--toski-on-accent);
   --color-critical: var(--toski-critical);
   --color-critical-bg: var(--toski-critical-bg);
@@ -22,7 +23,6 @@
   --color-tab-idle: var(--toski-tab-idle);
   --color-mascot-outline: var(--toski-mascot-outline);
   --color-mascot-nose: var(--toski-mascot-nose);
-  --color-accent-hover: var(--toski-accent-hover);
   --color-accent-text: var(--toski-accent-text);
   --color-link: var(--toski-link);
   --color-ball-outline: var(--toski-ball-outline);

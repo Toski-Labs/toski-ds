@@ -16,6 +16,7 @@
     "textSecondary": "#6B5648",
     "border": "#E6D8C4",
     "accent": "#A9541F",
+    "accentDeep": "#7E3C14",
     "onAccent": "#FFF8EE",
     "critical": "#A3341A",
     "criticalBackground": "#F8E0D4",
@@ -33,7 +34,20 @@
     "toastText": "#F7F1E8",
     "toastAction": "#E8B27C",
     "scrim": "rgba(20,14,10,0.45)",
-    "ballOutline": "#F7F1E8"
+    "ballOutline": "#F7F1E8",
+    "faint": "#B3A190",
+    "divider": "#EDE3D6",
+    "borderStrong": "#DCCDB9",
+    "barInactive": "#DCCDB9",
+    "featureCard": "#A9541F",
+    "onFeatureCard": "#FFF8EE",
+    "onAccentSubtle": "rgba(255,248,238,.18)",
+    "lockBackground": "#DB9A5B",
+    "onLock": "#FFF8EE",
+    "alertBackground": "#F7F1E8",
+    "bannerBackground": "rgba(255,253,249,.92)",
+    "previewBackdrop": "#EDE3D6",
+    "themePreviewCard": "rgba(169,84,31,.35)"
   },
   "dark": {
     "background": "#231B17",
@@ -44,6 +58,7 @@
     "textSecondary": "#C2AE98",
     "border": "#43352B",
     "accent": "#DB9A5B",
+    "accentDeep": "#E8B27C",
     "onAccent": "#231B17",
     "critical": "#F09A78",
     "criticalBackground": "#45261A",
@@ -61,7 +76,20 @@
     "toastText": "#231B17",
     "toastAction": "#A9541F",
     "scrim": "rgba(20,14,10,0.45)",
-    "ballOutline": "#F4E4CC"
+    "ballOutline": "#F4E4CC",
+    "faint": "#6E5D50",
+    "divider": "#43352B",
+    "borderStrong": "#5A4A3D",
+    "barInactive": "#6E5D50",
+    "featureCard": "#7E3C14",
+    "onFeatureCard": "#FFF8EE",
+    "onAccentSubtle": "rgba(255,248,238,.18)",
+    "lockBackground": "#3A2D23",
+    "onLock": "#F7F1E8",
+    "alertBackground": "#3A2D23",
+    "bannerBackground": "rgba(46,36,29,.92)",
+    "previewBackdrop": "#1B1511",
+    "themePreviewCard": "rgba(169,84,31,.35)"
   },
   "pet": {
     "avatars": [
@@ -82,7 +110,8 @@
         "#9DB089"
       ]
     },
-    "onAvatar": "#231B17"
+    "onAvatar": "#231B17",
+    "avatarUser": "#E8B27C"
   },
   "blackFriday": {
     "background": "#120D0A",
@@ -150,9 +179,45 @@
     "button": 14,
     "card": 18,
     "sheet": 28,
-    "chip": 999,
+    "checkbox": 7,
+    "swatch": 3,
+    "pdfPage": 4,
+    "small": 9,
+    "buttonSmall": 12,
+    "segmentTrack": 12,
     "input": 14,
-    "appIcon": 22
+    "tile": 16,
+    "notification": 22,
+    "appIcon": {
+      "radius": 22,
+      "side": 96
+    }
+  },
+  "shadow": {
+    "knob": {
+      "y": 1,
+      "blur": 3,
+      "color": "#000000",
+      "opacity": 0.25
+    },
+    "raised": {
+      "y": 1,
+      "blur": 3,
+      "color": "#231B17",
+      "opacity": 0.15
+    },
+    "floating": {
+      "y": 8,
+      "blur": 24,
+      "color": "#231B17",
+      "opacity": 0.22
+    },
+    "sheet": {
+      "y": -8,
+      "blur": 32,
+      "color": "#231B17",
+      "opacity": 0.18
+    }
   },
   "spacing": {
     "xs": 4,
@@ -169,5 +234,9 @@
     "avatarSmall": 24,
     "avatar": 48,
     "avatarLarge": 76
+  },
+  "rules": {
+    "pdf": "O PDF usa sempre os valores claros dos tokens, nunca o tema do aparelho.",
+    "appleButton": "Botão \"Continuar com a Apple\" segue a diretriz da Apple e fica fora da paleta: claro = fundo #000000, texto #FFFFFF; escuro = fundo #FFFFFF, texto #000000."
   }
 }

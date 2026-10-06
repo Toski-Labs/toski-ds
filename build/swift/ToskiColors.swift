@@ -28,13 +28,13 @@ public enum ToskiColors {
 
     // MARK: Semânticas — compartilhadas com a web
 
-    /// Fundo da página / das telas
+    /// Fundo das telas
     public static let background         = dynamic(light: 0xF7F1E8, dark: 0x231B17)
     /// Cards, listas, campos
     public static let surface            = dynamic(light: 0xFFFFFF, dark: 0x2E241D)
     /// Fundos suaves, caixas de ícone, chips
     public static let tint               = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
-    /// Círculo atrás da Paçoca, destaques
+    /// Círculo atrás da Paçoca
     public static let heroBackground     = dynamic(light: 0xEFDCC2, dark: 0x33271F)
     /// Texto principal
     public static let textPrimary        = dynamic(light: 0x231B17, dark: 0xF7F1E8)
@@ -42,15 +42,17 @@ public enum ToskiColors {
     public static let textSecondary      = dynamic(light: 0x6B5648, dark: 0xC2AE98)
     /// Bordas e divisores
     public static let border             = dynamic(light: 0xE6D8C4, dark: 0x43352B)
-    /// Botão principal, aba ativa, ícones, foco
+    /// Botão principal, aba ativa, links
     public static let accent             = dynamic(light: 0xA9541F, dark: 0xDB9A5B)
-    /// Texto sobre accent
+    /// Ferrugem escura (no escuro, caramelo claro): botão de texto da tela Erro, links ao passar o mouse
+    public static let accentDeep         = dynamic(light: 0x7E3C14, dark: 0xE8B27C)
+    /// Texto sobre o destaque
     public static let onAccent           = dynamic(light: 0xFFF8EE, dark: 0x231B17)
     /// Atrasados, alertas, ações destrutivas
     public static let critical           = dynamic(light: 0xA3341A, dark: 0xF09A78)
     /// Fundo de alertas
     public static let criticalBackground = dynamic(light: 0xF8E0D4, dark: 0x45261A)
-    /// Borda de alertas e cards atrasados
+    /// Borda de cards atrasados
     public static let criticalBorder     = dynamic(light: 0xEBC0AA, dark: 0x6A3A26)
     /// Em dia, concluído
     public static let success            = dynamic(light: 0x3F6E3B, dark: 0x9CC48F)
@@ -62,7 +64,7 @@ public enum ToskiColors {
     public static let tabBar             = dynamic(light: 0xFFFDF9, dark: 0x1B1511)
     /// Aba inativa
     public static let tabIdle            = dynamic(light: 0x7D6858, dark: 0xA08B78)
-    /// Contorno do corpo da Paçoca (só no escuro)
+    /// Contorno do corpo da Paçoca
     public static let mascotOutline      = dynamic(light: 0x000000, lightAlpha: 0, dark: 0xF4E4CC, darkAlpha: 1)
     /// Focinho da Paçoca
     public static let mascotNose         = dynamic(light: 0x231B17, dark: 0x100C0A)
@@ -81,8 +83,34 @@ public enum ToskiColors {
     public static let toastAction        = dynamic(light: 0xE8B27C, dark: 0xA9541F)
     /// Fundo atrás de painéis
     public static let scrim              = dynamic(light: 0x140E0A, lightAlpha: 0.45, dark: 0x140E0A, darkAlpha: 0.45)
-    /// Contorno e costura da bolinha (no claro, igual ao fundo)
+    /// Contorno e costura da bolinha
     public static let ballOutline        = dynamic(light: 0xF7F1E8, dark: 0xF4E4CC)
+    /// Texto e elementos apagados (dia fora do mês, texto miúdo do PDF)
+    public static let faint              = dynamic(light: 0xB3A190, dark: 0x6E5D50)
+    /// Linhas finas internas (grade do gráfico, linhas do PDF)
+    public static let divider            = dynamic(light: 0xEDE3D6, dark: 0x43352B)
+    /// Borda mais forte (botão do Google no login)
+    public static let borderStrong       = dynamic(light: 0xDCCDB9, dark: 0x5A4A3D)
+    /// Barra do valor antigo (troca de ração)
+    public static let barInactive        = dynamic(light: 0xDCCDB9, dark: 0x6E5D50)
+    /// Cartão de destaque (plano de saúde, Fase 2)
+    public static let featureCard        = dynamic(light: 0xA9541F, dark: 0x7E3C14)
+    /// Texto sobre o cartão de destaque
+    public static let onFeatureCard      = dynamic(light: 0xFFF8EE, dark: 0xFFF8EE)
+    /// Caixa translúcida sobre o destaque
+    public static let onAccentSubtle     = dynamic(light: 0xFFF8EE, lightAlpha: 0.18, dark: 0xFFF8EE, darkAlpha: 0.18)
+    /// Fundo do cadeado (recurso do Plus, pet congelado)
+    public static let lockBackground     = dynamic(light: 0xDB9A5B, dark: 0x3A2D23)
+    /// Ícone do cadeado
+    public static let onLock             = dynamic(light: 0xFFF8EE, dark: 0xF7F1E8)
+    /// Fundo do alerta do sistema (ex.: desconectar calendário)
+    public static let alertBackground    = dynamic(light: 0xF7F1E8, dark: 0x3A2D23)
+    /// Fundo do aviso de notificação
+    public static let bannerBackground   = dynamic(light: 0xFFFDF9, lightAlpha: 0.92, dark: 0x2E241D, darkAlpha: 0.92)
+    /// Fundo atrás da prévia do PDF
+    public static let previewBackdrop    = dynamic(light: 0xEDE3D6, dark: 0x1B1511)
+    /// Cartões das miniaturas de tema (Aparência)
+    public static let themePreviewCard   = dynamic(light: 0xA9541F, lightAlpha: 0.35, dark: 0xA9541F, darkAlpha: 0.35)
 
     // MARK: Pets
 
@@ -95,6 +123,8 @@ public enum ToskiColors {
     ]
     /// Inicial sobre o avatar.
     public static let onPetAvatar = fixed(0x231B17)
+    /// Avatar da usuária (não é cor de pet).
+    public static let avatarUser = fixed(0xE8B27C)
 
     // MARK: Black Friday (tema fixo da campanha)
 
@@ -145,12 +175,46 @@ public enum ToskiRadius {
     public static let card: CGFloat = 18
     /// Painéis, faixas e painel inferior
     public static let sheet: CGFloat = 28
-    /// Chips e pílulas (cápsula)
-    public static let chip: CGFloat = 999
+    /// Caixa de seleção
+    public static let checkbox: CGFloat = 7
+    /// Amostra de cor
+    public static let swatch: CGFloat = 3
+    /// Página do PDF
+    public static let pdfPage: CGFloat = 4
+    /// Elementos pequenos
+    public static let small: CGFloat = 9
+    /// Botão de card
+    public static let buttonSmall: CGFloat = 12
+    /// Trilho do controle segmentado
+    public static let segmentTrack: CGFloat = 12
     /// Campos
     public static let input: CGFloat = 14
-    /// Ícone do app em listas
-    public static let appIcon: CGFloat = 22
+    /// Tiles
+    public static let tile: CGFloat = 16
+    /// Aviso de notificação
+    public static let notification: CGFloat = 22
+    /// Ícone do app: raio 22 num lado de referência 96 (escala com o lado)
+    public static let appIconRadius: CGFloat = 22
+    public static let appIconSide: CGFloat = 96
+    /// Raio do ícone para um lado qualquer (proporcional ao de referência).
+    public static func appIcon(side: CGFloat) -> CGFloat { side * appIconRadius / appIconSide }
+}
+
+/// Valores do box-shadow do canvas (x = 0). Em SwiftUI o radius é blur / 2. Iguais no claro e no escuro.
+public enum ToskiShadow {
+    public struct Style: Sendable {
+        public let y: CGFloat
+        public let blur: CGFloat
+        public let color: Color
+        public let opacity: Double
+        /// Raio para .shadow(color:radius:x:y:) do SwiftUI.
+        public var radius: CGFloat { blur / 2 }
+    }
+
+    public static let knob = Style(y: 1, blur: 3, color: ToskiColors.fixed(0x000000), opacity: 0.25)
+    public static let raised = Style(y: 1, blur: 3, color: ToskiColors.fixed(0x231B17), opacity: 0.15)
+    public static let floating = Style(y: 8, blur: 24, color: ToskiColors.fixed(0x231B17), opacity: 0.22)
+    public static let sheet = Style(y: -8, blur: 32, color: ToskiColors.fixed(0x231B17), opacity: 0.18)
 }
 
 public enum ToskiSpacing {

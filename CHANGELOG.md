@@ -3,6 +3,29 @@
 Todas as mudanças relevantes do Toski DS. O projeto segue o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 Novas entradas são geradas pelo [Changesets](https://github.com/changesets/changesets) (`npm run changeset`).
 
+## 0.2.0 — 2026-10-06
+
+### Adicionado
+
+- Tokens do app que faltavam (vindos de `docs/design/assets/tokens/tokens.json` do PetHealthTracker):
+  13 cores só do app (faint, divider, borderStrong, barInactive, featureCard, onFeatureCard, onAccentSubtle,
+  lockBackground, onLock, alertBackground, bannerBackground, previewBackdrop, themePreviewCard),
+  `avatarUser`, 10 raios só do app (checkbox, swatch, pdfPage, small, buttonSmall, segmentTrack, input, tile,
+  notification, appIcon com lado de referência), 4 sombras (knob, raised, floating, sheet) e as regras do PDF e
+  do botão da Apple.
+- `ToskiShadow` e `ToskiRadius.appIcon(side:)` no `ToskiColors.swift`.
+- `build/json/app-tokens.json` no formato do app e `npm run sync:app` (com `--check`) para copiá-lo.
+- 10 pares novos no teste de contraste (146 no total).
+
+### Mudado
+
+- `accent-hover` (web) passa a ser compartilhado com o app como `accentDeep` (mesmos valores).
+- Descrições do app (`mobileDescription`) quando diferem das da web.
+
+### Removido
+
+- Raio `chip` (999) do mobile: o app usa `Capsule`, sem token.
+
 ## 0.1.0 — 2026-10-06
 
 ### Adicionado

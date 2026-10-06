@@ -1,6 +1,6 @@
 {
   "name": "@toski-labs/ds",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Toski DS — design system da Toski Labs: tokens (web, Tailwind CSS 4, SwiftUI) e componentes React.",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "./theme.css": "./build/css/theme.css",
     "./web.json": "./build/json/web.json",
     "./mobile.json": "./build/json/mobile.json",
+    "./app-tokens.json": "./build/json/app-tokens.json",
     "./ToskiColors.swift": "./build/swift/ToskiColors.swift",
     "./package.json": "./package.json"
   },
@@ -42,6 +43,7 @@
     "tokens:build": "tsx scripts/build-tokens.ts",
     "tokens:check": "tsx scripts/build-tokens.ts --check",
     "contrast": "tsx scripts/check-contrast.ts",
+    "sync:app": "tsx scripts/sync-app.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "build": "npm run tokens:build && vite build && tsc -p tsconfig.build.json",

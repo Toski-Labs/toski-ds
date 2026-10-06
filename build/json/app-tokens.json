@@ -1,0 +1,364 @@
+{
+  "$description": "Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app.",
+  "brand": {
+    "caramelo": "#DB9A5B",
+    "ferrugem": "#A9541F",
+    "creme": "#F4E4CC",
+    "papel": "#F7F1E8",
+    "carvao": "#231B17"
+  },
+  "color": {
+    "background": {
+      "light": "#F7F1E8",
+      "dark": "#231B17",
+      "use": "Fundo das telas"
+    },
+    "surface": {
+      "light": "#FFFFFF",
+      "dark": "#2E241D",
+      "use": "Cards, listas, campos"
+    },
+    "tint": {
+      "light": "#F3E4CF",
+      "dark": "#3A2D23",
+      "use": "Fundos suaves, caixas de ícone, chips"
+    },
+    "heroBackground": {
+      "light": "#EFDCC2",
+      "dark": "#33271F",
+      "use": "Círculo atrás da Paçoca"
+    },
+    "textPrimary": {
+      "light": "#231B17",
+      "dark": "#F7F1E8",
+      "use": "Texto principal"
+    },
+    "textSecondary": {
+      "light": "#6B5648",
+      "dark": "#C2AE98",
+      "use": "Texto de apoio, rótulos"
+    },
+    "border": {
+      "light": "#E6D8C4",
+      "dark": "#43352B",
+      "use": "Bordas e divisores"
+    },
+    "accent": {
+      "light": "#A9541F",
+      "dark": "#DB9A5B",
+      "use": "Botão principal, aba ativa, links"
+    },
+    "onAccent": {
+      "light": "#FFF8EE",
+      "dark": "#231B17",
+      "use": "Texto sobre o destaque"
+    },
+    "critical": {
+      "light": "#A3341A",
+      "dark": "#F09A78",
+      "use": "Atrasados, alertas, ações destrutivas"
+    },
+    "onCritical": {
+      "light": "#FFF8EE",
+      "dark": "#231B17",
+      "use": "Texto sobre crítico"
+    },
+    "criticalBackground": {
+      "light": "#F8E0D4",
+      "dark": "#45261A",
+      "use": "Fundo de alertas"
+    },
+    "criticalBorder": {
+      "light": "#EBC0AA",
+      "dark": "#6A3A26",
+      "use": "Borda de cards atrasados"
+    },
+    "success": {
+      "light": "#3F6E3B",
+      "dark": "#9CC48F",
+      "use": "Em dia, concluído"
+    },
+    "successBackground": {
+      "light": "#E4EEDC",
+      "dark": "#2C3A27",
+      "use": "Fundo de status positivo"
+    },
+    "tabBar": {
+      "light": "#FFFDF9",
+      "dark": "#1B1511",
+      "use": "Barra de abas"
+    },
+    "tabIdle": {
+      "light": "#7D6858",
+      "dark": "#A08B78",
+      "use": "Aba inativa"
+    },
+    "segmentSelected": {
+      "light": "#FFFFFF",
+      "dark": "#4A3A2E",
+      "use": "Opção selecionada do controle segmentado"
+    },
+    "switchOff": {
+      "light": "#DCCDB9",
+      "dark": "#5A4A3D",
+      "use": "Interruptor desligado"
+    },
+    "toastBackground": {
+      "light": "#231B17",
+      "dark": "#F7F1E8",
+      "use": "Fundo do toast (invertido)"
+    },
+    "toastText": {
+      "light": "#F7F1E8",
+      "dark": "#231B17",
+      "use": "Texto do toast"
+    },
+    "toastAction": {
+      "light": "#E8B27C",
+      "dark": "#A9541F",
+      "use": "Ação do toast (Desfazer, Abrir)"
+    },
+    "scrim": {
+      "light": "rgba(20,14,10,0.45)",
+      "dark": "rgba(20,14,10,0.45)",
+      "use": "Fundo atrás de painéis"
+    },
+    "mascotNose": {
+      "light": "#231B17",
+      "dark": "#100C0A",
+      "use": "Focinho da Paçoca"
+    },
+    "mascotOutline": {
+      "light": "none",
+      "dark": "#F4E4CC",
+      "use": "Contorno do corpo da Paçoca"
+    },
+    "ballOutline": {
+      "light": "#F7F1E8",
+      "dark": "#F4E4CC",
+      "use": "Contorno e costura da bolinha"
+    },
+    "faint": {
+      "light": "#B3A190",
+      "dark": "#6E5D50",
+      "use": "Texto e elementos apagados (dia fora do mês, texto miúdo do PDF)"
+    },
+    "divider": {
+      "light": "#EDE3D6",
+      "dark": "#43352B",
+      "use": "Linhas finas internas (grade do gráfico, linhas do PDF)"
+    },
+    "borderStrong": {
+      "light": "#DCCDB9",
+      "dark": "#5A4A3D",
+      "use": "Borda mais forte (botão do Google no login)"
+    },
+    "barInactive": {
+      "light": "#DCCDB9",
+      "dark": "#6E5D50",
+      "use": "Barra do valor antigo (troca de ração)"
+    },
+    "accentDeep": {
+      "light": "#7E3C14",
+      "dark": "#E8B27C",
+      "use": "Ferrugem escura (no escuro, caramelo claro): botão de texto da tela Erro, links ao passar o mouse"
+    },
+    "featureCard": {
+      "light": "#A9541F",
+      "dark": "#7E3C14",
+      "use": "Cartão de destaque (plano de saúde, Fase 2)"
+    },
+    "onFeatureCard": {
+      "light": "#FFF8EE",
+      "dark": "#FFF8EE",
+      "use": "Texto sobre o cartão de destaque"
+    },
+    "onAccentSubtle": {
+      "light": "rgba(255,248,238,.18)",
+      "dark": "rgba(255,248,238,.18)",
+      "use": "Caixa translúcida sobre o destaque"
+    },
+    "lockBackground": {
+      "light": "#DB9A5B",
+      "dark": "#3A2D23",
+      "use": "Fundo do cadeado (recurso do Plus, pet congelado)"
+    },
+    "onLock": {
+      "light": "#FFF8EE",
+      "dark": "#F7F1E8",
+      "use": "Ícone do cadeado"
+    },
+    "alertBackground": {
+      "light": "#F7F1E8",
+      "dark": "#3A2D23",
+      "use": "Fundo do alerta do sistema (ex.: desconectar calendário)"
+    },
+    "bannerBackground": {
+      "light": "rgba(255,253,249,.92)",
+      "dark": "rgba(46,36,29,.92)",
+      "use": "Fundo do aviso de notificação"
+    },
+    "previewBackdrop": {
+      "light": "#EDE3D6",
+      "dark": "#1B1511",
+      "use": "Fundo atrás da prévia do PDF"
+    },
+    "themePreviewCard": {
+      "light": "rgba(169,84,31,.35)",
+      "dark": "rgba(169,84,31,.35)",
+      "use": "Cartões das miniaturas de tema (Aparência)"
+    }
+  },
+  "pet": {
+    "avatars": [
+      "#DB9A5B",
+      "#8FA07C",
+      "#E2C79A",
+      "#C9B8A6",
+      "#B7C4D1",
+      "#D8C0D6"
+    ],
+    "calendarDots": {
+      "light": [
+        "#C27A3A",
+        "#6F8A5C"
+      ],
+      "dark": [
+        "#DB9A5B",
+        "#9DB089"
+      ]
+    },
+    "onAvatar": "#231B17",
+    "avatarUser": "#E8B27C"
+  },
+  "blackFriday": {
+    "background": "#120D0A",
+    "surface": "#2E241D",
+    "accent": "#DB9A5B",
+    "text": "#F7F1E8",
+    "textSecondary": "#CDB9A3"
+  },
+  "typography": {
+    "family": "Outfit",
+    "weights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "styles": {
+      "largeTitle": {
+        "size": 28,
+        "weight": 600,
+        "tracking": -0.01
+      },
+      "title": {
+        "size": 22,
+        "weight": 600
+      },
+      "headline": {
+        "size": 17,
+        "weight": 600
+      },
+      "body": {
+        "size": 16,
+        "weight": 400
+      },
+      "callout": {
+        "size": 15,
+        "weight": 400
+      },
+      "subheadline": {
+        "size": 14,
+        "weight": 400
+      },
+      "footnote": {
+        "size": 13,
+        "weight": 400
+      },
+      "sectionLabel": {
+        "size": 13,
+        "weight": 600,
+        "tracking": 0.06,
+        "uppercase": true
+      },
+      "caption": {
+        "size": 12,
+        "weight": 400
+      },
+      "tabLabel": {
+        "size": 11,
+        "weight": 500
+      }
+    }
+  },
+  "radius": {
+    "$description": "Pílula = Capsule e círculo (50%) = Circle: não têm token. sheet arredonda só os cantos de cima. appIcon(side:) = side × radius / side de referência.",
+    "checkbox": 7,
+    "swatch": 3,
+    "pdfPage": 4,
+    "small": 9,
+    "iconBox": 12,
+    "buttonSmall": 12,
+    "segmentTrack": 12,
+    "input": 14,
+    "button": 14,
+    "tile": 16,
+    "card": 18,
+    "notification": 22,
+    "sheet": 28,
+    "appIcon": {
+      "radius": 22,
+      "side": 96
+    }
+  },
+  "shadow": {
+    "$description": "Valores do box-shadow do canvas (x = 0). Em SwiftUI o radius é blur / 2. Iguais no claro e no escuro.",
+    "knob": {
+      "y": 1,
+      "blur": 3,
+      "color": "#000000",
+      "opacity": 0.25
+    },
+    "raised": {
+      "y": 1,
+      "blur": 3,
+      "color": "#231B17",
+      "opacity": 0.15
+    },
+    "floating": {
+      "y": 8,
+      "blur": 24,
+      "color": "#231B17",
+      "opacity": 0.22
+    },
+    "sheet": {
+      "y": -8,
+      "blur": 32,
+      "color": "#231B17",
+      "opacity": 0.18
+    }
+  },
+  "spacing": {
+    "xs": 4,
+    "s": 8,
+    "m": 12,
+    "l": 16,
+    "xl": 20,
+    "xxl": 24,
+    "screenPadding": 20
+  },
+  "size": {
+    "minTouchTarget": 44,
+    "primaryButtonHeight": 54,
+    "avatarSmall": 24,
+    "avatar": 48,
+    "avatarLarge": 76
+  },
+  "pdf": {
+    "rule": "O PDF usa sempre os valores claros dos tokens, nunca o tema do aparelho."
+  },
+  "appleButton": {
+    "rule": "Botão \"Continuar com a Apple\" segue a diretriz da Apple e fica fora da paleta: claro = fundo #000000, texto #FFFFFF; escuro = fundo #FFFFFF, texto #000000."
+  }
+}

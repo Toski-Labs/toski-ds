@@ -29,6 +29,7 @@
   --toski-muted: #6B5648;
   --toski-line: #E6D8C4;
   --toski-accent: #A9541F;
+  --toski-accent-hover: #7E3C14;
   --toski-on-accent: #FFF8EE;
   --toski-critical: #A3341A;
   --toski-critical-bg: #F8E0D4;
@@ -40,7 +41,6 @@
   --toski-tab-idle: #7D6858;
   --toski-mascot-outline: transparent;
   --toski-mascot-nose: #231B17;
-  --toski-accent-hover: #7E3C14;
   --toski-accent-text: #94481A;
   --toski-link: #94481A;
   --toski-ball-outline: #EFDCC2;
@@ -63,6 +63,7 @@
     --toski-muted: #C2AE98;
     --toski-line: #43352B;
     --toski-accent: #DB9A5B;
+    --toski-accent-hover: #E8B27C;
     --toski-on-accent: #231B17;
     --toski-critical: #F09A78;
     --toski-critical-bg: #45261A;
@@ -74,7 +75,6 @@
     --toski-tab-idle: #A08B78;
     --toski-mascot-outline: #F4E4CC;
     --toski-mascot-nose: #100C0A;
-    --toski-accent-hover: #E8B27C;
     --toski-accent-text: #DB9A5B;
     --toski-link: #E8B27C;
     --toski-ball-outline: #F4E4CC;
@@ -97,6 +97,7 @@
   --toski-muted: #C2AE98;
   --toski-line: #43352B;
   --toski-accent: #DB9A5B;
+  --toski-accent-hover: #E8B27C;
   --toski-on-accent: #231B17;
   --toski-critical: #F09A78;
   --toski-critical-bg: #45261A;
@@ -108,7 +109,6 @@
   --toski-tab-idle: #A08B78;
   --toski-mascot-outline: #F4E4CC;
   --toski-mascot-nose: #100C0A;
-  --toski-accent-hover: #E8B27C;
   --toski-accent-text: #DB9A5B;
   --toski-link: #E8B27C;
   --toski-ball-outline: #F4E4CC;

@@ -146,7 +146,10 @@ export function Radii({ platform = 'web' }: { platform?: Platform }) {
       ? radii.map((r) => ({ ...r, code: `rounded-${r.name}` }))
       : [
           ...radii.map((r) => ({ ...r, name: r.mobileName, code: `ToskiRadius.${r.mobileName}` })),
-          ...mobileRadii.map((r) => ({ ...r, code: `ToskiRadius.${r.name}` })),
+          ...mobileRadii.map((r) => ({
+            ...r,
+            code: r.side ? `ToskiRadius.${r.name}(side:) · ${r.value} em ${r.side}` : `ToskiRadius.${r.name}`,
+          })),
         ];
   return (
     <div className="sb-unstyled text-ink font-sans grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
@@ -216,7 +219,19 @@ export function MobileExtras() {
       {row('petAvatars', mobile.pet.avatars)}
       {row('petCalendarDots (claro)', mobile.pet.calendarDots.light)}
       {row('petCalendarDots (escuro)', mobile.pet.calendarDots.dark)}
+      {row('avatarUser', [mobile.pet.avatarUser])}
       {row('BlackFriday', Object.values(mobile.blackFriday))}
+      <div className="py-2 text-sm">
+        <strong>ToskiShadow</strong> ({mobile.shadowNote}):{' '}
+        {Object.entries(mobile.shadow)
+          .map(([k, v]) => `${k} y ${v.y} · blur ${v.blur} · ${v.color} ${Math.round(v.opacity * 100)}%`)
+          .join(' | ')}
+      </div>
+      {Object.entries(mobile.rules).map(([k, rule]) => (
+        <div key={k} className="py-2 text-sm">
+          <strong>Regra {k}</strong>: {rule}
+        </div>
+      ))}
       <div className="py-2 text-sm">
         <strong>ToskiSpacing</strong>: {Object.entries(mobile.spacing).map(([k, v]) => `${k} ${v}`).join(' · ')}
       </div>

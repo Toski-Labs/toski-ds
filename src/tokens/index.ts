@@ -38,6 +38,8 @@ interface RawColor {
   dark: string;
   description: string;
   mobileName?: string;
+  /** Descrição usada no app quando é diferente da web. */
+  mobileDescription?: string;
 }
 
 export const camel = (s: string) => s.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
@@ -59,7 +61,7 @@ export function platformColors(platform: Platform): ColorToken[] {
     webName: name,
     light: t.light,
     dark: t.dark,
-    description: t.description,
+    description: platform === 'mobile' ? (t.mobileDescription ?? t.description) : t.description,
     scope: 'shared' as const,
   }));
   const own = Object.entries(platform === 'web' ? webOnly : mobileOnly).map(([name, t]) => ({
@@ -83,11 +85,22 @@ export const radii = Object.entries(raw.radius).map(([name, t]) => ({
   description: t.description,
 }));
 
-export const mobileRadii = Object.entries(raw.mobile.radius).map(([name, t]) => ({
-  name,
-  value: t.value,
-  description: t.description,
-}));
+interface RawMobileRadius {
+  value?: number;
+  radius?: number;
+  side?: number;
+  description: string;
+}
+
+/** Raios só do app (appIcon tem raio + lado de referência). */
+export const mobileRadii = Object.entries(raw.mobile.radius as Record<string, RawMobileRadius | string>)
+  .filter(([name]) => !name.startsWith('$'))
+  .map(([name, t]) => {
+    const r = t as RawMobileRadius;
+    return { name, value: r.value ?? r.radius ?? 0, side: r.side, description: r.description };
+  });
+
+export const mobileRadiusNote = (raw.mobile.radius as Record<string, unknown>).$description as string;
 
 export const layout = Object.entries(raw.web.layout).map(([name, t]) => ({
   name,
@@ -102,6 +115,12 @@ export const mobile = {
   typography: raw.mobile.typography as Record<string, { size: number; weight: number; tracking?: number; uppercase?: boolean }>,
   spacing: raw.mobile.spacing as Record<string, number>,
   size: raw.mobile.size as Record<string, number>,
+  shadowNote: raw.mobile.shadow.$description,
+  shadow: Object.fromEntries(Object.entries(raw.mobile.shadow).filter(([k]) => !k.startsWith('$'))) as Record<
+    string,
+    { y: number; blur: number; color: string; opacity: number }
+  >,
+  rules: raw.mobile.rules as Record<string, string>,
 };
 
 export function colorValue(platform: Platform, name: string, mode: Mode): string {

@@ -10,7 +10,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { brand, colors, font, layout, mobile, mobileColors, mobileRadii, radii } from '../src/tokens/index';
+import { brand, colors, font, layout, mobile, mobileColors, mobileRadii, mobileRadiusNote, radii } from '../src/tokens/index';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HEADER = 'Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão.';
@@ -134,11 +134,68 @@ function mobileData() {
     typography: mobile.typography,
     radius: {
       ...Object.fromEntries(radii.map((r) => [r.mobileName, r.value])),
-      ...Object.fromEntries(mobileRadii.map((r) => [r.name, r.value])),
+      ...Object.fromEntries(
+        mobileRadii.map((r) => [r.name, r.side ? { radius: r.value, side: r.side } : r.value]),
+      ),
     },
+    shadow: mobile.shadow,
     spacing: mobile.spacing,
     size: mobile.size,
+    rules: mobile.rules,
   };
+}
+
+// ---------- App (PetHealthTracker): mesmo formato do docs/design/assets/tokens/tokens.json ----------
+// Ordem das chaves igual à do arquivo do app (só formatação; chaves novas entram no fim).
+const APP_COLOR_ORDER = [
+  'background', 'surface', 'tint', 'heroBackground', 'textPrimary', 'textSecondary', 'border', 'accent',
+  'onAccent', 'critical', 'onCritical', 'criticalBackground', 'criticalBorder', 'success', 'successBackground',
+  'tabBar', 'tabIdle', 'segmentSelected', 'switchOff', 'toastBackground', 'toastText', 'toastAction', 'scrim',
+  'mascotNose', 'mascotOutline', 'ballOutline', 'faint', 'divider', 'borderStrong', 'barInactive', 'accentDeep',
+  'featureCard', 'onFeatureCard', 'onAccentSubtle', 'lockBackground', 'onLock', 'alertBackground',
+  'bannerBackground', 'previewBackdrop', 'themePreviewCard',
+];
+const APP_RADIUS_ORDER = [
+  'checkbox', 'swatch', 'pdfPage', 'small', 'iconBox', 'buttonSmall', 'segmentTrack', 'input', 'button', 'tile',
+  'card', 'notification', 'sheet', 'appIcon',
+];
+
+function ordered<T>(entries: [string, T][], order: string[]): [string, T][] {
+  const rank = (k: string) => (order.includes(k) ? order.indexOf(k) : order.length);
+  return [...entries].sort((a, b) => rank(a[0]) - rank(b[0]));
+}
+
+/** O app lê "none" (não "transparent"). */
+const appValue = (v: string) => (v === 'transparent' ? 'none' : v);
+
+function buildAppJson(): string {
+  const color = Object.fromEntries(
+    ordered(
+      mobileColors.map((c) => [c.name, { light: appValue(c.light), dark: appValue(c.dark), use: c.description }]),
+      APP_COLOR_ORDER,
+    ),
+  );
+  const radiusEntries: [string, number | { radius: number; side: number }][] = [
+    ...radii.map((r): [string, number] => [r.mobileName, r.value]),
+    ...mobileRadii.map((r): [string, number | { radius: number; side: number }] => [
+      r.name,
+      r.side ? { radius: r.value, side: r.side } : r.value,
+    ]),
+  ];
+  const data = {
+    $description: `Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app.`,
+    brand: Object.fromEntries(brand.map((b) => [b.name, b.value])),
+    color,
+    pet: mobile.pet,
+    blackFriday: mobile.blackFriday,
+    typography: { family: font.family, weights: font.weights, styles: mobile.typography },
+    radius: { $description: mobileRadiusNote, ...Object.fromEntries(ordered(radiusEntries, APP_RADIUS_ORDER)) },
+    shadow: { $description: mobile.shadowNote, ...mobile.shadow },
+    spacing: mobile.spacing,
+    size: mobile.size,
+    ...Object.fromEntries(Object.entries(mobile.rules).map(([k, rule]) => [k, { rule }])),
+  };
+  return `${JSON.stringify(data, null, 2)}\n`;
 }
 
 function buildMobileJson(): string {
@@ -152,7 +209,7 @@ function swiftColor(v: string): { hex: string; alpha: string } {
   const rgba = s.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+)\s*)?\)$/);
   if (rgba) {
     const [r, g, b] = rgba.slice(1, 4).map((n) => Number(n).toString(16).padStart(2, '0').toUpperCase());
-    return { hex: `0x${r}${g}${b}`, alpha: rgba[4] ?? '1' };
+    return { hex: `0x${r}${g}${b}`, alpha: String(Number(rgba[4] ?? '1')) };
   }
   if (/^#[0-9a-f]{6}$/.test(s)) return { hex: `0x${s.slice(1).toUpperCase()}`, alpha: '1' };
   throw new Error(`Cor que o Swift não entende: ${v}`);
@@ -192,8 +249,18 @@ function buildSwift(): string {
 
   const radiusLines = [
     ...radii.map((r) => `${doc(r.description)}\n    public static let ${r.mobileName}: CGFloat = ${r.value}`),
-    ...mobileRadii.map((r) => `${doc(r.description)}\n    public static let ${r.name}: CGFloat = ${r.value}`),
+    ...mobileRadii.map((r) =>
+      r.side
+        ? `${doc(r.description)}\n    public static let ${r.name}Radius: CGFloat = ${r.value}\n    public static let ${r.name}Side: CGFloat = ${r.side}\n    /// Raio do ícone para um lado qualquer (proporcional ao de referência).\n    public static func ${r.name}(side: CGFloat) -> CGFloat { side * ${r.name}Radius / ${r.name}Side }`
+        : `${doc(r.description)}\n    public static let ${r.name}: CGFloat = ${r.value}`,
+    ),
   ].join('\n');
+  const shadowLines = Object.entries(mobile.shadow)
+    .map(
+      ([k, v]) =>
+        `    public static let ${k} = Style(y: ${v.y}, blur: ${v.blur}, color: ToskiColors.${swiftFixed(v.color)}, opacity: ${v.opacity})`,
+    )
+    .join('\n');
   const numLines = (o: Record<string, number>) =>
     Object.entries(o)
       .map(([k, v]) => `    public static let ${k}: CGFloat = ${v}`)
@@ -244,6 +311,8 @@ ${section('mobile')}
     ]
     /// Inicial sobre o avatar.
     public static let onPetAvatar = ${swiftFixed(mobile.pet.onAvatar)}
+    /// Avatar da usuária (não é cor de pet).
+    public static let avatarUser = ${swiftFixed(mobile.pet.avatarUser)}
 
     // MARK: Black Friday (tema fixo da campanha)
 
@@ -283,6 +352,20 @@ ${bf}
 
 public enum ToskiRadius {
 ${radiusLines}
+}
+
+/// ${mobile.shadowNote}
+public enum ToskiShadow {
+    public struct Style: Sendable {
+        public let y: CGFloat
+        public let blur: CGFloat
+        public let color: Color
+        public let opacity: Double
+        /// Raio para .shadow(color:radius:x:y:) do SwiftUI.
+        public var radius: CGFloat { blur / 2 }
+    }
+
+${shadowLines}
 }
 
 public enum ToskiSpacing {
@@ -330,6 +413,7 @@ const outputs: Record<string, string> = {
   'build/json/web.json': buildWebJson(),
   'build/json/mobile.json': buildMobileJson(),
   'build/swift/ToskiColors.swift': buildSwift(),
+  'build/json/app-tokens.json': buildAppJson(),
   'src/generated/tokens.ts': buildTs(),
 };
 
