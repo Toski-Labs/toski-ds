@@ -32,7 +32,7 @@ Componentes: `Button` (primary, secondary, light; lg 54px e md 48px), `Pill` (st
 ## Uso rápido
 
 ```bash
-npm install github:Toski-Labs/toski-ds#v0.3.0 @fontsource-variable/outfit
+npm install @toski-labs/ds @fontsource-variable/outfit
 ```
 
 ```css
@@ -86,6 +86,14 @@ O CI falha se `build/` estiver desatualizado ou se algum par de texto ficar abai
 - Botões com 48px ou mais de altura (área de toque mínima de 44px).
 - Animações e transições desligadas com `prefers-reduced-motion`.
 - Ícones e mascote decorativos por padrão (`aria-hidden`); passe `label` quando carregarem significado.
+
+## Lançar uma versão
+
+1. `npm run changeset` durante o trabalho; na hora de lançar, `npx changeset version` (sobe a versão e
+   atualiza o CHANGELOG).
+2. Commit, `git tag vX.Y.Z` e `git push origin main --tags`.
+3. O workflow **Publicar no npm** (`.github/workflows/release.yml`) roda a verificação e publica
+   `@toski-labs/ds` no npm, com provenance.
 
 ## Versões
 

@@ -33,7 +33,7 @@ Components: `Button` (primary, secondary, light; lg 54px and md 48px), `Pill` (s
 ## Quick start
 
 ```bash
-npm install github:Toski-Labs/toski-ds#v0.3.0 @fontsource-variable/outfit
+npm install @toski-labs/ds @fontsource-variable/outfit
 ```
 
 ```css
@@ -76,6 +76,11 @@ changeset (`npm run changeset`) and commit `tokens/`, `build/` and `src/generate
 Contrast checked in CI for both themes · visible focus ring · 48px+ buttons (44px minimum touch target) ·
 animations and transitions off with `prefers-reduced-motion` · icons and mascot are decorative by default
 (`aria-hidden`), pass `label` when they carry meaning.
+
+## Releasing
+
+Bump the version (`npx changeset version`), commit, `git tag vX.Y.Z` and `git push origin main --tags`.
+The **Publicar no npm** workflow verifies and publishes `@toski-labs/ds` to npm with provenance.
 
 ## Versioning
 

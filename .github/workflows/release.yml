@@ -1,0 +1,41 @@
+name: Publicar no npm
+
+# Publica @toski-labs/ds quando uma tag vX.Y.Z é enviada (git push origin vX.Y.Z).
+# Usa "trusted publishing" do npm (OIDC): sem token guardado no GitHub, com provenance automático.
+# Configuração única no npmjs.com: pacote @toski-labs/ds → Settings → Trusted Publisher →
+# GitHub Actions · organização Toski-Labs · repositório toski-ds · workflow release.yml
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      # Trusted publishing pede npm 11.5.1 ou mais novo
+      - run: npm install -g npm@latest
+
+      - run: npm ci
+
+      - name: A tag bate com a versão do package.json
+        run: |
+          VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME, mas o package.json está em $VERSION"; exit 1
+          fi
+
+      # prepublishOnly roda npm run verify (tokens, contraste, tipos, testes e build)
+      - run: npm publish
