@@ -5,6 +5,11 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Corrigido
+
+- `buttonClasses()`: a transição do botão passa a cobrir `scale` em vez de `transform`. O Tailwind 4 aplica
+  `active:scale-[0.97]` pela propriedade `scale`, então na 0.4.0 o botão encolhia sem transição.
+
 ## 0.4.0 — 2026-10-06
 
 ### Adicionado
