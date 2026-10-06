@@ -5,6 +5,14 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Corrigido
+
+- `CheckList`: o `<ul>` ganha `role="list"`. O Tailwind tira os marcadores (`list-style: none`) e, sem eles,
+  o Safari/VoiceOver deixa de anunciar a lista.
+- `buttonClasses()`: as variantes `primary` e `light` ganham `border-[1.5px] border-transparent`. No modo de alto
+  contraste do Windows (`forced-colors`) o fundo some e o botão ficava sem contorno; agora o sistema desenha a
+  borda. A altura não muda (altura fixa); botões sem largura fixa ficam 3px mais largos, igual ao `secondary`.
+
 ## 0.4.1 — 2026-10-06
 
 ### Corrigido

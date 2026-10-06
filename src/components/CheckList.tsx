@@ -14,6 +14,7 @@ export interface CheckListProps {
 export function CheckList({ items, tone = 'accent', columns = false, className }: CheckListProps) {
   return (
     <ul
+      role="list"
       className={cx(
         columns ? 'grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-x-6 gap-y-3.5' : 'flex flex-col gap-3.5',
         className,

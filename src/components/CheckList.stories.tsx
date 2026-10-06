@@ -9,7 +9,7 @@ const meta = {
   component: CheckList,
   args: { items, tone: 'accent', columns: false },
   argTypes: { tone: { control: 'inline-radio', options: ['accent', 'success'] } },
-  parameters: { docs: { description: { component: 'Lista com check: success (grátis) ou accent (Plus).' } } },
+  parameters: { docs: { description: { component: 'Lista com check: success (grátis) ou accent (Plus). O `<ul>` leva `role="list"`: o Tailwind tira os marcadores (`list-style: none`) e, sem o papel explícito, o Safari/VoiceOver deixa de anunciar a lista.' } } },
 } satisfies Meta<typeof CheckList>;
 
 export default meta;

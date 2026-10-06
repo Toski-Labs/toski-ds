@@ -20,9 +20,9 @@ type AsButton = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: u
 export type ButtonProps = AsLink | AsButton;
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-on-accent font-semibold hover:bg-accent-hover',
+  primary: 'bg-accent text-on-accent font-semibold border-[1.5px] border-transparent hover:bg-accent-hover',
   secondary: 'bg-surface text-ink font-medium border-[1.5px] border-line hover:border-accent',
-  light: 'bg-surface text-ink font-medium hover:bg-tint',
+  light: 'bg-surface text-ink font-medium border-[1.5px] border-transparent hover:bg-tint',
 };
 
 const sizes: Record<ButtonSize, string> = {
