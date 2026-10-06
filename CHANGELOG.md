@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.4.1 — 2026-10-06
+
 ### Corrigido
 
 - `buttonClasses()`: a transição do botão passa a cobrir `scale` em vez de `transform`. O Tailwind 4 aplica
