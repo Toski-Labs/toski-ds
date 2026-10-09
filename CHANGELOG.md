@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.5.3 — 2026-10-09
+
 ### Removido
 
 - **Remoção de tokens:** os tokens de mascote da Paçoca `mascot-outline` / `mascotOutline`, `mascot-nose` /
