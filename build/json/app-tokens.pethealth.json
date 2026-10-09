@@ -221,11 +221,19 @@
     "calendarDots": {
       "light": [
         "#C27A3A",
-        "#6F8A5C"
+        "#6F8A5C",
+        "#A0814A",
+        "#87755F",
+        "#5B7792",
+        "#94688F"
       ],
       "dark": [
         "#DB9A5B",
-        "#9DB089"
+        "#9DB089",
+        "#E2C79A",
+        "#C9B8A6",
+        "#B7C4D1",
+        "#D8C0D6"
       ]
     },
     "onAvatar": "#231B17",
@@ -477,6 +485,26 @@
         "name": "bolinha-indigo-escuro",
         "file": "products/pethealth/mascots/ball-indigo-dark.svg",
         "kind": "mascot"
+      },
+      {
+        "name": "pethealth-icone-noite",
+        "file": "products/pethealth/icon-alt/pethealth-icon-night.svg",
+        "kind": "icon-alt"
+      },
+      {
+        "name": "pethealth-icone-noite-1024",
+        "file": "products/pethealth/icon-alt/pethealth-icon-night-1024.png",
+        "kind": "icon-alt-png"
+      },
+      {
+        "name": "pethealth-icone-papel",
+        "file": "products/pethealth/icon-alt/pethealth-icon-paper.svg",
+        "kind": "icon-alt"
+      },
+      {
+        "name": "pethealth-icone-papel-1024",
+        "file": "products/pethealth/icon-alt/pethealth-icon-paper-1024.png",
+        "kind": "icon-alt-png"
       }
     ],
     "pending": []

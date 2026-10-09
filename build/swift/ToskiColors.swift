@@ -119,7 +119,11 @@ public enum ToskiColors {
     /// Bolinhas do calendário por pet (visão Todos).
     public static let petCalendarDots: [Color] = [
             dynamic(light: 0xC27A3A, dark: 0xDB9A5B),
-            dynamic(light: 0x6F8A5C, dark: 0x9DB089)
+            dynamic(light: 0x6F8A5C, dark: 0x9DB089),
+            dynamic(light: 0xA0814A, dark: 0xE2C79A),
+            dynamic(light: 0x87755F, dark: 0xC9B8A6),
+            dynamic(light: 0x5B7792, dark: 0xB7C4D1),
+            dynamic(light: 0x94688F, dark: 0xD8C0D6)
     ]
     /// Inicial sobre o avatar.
     public static let onPetAvatar = fixed(0x231B17)

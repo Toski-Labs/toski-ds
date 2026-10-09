@@ -781,5 +781,65 @@ export const iconData = {
         "d": "M5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9A2.5 2.5 0 0 1 5.5 5ZM4 7l8 6 8-6"
       }
     ]
+  },
+  "alert-circle": {
+    "mobile": "circulo-alerta",
+    "size": 18,
+    "stroke": 2,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8v5 M12 16.5v.5"
+      }
+    ]
+  },
+  "undo": {
+    "mobile": "desfazer",
+    "size": 20,
+    "stroke": 2,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M9 14L4 9l5-5 M4 9h11a5 5 0 0 1 0 10h-3"
+      }
+    ]
+  },
+  "end": {
+    "mobile": "encerrar",
+    "size": 20,
+    "stroke": 2,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9l6 6 M15 9l-6 6"
+      }
+    ]
+  },
+  "pause": {
+    "mobile": "pausar",
+    "size": 20,
+    "stroke": 2,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M9 5v14 M15 5v14"
+      }
+    ]
+  },
+  "triangle": {
+    "mobile": "triangulo",
+    "size": 18,
+    "stroke": 2,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M12 4l9 16H3z M12 10v4 M12 17v.5"
+      }
+    ]
   }
 } as const;

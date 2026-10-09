@@ -249,5 +249,25 @@
   },
   "mail": {
     "web": "mail"
+  },
+  "circulo-alerta": {
+    "web": "alert-circle",
+    "mobile": "circulo-alerta"
+  },
+  "desfazer": {
+    "web": "undo",
+    "mobile": "desfazer"
+  },
+  "encerrar": {
+    "web": "end",
+    "mobile": "encerrar"
+  },
+  "pausar": {
+    "web": "pause",
+    "mobile": "pausar"
+  },
+  "triangulo": {
+    "web": "triangle",
+    "mobile": "triangulo"
   }
 }

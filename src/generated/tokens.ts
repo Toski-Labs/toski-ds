@@ -231,7 +231,12 @@ export const tokens = {
     "arrow-right",
     "flask",
     "list",
-    "mail"
+    "mail",
+    "alert-circle",
+    "undo",
+    "end",
+    "pause",
+    "triangle"
   ]
 } as const;
 

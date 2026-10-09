@@ -229,7 +229,12 @@
     "arrow-right",
     "flask",
     "list",
-    "mail"
+    "mail",
+    "alert-circle",
+    "undo",
+    "end",
+    "pause",
+    "triangle"
   ],
   "product": {
     "id": "pethealth",
@@ -347,6 +352,26 @@
         "name": "ball-indigo-dark",
         "file": "products/pethealth/mascots/ball-indigo-dark.svg",
         "kind": "mascot"
+      },
+      {
+        "name": "pethealth-icon-night",
+        "file": "products/pethealth/icon-alt/pethealth-icon-night.svg",
+        "kind": "icon-alt"
+      },
+      {
+        "name": "pethealth-icon-night-1024",
+        "file": "products/pethealth/icon-alt/pethealth-icon-night-1024.png",
+        "kind": "icon-alt-png"
+      },
+      {
+        "name": "pethealth-icon-paper",
+        "file": "products/pethealth/icon-alt/pethealth-icon-paper.svg",
+        "kind": "icon-alt"
+      },
+      {
+        "name": "pethealth-icon-paper-1024",
+        "file": "products/pethealth/icon-alt/pethealth-icon-paper-1024.png",
+        "kind": "icon-alt-png"
       }
     ],
     "pending": []

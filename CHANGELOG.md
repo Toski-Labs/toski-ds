@@ -5,6 +5,24 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Corrigido
+
+- `mobile.pet.calendarDots` estava truncado em 2 cores claras e 2 escuras, mas o app usa 6 de cada
+  (`calendarDots.count == avatars.count`). Restauradas as 6, claro e escuro; todas passam de 3:1 sobre `background` e
+  `surface` nos dois modos (mínimo 3,05:1). A base muda só nesse ponto, então `app-tokens.json` e `web/mobile.json`
+  deixam de sair byte a byte iguais à 0.5.1.
+- `npm run sync:app` saía com erro porque o app tem ícones que o DS não tinha (veja "Adicionado").
+
+### Adicionado
+
+- Ícones de interface `circulo-alerta` (`alert-circle`), `desfazer` (`undo`), `encerrar` (`end`), `pausar` (`pause`) e
+  `triangulo` (`triangle`), com os desenhos que o app já usa, em `icons/icons.json` e `icons/svg/`.
+- Ícones alternativos do PetHealthTracker Plus (Noite e Papel; SVG e PNG 1024) em `products/pethealth/icon-alt/`, com
+  nomes em inglês na web (`pethealth-icon-night`, `pethealth-icon-paper`) e em português no app
+  (`pethealth-icone-noite`, `pethealth-icone-papel`) em `themes.pethealth.assets`. Sem o metadata C2PA dos originais.
+  `npm run sync:app` copia os dois para `docs/design/assets/products/`.
+- `products/pethealth/animations.md`: animações da dupla (login, carregando, erro/vazios e Reduzir movimento).
+
 ## 0.5.1 — 2026-10-09
 
 ### Adicionado
