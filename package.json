@@ -38,6 +38,14 @@
     "./web.json": "./build/json/web.json",
     "./mobile.json": "./build/json/mobile.json",
     "./app-tokens.json": "./build/json/app-tokens.json",
+    "./app-tokens.pethealth.json": "./build/json/app-tokens.pethealth.json",
+    "./app-tokens.koti.json": "./build/json/app-tokens.koti.json",
+    "./web.pethealth.json": "./build/json/web.pethealth.json",
+    "./web.koti.json": "./build/json/web.koti.json",
+    "./themes/*.css": "./build/css/themes/*.css",
+    "./ToskiThemePetHealth.swift": "./build/swift/ToskiThemePetHealth.swift",
+    "./ToskiThemeKoti.swift": "./build/swift/ToskiThemeKoti.swift",
+    "./products/*": "./products/*",
     "./ToskiColors.swift": "./build/swift/ToskiColors.swift",
     "./ToskiTokens.swift": "./build/swift/ToskiTokens.swift",
     "./icons/*": "./icons/svg/*",
@@ -49,6 +57,7 @@
     "styles",
     "assets",
     "icons",
+    "products",
     "CHANGELOG.md"
   ],
   "engines": {

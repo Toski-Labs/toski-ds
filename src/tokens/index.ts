@@ -24,6 +24,8 @@ export interface ColorToken {
 }
 
 export interface ContrastResult {
+  /** 'base' ou o id do tema de produto. */
+  theme: string;
   platform: Platform;
   mode: Mode;
   fg: string;
@@ -138,35 +140,199 @@ export const mobile = {
   rules: raw.mobile.rules as Record<string, string>,
 };
 
-export function colorValue(platform: Platform, name: string, mode: Mode): string {
-  const c = platformColors(platform).find((x) => x.name === name);
+// ---------- Temas de produto ----------
+
+type LM = { light: string; dark: string };
+
+export interface MemberColor {
+  name: string;
+  avatar: string;
+  mark: LM;
+}
+
+export interface ThemeAsset {
+  /** Caminho em products/<id>/. */
+  file: string;
+  kind: string;
+  /** Nome na web (inglês). */
+  web: string;
+  /** Nome no app (português). */
+  mobile: string;
+}
+
+export interface ThemeDef {
+  id: string;
+  name: string;
+  /** Sufixo dos tipos Swift (ToskiPetHealthTheme). */
+  swift: string;
+  scheme: string;
+  description: string;
+  brand: { name: string; value: string; description: string }[];
+  /** Cores compartilhadas e da web (nome web, kebab-case). */
+  color: Record<string, LM>;
+  /** Cores só do app (nome do app). */
+  mobileColor: Record<string, LM>;
+  blackFriday: Record<string, string>;
+  mascots?: Record<string, unknown>;
+  members?: Record<string, MemberColor>;
+  assets: ThemeAsset[];
+  pending: string[];
+}
+
+interface RawTheme {
+  name: string;
+  swift: string;
+  scheme: string;
+  description: string;
+  brand: Record<string, { value: string; description: string }>;
+  color: Record<string, LM>;
+  mobile: { color: Record<string, LM>; blackFriday: Record<string, string> };
+  mascots?: Record<string, unknown>;
+  members?: Record<string, unknown>;
+  assets: ThemeAsset[];
+  pending?: string[];
+}
+
+const rawThemes = raw.themes as unknown as Record<string, unknown>;
+const allowed = rawThemes.$allowed as { color: string[]; mobile: string[]; blackFriday: string[] };
+
+export const themeIds = Object.keys(rawThemes).filter((k) => !k.startsWith('$'));
+
+export const themes: Record<string, ThemeDef> = Object.fromEntries(
+  themeIds.map((id) => {
+    const t = rawThemes[id] as RawTheme;
+    const members = t.members
+      ? (Object.fromEntries(Object.entries(t.members).filter(([k]) => !k.startsWith('$'))) as Record<string, MemberColor>)
+      : undefined;
+    const def: ThemeDef = {
+      id,
+      name: t.name,
+      swift: t.swift,
+      scheme: t.scheme,
+      description: t.description,
+      brand: Object.entries(t.brand).map(([name, b]) => ({ name, ...b })),
+      color: t.color,
+      mobileColor: t.mobile.color,
+      blackFriday: t.mobile.blackFriday,
+      mascots: t.mascots,
+      members,
+      assets: t.assets,
+      pending: t.pending ?? [],
+    };
+    return [id, def];
+  }),
+);
+
+/** Confere que cada tema só mexe nos tokens permitidos e que os tokens existem, com light e dark. */
+export function validateThemes(): string[] {
+  const errors: string[] = [];
+  const web = new Set([...Object.keys(shared), ...Object.keys(webOnly)]);
+  const app = new Set(Object.keys(mobileOnly));
+  for (const t of Object.values(themes)) {
+    for (const [name, v] of Object.entries(t.color)) {
+      if (!allowed.color.includes(name)) errors.push(`${t.id}: "${name}" não é permitido em color`);
+      if (!web.has(name)) errors.push(`${t.id}: o token "${name}" não existe na base`);
+      if (!v.light || !v.dark) errors.push(`${t.id}: "${name}" precisa de light e dark`);
+    }
+    for (const [name, v] of Object.entries(t.mobileColor)) {
+      if (!allowed.mobile.includes(name)) errors.push(`${t.id}: "${name}" não é permitido em mobile.color`);
+      if (!app.has(name)) errors.push(`${t.id}: o token "${name}" não existe em mobile.color da base`);
+      if (!v.light || !v.dark) errors.push(`${t.id}: "${name}" precisa de light e dark`);
+    }
+    for (const name of Object.keys(t.blackFriday)) {
+      if (!allowed.blackFriday.includes(name)) errors.push(`${t.id}: blackFriday.${name} não é permitido`);
+    }
+  }
+  return errors;
+}
+
+/** Cores de uma plataforma com o tema aplicado (sem tema = base). */
+export function themedColors(platform: Platform, themeId?: string): ColorToken[] {
+  const base = platformColors(platform);
+  if (!themeId) return base;
+  const t = themes[themeId];
+  if (!t) throw new Error(`Tema não existe: ${themeId}`);
+  const over: Record<string, LM> = platform === 'web' ? t.color : { ...t.color, ...t.mobileColor };
+  return base.map((c) => {
+    const key = c.webName ?? c.name;
+    const o = over[key];
+    if (!o) return c;
+    const text = (rawThemes.$descriptions as Record<string, { web: string; mobile: string }>)[key]?.[platform];
+    return { ...c, light: o.light, dark: o.dark, description: text ?? c.description };
+  });
+}
+
+/** Nomes (da plataforma) dos tokens que o tema sobrescreve. */
+export function themeOverrides(platform: Platform, themeId: string): ColorToken[] {
+  const t = themes[themeId];
+  const keys = new Set(platform === 'web' ? Object.keys(t.color) : [...Object.keys(t.color), ...Object.keys(t.mobileColor)]);
+  return themedColors(platform, themeId).filter((c) => keys.has(c.webName ?? c.name));
+}
+
+export function colorValue(platform: Platform, name: string, mode: Mode, themeId?: string): string {
+  const c = themedColors(platform, themeId).find((x) => x.name === name);
   if (!c) throw new Error(`Token de cor não existe (${platform}): ${name}`);
   return c[mode];
 }
 
 type PairList = [string, string[]][];
 
-function expand(platform: Platform, list: PairList, level: 'text' | 'large'): ContrastResult[] {
+function expand(platform: Platform, list: PairList, level: 'text' | 'large', themeId?: string): ContrastResult[] {
   const min = level === 'text' ? MIN_TEXT : MIN_LARGE;
   const out: ContrastResult[] = [];
   for (const mode of ['light', 'dark'] as const) {
     for (const [fg, bgs] of list) {
       for (const bg of bgs) {
-        const ratio = contrastRatio(colorValue(platform, fg, mode), colorValue(platform, bg, mode));
-        out.push({ platform, mode, fg, bg, ratio, min, level, pass: ratio >= min });
+        const ratio = contrastRatio(colorValue(platform, fg, mode, themeId), colorValue(platform, bg, mode, themeId));
+        out.push({ theme: themeId ?? 'base', platform, mode, fg, bg, ratio, min, level, pass: ratio >= min });
       }
     }
   }
   return out;
 }
 
-/** Todos os pares declarados em tokens.json → contrast, nas duas plataformas e nos dois temas. */
+/** Todos os pares declarados em tokens.json → contrast, nas duas plataformas e nos dois temas (base). */
 export function contrastReport(platform?: Platform): ContrastResult[] {
   const platforms: Platform[] = platform ? [platform] : ['web', 'mobile'];
   return platforms.flatMap((p) => [
     ...expand(p, raw.contrast[p].text as PairList, 'text'),
     ...expand(p, raw.contrast[p].large as PairList, 'large'),
   ]);
+}
+
+/** Pares da base + extras de tema, com as cores do tema, mais os membros (Koti). */
+export function themeContrastReport(themeId: string): ContrastResult[] {
+  const extra = raw.contrast.themes as unknown as Record<Platform, { text: PairList; large: PairList }>;
+  const out: ContrastResult[] = [];
+  for (const p of ['web', 'mobile'] as const) {
+    out.push(
+      ...expand(p, raw.contrast[p].text as PairList, 'text', themeId),
+      ...expand(p, raw.contrast[p].large as PairList, 'large', themeId),
+      ...expand(p, extra[p].text, 'text', themeId),
+      ...expand(p, extra[p].large, 'large', themeId),
+    );
+  }
+  const members = themes[themeId].members;
+  if (members) {
+    const surfaces = ['background', 'surface', 'tint', 'heroBackground'];
+    const mark = (mode: Mode, id: string) => members[id].mark[mode];
+    for (const mode of ['light', 'dark'] as const) {
+      for (const id of Object.keys(members)) {
+        for (const bg of surfaces) {
+          const ratio = contrastRatio(mark(mode, id), colorValue('mobile', bg, mode, themeId));
+          out.push({ theme: themeId, platform: 'mobile', mode, fg: `membro ${id} (marca)`, bg, ratio, min: MIN_LARGE, level: 'large', pass: ratio >= MIN_LARGE });
+        }
+        const ratio = contrastRatio(mobile.pet.onAvatar, members[id].avatar);
+        out.push({ theme: themeId, platform: 'mobile', mode, fg: 'onPetAvatar', bg: `membro ${id} (avatar)`, ratio, min: MIN_TEXT, level: 'text', pass: ratio >= MIN_TEXT });
+      }
+    }
+  }
+  return out;
+}
+
+/** Base + todos os temas de produto. */
+export function allContrastReports(): ContrastResult[] {
+  return [...contrastReport(), ...themeIds.flatMap(themeContrastReport)];
 }
 
 // ---------- Movimento, medidas de componentes e ícones ----------

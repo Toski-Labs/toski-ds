@@ -1,0 +1,484 @@
+{
+  "$description": "Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app. Tema: PetHealthTracker (base + tema pethealth).",
+  "brand": {
+    "caramelo": "#DB9A5B",
+    "ferrugem": "#A9541F",
+    "creme": "#F4E4CC",
+    "papel": "#F7F1E8",
+    "carvao": "#231B17"
+  },
+  "color": {
+    "background": {
+      "light": "#F7F1E8",
+      "dark": "#231B17",
+      "use": "Fundo das telas"
+    },
+    "surface": {
+      "light": "#FFFFFF",
+      "dark": "#2E241D",
+      "use": "Cards, listas, campos"
+    },
+    "tint": {
+      "light": "#F3E4CF",
+      "dark": "#3A2D23",
+      "use": "Fundos suaves, caixas de ícone, chips"
+    },
+    "heroBackground": {
+      "light": "#E3E6F5",
+      "dark": "#2A2E45",
+      "use": "Círculo atrás dos mascotes"
+    },
+    "textPrimary": {
+      "light": "#231B17",
+      "dark": "#F7F1E8",
+      "use": "Texto principal"
+    },
+    "textSecondary": {
+      "light": "#6B5648",
+      "dark": "#C2AE98",
+      "use": "Texto de apoio, rótulos"
+    },
+    "border": {
+      "light": "#E6D8C4",
+      "dark": "#43352B",
+      "use": "Bordas e divisores"
+    },
+    "accent": {
+      "light": "#3E4C8A",
+      "dark": "#A9B4E8",
+      "use": "Botão principal, aba ativa, links"
+    },
+    "onAccent": {
+      "light": "#FFF8EE",
+      "dark": "#231B17",
+      "use": "Texto sobre o destaque"
+    },
+    "critical": {
+      "light": "#A3341A",
+      "dark": "#F09A78",
+      "use": "Atrasados, alertas, ações destrutivas"
+    },
+    "onCritical": {
+      "light": "#FFF8EE",
+      "dark": "#231B17",
+      "use": "Texto sobre crítico"
+    },
+    "criticalBackground": {
+      "light": "#F8E0D4",
+      "dark": "#45261A",
+      "use": "Fundo de alertas"
+    },
+    "criticalBorder": {
+      "light": "#EBC0AA",
+      "dark": "#6A3A26",
+      "use": "Borda de cards atrasados"
+    },
+    "success": {
+      "light": "#3F6E3B",
+      "dark": "#9CC48F",
+      "use": "Em dia, concluído"
+    },
+    "successBackground": {
+      "light": "#E4EEDC",
+      "dark": "#2C3A27",
+      "use": "Fundo de status positivo"
+    },
+    "tabBar": {
+      "light": "#FFFDF9",
+      "dark": "#1B1511",
+      "use": "Barra de abas"
+    },
+    "tabIdle": {
+      "light": "#7D6858",
+      "dark": "#A08B78",
+      "use": "Aba inativa"
+    },
+    "segmentSelected": {
+      "light": "#FFFFFF",
+      "dark": "#4A3A2E",
+      "use": "Opção selecionada do controle segmentado"
+    },
+    "switchOff": {
+      "light": "#DCCDB9",
+      "dark": "#5A4A3D",
+      "use": "Interruptor desligado"
+    },
+    "toastBackground": {
+      "light": "#231B17",
+      "dark": "#F7F1E8",
+      "use": "Fundo do toast (invertido)"
+    },
+    "toastText": {
+      "light": "#F7F1E8",
+      "dark": "#231B17",
+      "use": "Texto do toast"
+    },
+    "toastAction": {
+      "light": "#B7C0EE",
+      "dark": "#3E4C8A",
+      "use": "Ação do toast (Desfazer, Abrir)"
+    },
+    "scrim": {
+      "light": "rgba(20,14,10,0.45)",
+      "dark": "rgba(20,14,10,0.45)",
+      "use": "Fundo atrás de painéis"
+    },
+    "mascotNose": {
+      "light": "#231B17",
+      "dark": "#100C0A",
+      "use": "Focinho da Paçoca"
+    },
+    "mascotOutline": {
+      "light": "none",
+      "dark": "#F4E4CC",
+      "use": "Contorno do corpo da Paçoca"
+    },
+    "ballOutline": {
+      "light": "#F7F1E8",
+      "dark": "#F4E4CC",
+      "use": "Contorno e costura da bolinha"
+    },
+    "faint": {
+      "light": "#B3A190",
+      "dark": "#6E5D50",
+      "use": "Texto e elementos apagados (dia fora do mês, texto miúdo do PDF)"
+    },
+    "divider": {
+      "light": "#EDE3D6",
+      "dark": "#43352B",
+      "use": "Linhas finas internas (grade do gráfico, linhas do PDF)"
+    },
+    "borderStrong": {
+      "light": "#DCCDB9",
+      "dark": "#5A4A3D",
+      "use": "Borda mais forte (botão do Google no login)"
+    },
+    "barInactive": {
+      "light": "#DCCDB9",
+      "dark": "#6E5D50",
+      "use": "Barra do valor antigo (troca de ração)"
+    },
+    "accentDeep": {
+      "light": "#2C376A",
+      "dark": "#C9D0F2",
+      "use": "Destaque mais profundo (no escuro, mais claro): botão de texto da tela Erro, links ao passar o mouse"
+    },
+    "featureCard": {
+      "light": "#3E4C8A",
+      "dark": "#2C376A",
+      "use": "Cartão de destaque (plano de saúde, Fase 2)"
+    },
+    "onFeatureCard": {
+      "light": "#FFF8EE",
+      "dark": "#FFF8EE",
+      "use": "Texto sobre o cartão de destaque"
+    },
+    "onAccentSubtle": {
+      "light": "rgba(255,248,238,.18)",
+      "dark": "rgba(255,248,238,.18)",
+      "use": "Caixa translúcida sobre o destaque"
+    },
+    "lockBackground": {
+      "light": "#5C69A4",
+      "dark": "#3A2D23",
+      "use": "Fundo do cadeado (recurso do Plus, pet congelado)"
+    },
+    "onLock": {
+      "light": "#FFF8EE",
+      "dark": "#F7F1E8",
+      "use": "Ícone do cadeado"
+    },
+    "alertBackground": {
+      "light": "#F7F1E8",
+      "dark": "#3A2D23",
+      "use": "Fundo do alerta do sistema (ex.: desconectar calendário)"
+    },
+    "bannerBackground": {
+      "light": "rgba(255,253,249,.92)",
+      "dark": "rgba(46,36,29,.92)",
+      "use": "Fundo do aviso de notificação"
+    },
+    "previewBackdrop": {
+      "light": "#EDE3D6",
+      "dark": "#1B1511",
+      "use": "Fundo atrás da prévia do PDF"
+    },
+    "themePreviewCard": {
+      "light": "rgba(62,76,138,.35)",
+      "dark": "rgba(62,76,138,.35)",
+      "use": "Cartões das miniaturas de tema (Aparência)"
+    }
+  },
+  "pet": {
+    "avatars": [
+      "#DB9A5B",
+      "#8FA07C",
+      "#E2C79A",
+      "#C9B8A6",
+      "#B7C4D1",
+      "#D8C0D6"
+    ],
+    "calendarDots": {
+      "light": [
+        "#C27A3A",
+        "#6F8A5C"
+      ],
+      "dark": [
+        "#DB9A5B",
+        "#9DB089"
+      ]
+    },
+    "onAvatar": "#231B17",
+    "avatarUser": "#E8B27C"
+  },
+  "blackFriday": {
+    "background": "#120D0A",
+    "surface": "#2E241D",
+    "accent": "#A9B4E8",
+    "text": "#F7F1E8",
+    "textSecondary": "#CDB9A3"
+  },
+  "typography": {
+    "family": "Outfit",
+    "weights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "styles": {
+      "largeTitle": {
+        "size": 28,
+        "weight": 600,
+        "tracking": -0.01
+      },
+      "title": {
+        "size": 22,
+        "weight": 600
+      },
+      "headline": {
+        "size": 17,
+        "weight": 600
+      },
+      "body": {
+        "size": 16,
+        "weight": 400
+      },
+      "callout": {
+        "size": 15,
+        "weight": 400
+      },
+      "subheadline": {
+        "size": 14,
+        "weight": 400
+      },
+      "footnote": {
+        "size": 13,
+        "weight": 400
+      },
+      "sectionLabel": {
+        "size": 13,
+        "weight": 600,
+        "tracking": 0.06,
+        "uppercase": true
+      },
+      "caption": {
+        "size": 12,
+        "weight": 400
+      },
+      "tabLabel": {
+        "size": 11,
+        "weight": 500
+      }
+    }
+  },
+  "radius": {
+    "$description": "Pílula = Capsule e círculo (50%) = Circle: não têm token. sheet arredonda só os cantos de cima. appIcon(side:) = side × radius / side de referência.",
+    "checkbox": 7,
+    "swatch": 3,
+    "pdfPage": 4,
+    "small": 9,
+    "iconBox": 12,
+    "buttonSmall": 12,
+    "segmentTrack": 12,
+    "input": 14,
+    "button": 14,
+    "tile": 16,
+    "card": 18,
+    "notification": 22,
+    "sheet": 28,
+    "appIcon": {
+      "radius": 22,
+      "side": 96
+    }
+  },
+  "shadow": {
+    "$description": "Valores do box-shadow do canvas (x = 0). Em SwiftUI o radius é blur / 2. Iguais no claro e no escuro.",
+    "knob": {
+      "y": 1,
+      "blur": 3,
+      "color": "#000000",
+      "opacity": 0.25
+    },
+    "raised": {
+      "y": 1,
+      "blur": 3,
+      "color": "#231B17",
+      "opacity": 0.15
+    },
+    "floating": {
+      "y": 8,
+      "blur": 24,
+      "color": "#231B17",
+      "opacity": 0.22
+    },
+    "sheet": {
+      "y": -8,
+      "blur": 32,
+      "color": "#231B17",
+      "opacity": 0.18
+    }
+  },
+  "spacing": {
+    "xs": 4,
+    "s": 8,
+    "m": 12,
+    "l": 16,
+    "xl": 20,
+    "xxl": 24,
+    "screenPadding": 20
+  },
+  "size": {
+    "minTouchTarget": 44,
+    "primaryButtonHeight": 54,
+    "avatarSmall": 24,
+    "avatar": 48,
+    "avatarLarge": 76
+  },
+  "pdf": {
+    "rule": "O PDF usa sempre os valores claros dos tokens, nunca o tema do aparelho."
+  },
+  "appleButton": {
+    "rule": "Botão \"Continuar com a Apple\" segue a diretriz da Apple e fica fora da paleta: claro = fundo #000000, texto #FFFFFF; escuro = fundo #FFFFFF, texto #000000."
+  },
+  "product": {
+    "id": "pethealth",
+    "name": "PetHealthTracker",
+    "scheme": "indigo",
+    "brand": {
+      "indigo": "#3E4C8A",
+      "lilas": "#A9B4E8",
+      "lilas-claro": "#E3E6F5",
+      "circulo-icone": "#5C69A4"
+    },
+    "mascots": {
+      "dog": "#B88250",
+      "dogEar": "#6E4529",
+      "cat": "#7C8199",
+      "catEarInner": "#E8B4B0",
+      "catNose": "#D98C8C",
+      "outline": {
+        "light": "#231B17",
+        "dark": "#F4E4CC"
+      },
+      "eye": {
+        "light": "#231B17",
+        "dark": "#100C0A"
+      },
+      "description": "Contorno na cor oposta ao fundo; olhos e focinho escuros."
+    },
+    "assets": [
+      {
+        "name": "pethealth-icone-claro",
+        "file": "products/pethealth/icon/pethealth-icon-light.svg",
+        "kind": "icon"
+      },
+      {
+        "name": "pethealth-icone-claro-1024",
+        "file": "products/pethealth/icon/pethealth-icon-light-1024.png",
+        "kind": "icon-png"
+      },
+      {
+        "name": "pethealth-icone-escuro",
+        "file": "products/pethealth/icon/pethealth-icon-dark.svg",
+        "kind": "icon"
+      },
+      {
+        "name": "pethealth-icone-escuro-1024",
+        "file": "products/pethealth/icon/pethealth-icon-dark-1024.png",
+        "kind": "icon-png"
+      },
+      {
+        "name": "pethealth-icone-tingido",
+        "file": "products/pethealth/icon/pethealth-icon-tinted.svg",
+        "kind": "icon"
+      },
+      {
+        "name": "pethealth-icone-tingido-1024",
+        "file": "products/pethealth/icon/pethealth-icon-tinted-1024.png",
+        "kind": "icon-png"
+      },
+      {
+        "name": "camada-1-fundo",
+        "file": "products/pethealth/icon-layers/1-background.svg",
+        "kind": "icon-layer"
+      },
+      {
+        "name": "camada-2-cachorro",
+        "file": "products/pethealth/icon-layers/2-dog.svg",
+        "kind": "icon-layer"
+      },
+      {
+        "name": "camada-3-gato",
+        "file": "products/pethealth/icon-layers/3-cat.svg",
+        "kind": "icon-layer"
+      },
+      {
+        "name": "camada-4-coracao",
+        "file": "products/pethealth/icon-layers/4-heart.svg",
+        "kind": "icon-layer"
+      },
+      {
+        "name": "dupla-claro",
+        "file": "products/pethealth/mascots/pair-light.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "dupla-escuro",
+        "file": "products/pethealth/mascots/pair-dark.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "dupla-base-claro",
+        "file": "products/pethealth/mascots/pair-base-light.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "dupla-base-escuro",
+        "file": "products/pethealth/mascots/pair-base-dark.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "dupla-erro-claro",
+        "file": "products/pethealth/mascots/pair-error-light.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "dupla-erro-escuro",
+        "file": "products/pethealth/mascots/pair-error-dark.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "bolinha-indigo-claro",
+        "file": "products/pethealth/mascots/ball-indigo-light.svg",
+        "kind": "mascot"
+      },
+      {
+        "name": "bolinha-indigo-escuro",
+        "file": "products/pethealth/mascots/ball-indigo-dark.svg",
+        "kind": "mascot"
+      }
+    ],
+    "pending": []
+  }
+}
