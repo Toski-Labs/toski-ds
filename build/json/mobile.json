@@ -103,11 +103,19 @@
     "calendarDots": {
       "light": [
         "#C27A3A",
-        "#6F8A5C"
+        "#6F8A5C",
+        "#A0814A",
+        "#87755F",
+        "#5B7792",
+        "#94688F"
       ],
       "dark": [
         "#DB9A5B",
-        "#9DB089"
+        "#9DB089",
+        "#E2C79A",
+        "#C9B8A6",
+        "#B7C4D1",
+        "#D8C0D6"
       ]
     },
     "onAvatar": "#231B17",
@@ -491,7 +499,12 @@
     "tema": "theme",
     "tosa": "grooming",
     "vacina": "vaccine",
-    "vet": "vet"
+    "vet": "vet",
+    "circulo-alerta": "alert-circle",
+    "desfazer": "undo",
+    "encerrar": "end",
+    "pausar": "pause",
+    "triangulo": "triangle"
   },
   "rules": {
     "pdf": "O PDF usa sempre os valores claros dos tokens, nunca o tema do aparelho.",
