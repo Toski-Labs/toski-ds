@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.5.0 — 2026-10-09
+
 ### Adicionado
 
 - Temas de produto (`themes` no `tokens.json`): **PetHealthTracker** (Índigo) e **Koti** (Ameixa). Trocam só o destaque
