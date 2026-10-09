@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { AppIcon, Button, Card, CheckList, Icon, IconBox, Kicker, Mascot, Pill, SectionHeading } from '../index';
+import { AppIcon, Button, Card, CheckList, Icon, IconBox, Kicker, Mascot, Pill, ProductIcon, ProductMascot, SectionHeading } from '../index';
 
 describe('Button', () => {
   it('renderiza <button type="button"> por padrão', () => {
@@ -99,5 +99,33 @@ describe('Mascot e AppIcon', () => {
   it('AppIcon com label é uma imagem acessível', () => {
     render(<AppIcon label="Toski Labs" />);
     expect(screen.getByRole('img', { name: 'Toski Labs' })).toBeInTheDocument();
+  });
+});
+
+describe('ProductIcon e ProductMascot', () => {
+  it('ícone decorativo sem label e acessível com label', () => {
+    const { container, rerender } = render(<ProductIcon product="pethealth" variant="dark" />);
+    expect(container.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
+    rerender(<ProductIcon product="pethealth" label="PetHealthTracker" />);
+    expect(screen.getByRole('img', { name: 'PetHealthTracker' })).toBeInTheDocument();
+  });
+
+  it('mascote renderiza claro e escuro quando não recebe mode', () => {
+    const { container } = render(<ProductMascot product="pethealth" label="Cachorro e gato" />);
+    expect(container.querySelectorAll('[data-art]')).toHaveLength(2);
+    expect(container.querySelectorAll('[data-art="dark"] svg')).toHaveLength(1);
+  });
+
+  it('com mode renderiza só uma versão e ids não colidem', () => {
+    const { container } = render(
+      <>
+        <ProductIcon product="pethealth" />
+        <ProductIcon product="pethealth" />
+        <ProductMascot product="pethealth" art="pair-error" mode="dark" />
+      </>,
+    );
+    expect(container.querySelectorAll('[data-art]')).toHaveLength(0);
+    const ids = [...container.querySelectorAll('[id]')].map((e) => e.id);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });

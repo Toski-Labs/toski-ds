@@ -22,6 +22,25 @@
   padding-inline: var(--spacing-gutter);
 }
 
+/* Arte de produto (ProductMascot) em claro e escuro: mostra a versão do tema ativo */
+[data-art="dark"] {
+  display: none !important;
+}
+:root[data-theme="dark"] [data-art="light"] {
+  display: none !important;
+}
+:root[data-theme="dark"] [data-art="dark"] {
+  display: block !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-art="light"] {
+    display: none !important;
+  }
+  :root:not([data-theme="light"]) [data-art="dark"] {
+    display: block !important;
+  }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;

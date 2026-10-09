@@ -5,6 +5,34 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+- Temas de produto (`themes` no `tokens.json`): **PetHealthTracker** (Índigo) e **Koti** (Ameixa). Trocam só o destaque
+  (`accent`, `on-accent`, `accent-hover`/`accentDeep`, `accent-text`, `link`, `tint`, `hero`, `toastAction`,
+  `featureCard`, `lockBackground`, `themePreviewCard` e `blackFriday.accent`); o build falha se um tema mexer em outro token.
+  A base Toski Labs (site e temas de VS Code, iTerm e Oh My Zsh) não muda: os arquivos atuais saem idênticos.
+- Arquivos por tema: `app-tokens.pethealth.json`, `app-tokens.koti.json`, `web.<tema>.json`, `themes/<tema>.css`
+  (ligue com `<html data-product="…">`) e `ToskiThemePetHealth.swift` / `ToskiThemeKoti.swift`.
+- `npm run sync:app -- --theme pethealth|koti` e `--out <pasta>` (escreve fora do app). Copia também o ícone, as camadas
+  e os mascotes do tema para `docs/design/assets/products/`.
+- `products/pethealth/`: ícone (claro, escuro, tingido; SVG e PNG 1024), camadas do Icon Composer (iOS 26) e mascotes
+  (dupla, dupla base, dupla erro, bolinha Índigo). Nomes em inglês na web e em português no app (`themes.<tema>.assets`).
+  Sem o metadata C2PA dos arquivos originais.
+- Componentes `ProductIcon` e `ProductMascot` (claro/escuro automático).
+- Cores dos membros da casa do Koti, com variante mais escura para check e calendário (≥ 3:1 sobre o fundo claro).
+- Storybook: seletor **Produto** (Toski Labs, PetHealthTracker, Koti) e a página Marca/Temas de produto.
+- `npm run contrast` confere a base e cada tema (contraste de texto 4,5:1, grande/ícone 3:1).
+
+### Pendente
+
+- Ícones do Koti (`koti-icone.svg`, `koti-icone-escuro.svg`, `koti-icone-colorido.svg`): aguardando os arquivos.
+- Variantes escuras das cores dos membros do Koti (check e calendário): propostas, aguardam aprovação.
+
+### Problema conhecido da base
+
+- `lockBackground` claro (`#DB9A5B`) com `onLock` (`#FFF8EE`) dá 2,27:1 e o par não está no CI. Não corrigido de
+  propósito: os dois apps usam o próprio tema (PetHealthTracker 4,96:1; Koti 5,53:1).
+
 ## 0.4.2 — 2026-10-06
 
 ### Corrigido

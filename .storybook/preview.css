@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/outfit";
 @import "../styles/tailwind.css";
+@import "../build/css/themes/pethealth.css";
+@import "../build/css/themes/koti.css";
 
 /* No Storybook as classes vêm do código-fonte (e das páginas de docs) */
 @source "../src";
