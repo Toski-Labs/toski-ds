@@ -411,11 +411,48 @@
         }
       }
     },
-    "assets": [],
-    "pending": [
-      "koti-icone.svg",
-      "koti-icone-escuro.svg",
-      "koti-icone-colorido.svg"
-    ]
+    "assets": [
+      {
+        "name": "koti-icone-claro",
+        "file": "products/koti/icon/koti-icon-light.svg",
+        "kind": "icon"
+      },
+      {
+        "name": "koti-icone-claro-1024",
+        "file": "products/koti/icon/koti-icon-light-1024.png",
+        "kind": "icon-png"
+      },
+      {
+        "name": "koti-icone-escuro",
+        "file": "products/koti/icon/koti-icon-dark.svg",
+        "kind": "icon"
+      },
+      {
+        "name": "koti-icone-escuro-1024",
+        "file": "products/koti/icon/koti-icon-dark-1024.png",
+        "kind": "icon-png"
+      },
+      {
+        "name": "koti-icone-tingido",
+        "file": "products/koti/icon/koti-icon-tinted.svg",
+        "kind": "icon"
+      },
+      {
+        "name": "koti-icone-tingido-1024",
+        "file": "products/koti/icon/koti-icon-tinted-1024.png",
+        "kind": "icon-png"
+      },
+      {
+        "name": "koti-logotipo-ameixa",
+        "file": "products/koti/logo/koti-logo-plum.svg",
+        "kind": "logo"
+      },
+      {
+        "name": "koti-logotipo-papel",
+        "file": "products/koti/logo/koti-logo-paper.svg",
+        "kind": "logo"
+      }
+    ],
+    "pending": []
   }
 }

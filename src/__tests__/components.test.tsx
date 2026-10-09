@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { AppIcon, Button, Card, CheckList, Icon, IconBox, Kicker, Mascot, Pill, ProductIcon, ProductMascot, SectionHeading } from '../index';
+import { AppIcon, Button, Card, CheckList, Icon, IconBox, Kicker, Mascot, Pill, ProductIcon, ProductLogo, ProductMascot, SectionHeading } from '../index';
 
 describe('Button', () => {
   it('renderiza <button type="button"> por padrão', () => {
@@ -127,5 +127,23 @@ describe('ProductIcon e ProductMascot', () => {
     expect(container.querySelectorAll('[data-art]')).toHaveLength(0);
     const ids = [...container.querySelectorAll('[id]')].map((e) => e.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe('Koti: ProductIcon e ProductLogo', () => {
+  it('ícone do Koti nas três variantes', () => {
+    for (const variant of ['light', 'dark', 'tinted'] as const) {
+      const { container, unmount } = render(<ProductIcon product="koti" variant={variant} label={`Koti ${variant}`} />);
+      expect(container.querySelector('svg')).toHaveAttribute('aria-label', `Koti ${variant}`);
+      unmount();
+    }
+  });
+
+  it('logotipo segue o tema (ameixa no claro, papel no escuro) ou fixa com mode', () => {
+    const { container, rerender } = render(<ProductLogo product="koti" label="Koti" />);
+    expect(container.querySelectorAll('[data-art]')).toHaveLength(2);
+    rerender(<ProductLogo product="koti" mode="dark" />);
+    expect(container.querySelectorAll('[data-art]')).toHaveLength(0);
+    expect(container.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
   });
 });

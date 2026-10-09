@@ -15,9 +15,12 @@ describe('página Temas de produto', () => {
     expect(container.querySelectorAll('[data-theme-frame]')).toHaveLength(2);
   });
 
-  it('Koti mostra os arquivos de ícone pendentes', () => {
+  it('Koti mostra ícones e logotipo no lugar de "pendente"', () => {
     document.documentElement.setAttribute('data-product', 'koti');
-    render(<ProductThemes />);
-    expect(screen.getAllByText('koti-icone.svg').length).toBeGreaterThan(0);
+    const { container } = render(<ProductThemes />);
+    expect(screen.queryByText('Pendente')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Logotipo').length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('img', { name: 'Koti, ícone tinted' }).length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('[data-theme-frame] svg[aria-label="Koti"]')).toHaveLength(2);
   });
 });
