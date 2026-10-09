@@ -53,7 +53,7 @@ public enum ToskiKotiTheme {
             dynamic(light: 0xAD6826, dark: 0xDB9A5B),
             dynamic(light: 0x698051, dark: 0x8FA876),
             dynamic(light: 0x398482, dark: 0x7CC6C4),
-            dynamic(light: 0xD04E36, dark: 0xE08A7A)
+            dynamic(light: 0xC2526A, dark: 0xE08A7A)
     ]
 
     // MARK: Black Friday
