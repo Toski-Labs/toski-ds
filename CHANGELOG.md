@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.5.1 — 2026-10-09
+
 ### Adicionado
 
 - Ícones do Koti em `products/koti/icon/` (claro, escuro, tingido; SVG e PNG 1024) e logotipos em `products/koti/logo/`
