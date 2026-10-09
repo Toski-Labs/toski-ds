@@ -235,7 +235,7 @@ const APP_COLOR_ORDER = [
   'background', 'surface', 'tint', 'heroBackground', 'textPrimary', 'textSecondary', 'border', 'accent',
   'onAccent', 'critical', 'onCritical', 'criticalBackground', 'criticalBorder', 'success', 'successBackground',
   'tabBar', 'tabIdle', 'segmentSelected', 'switchOff', 'toastBackground', 'toastText', 'toastAction', 'scrim',
-  'mascotNose', 'mascotOutline', 'ballOutline', 'faint', 'divider', 'borderStrong', 'barInactive', 'accentDeep',
+  'faint', 'divider', 'borderStrong', 'barInactive', 'accentDeep',
   'featureCard', 'onFeatureCard', 'onAccentSubtle', 'lockBackground', 'onLock', 'alertBackground',
   'bannerBackground', 'previewBackdrop', 'themePreviewCard',
 ];

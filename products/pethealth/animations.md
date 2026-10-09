@@ -23,3 +23,14 @@ aqui só ficam as regras de cada tela.
 
 - Com "Reduzir movimento" ligado no sistema, **tudo fica parado**: o coração do login, a bolinha do carregamento
   (na posição de repouso) e qualquer outra animação da dupla. Os pontinhos também não se movem.
+
+## Cores da bolinha
+
+As cores ficam nos SVGs (`ball-indigo-*` e a bolinha de `pair-error-*`), não em tokens. O aro acompanha o círculo atrás da dupla.
+
+| Aparência | Bolinha | Costura | Aro |
+| --- | --- | --- | --- |
+| Claro | `#3E4C8A` (Índigo) | `#F4E4CC` (creme) | `#E3E6F5` |
+| Escuro | `#A9B4E8` (lilás) | `#2C376A` (Índigo escuro) | `#2A2E45` |
+
+No escuro, a bolinha tem contraste de 6,6:1 sobre o círculo do hero (`#2A2E45`).

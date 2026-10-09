@@ -123,21 +123,6 @@
       "dark": "rgba(20,14,10,0.45)",
       "use": "Fundo atrás de painéis"
     },
-    "mascotNose": {
-      "light": "#231B17",
-      "dark": "#100C0A",
-      "use": "Focinho da Paçoca"
-    },
-    "mascotOutline": {
-      "light": "none",
-      "dark": "#F4E4CC",
-      "use": "Contorno do corpo da Paçoca"
-    },
-    "ballOutline": {
-      "light": "#F7F1E8",
-      "dark": "#F4E4CC",
-      "use": "Contorno e costura da bolinha"
-    },
     "faint": {
       "light": "#B3A190",
       "dark": "#6E5D50",

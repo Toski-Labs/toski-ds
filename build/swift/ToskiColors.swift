@@ -64,10 +64,6 @@ public enum ToskiColors {
     public static let tabBar             = dynamic(light: 0xFFFDF9, dark: 0x1B1511)
     /// Aba inativa
     public static let tabIdle            = dynamic(light: 0x7D6858, dark: 0xA08B78)
-    /// Contorno do corpo da Paçoca
-    public static let mascotOutline      = dynamic(light: 0x000000, lightAlpha: 0, dark: 0xF4E4CC, darkAlpha: 1)
-    /// Focinho da Paçoca
-    public static let mascotNose         = dynamic(light: 0x231B17, dark: 0x100C0A)
 
     // MARK: Semânticas — só do app
 
@@ -83,8 +79,6 @@ public enum ToskiColors {
     public static let toastAction        = dynamic(light: 0xE8B27C, dark: 0xA9541F)
     /// Fundo atrás de painéis
     public static let scrim              = dynamic(light: 0x140E0A, lightAlpha: 0.45, dark: 0x140E0A, darkAlpha: 0.45)
-    /// Contorno e costura da bolinha
-    public static let ballOutline        = dynamic(light: 0xF7F1E8, dark: 0xF4E4CC)
     /// Texto e elementos apagados (dia fora do mês, texto miúdo do PDF)
     public static let faint              = dynamic(light: 0xB3A190, dark: 0x6E5D50)
     /// Linhas finas internas (grade do gráfico, linhas do PDF)
