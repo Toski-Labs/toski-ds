@@ -719,7 +719,7 @@ function buildProductsTs(): string {
   for (const id of themeIds) {
     data[id] = {};
     for (const a of themes[id].assets) {
-      if (a.kind !== 'icon' && a.kind !== 'mascot') continue;
+      if (a.kind !== 'icon' && a.kind !== 'mascot' && a.kind !== 'logo') continue;
       data[id][a.web] = readFileSync(join(root, 'products', id, a.file), 'utf8').trim();
     }
   }

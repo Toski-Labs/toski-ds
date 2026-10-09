@@ -1,6 +1,6 @@
 import { AppIcon } from '../src/components/AppIcon';
 import { Mascot } from '../src/components/Mascot';
-import { ProductIcon, ProductMascot, type ProductId } from '../src/components/ProductArt';
+import { ProductIcon, ProductLogo, ProductMascot, type ProductId } from '../src/components/ProductArt';
 import { brand, themeContrastReport, themeIds, themeOverrides, themes, type Mode } from '../src/tokens';
 import { ThemeFrame, useProduct } from './ThemeFrame';
 
@@ -62,17 +62,17 @@ function Panel({ mode, product }: { mode: Mode; product?: string }) {
         <section>
           <h3 className="mb-3 text-[15px] font-semibold">Ícone</h3>
           {!product && <AppIcon size={72} label="Ícone da Toski Labs" />}
-          {product === 'pethealth' && (
+          {(product === 'pethealth' || product === 'koti') && (
             <div className="flex flex-wrap items-end gap-4">
               {(['light', 'dark', 'tinted'] as const).map((v) => (
                 <figure key={v} className="flex flex-col items-center gap-1">
-                  <ProductIcon product="pethealth" variant={v} size={72} label={`PetHealthTracker, ícone ${v}`} />
+                  <ProductIcon product={product} variant={v} size={72} label={`${themes[product].name}, ícone ${v}`} />
                   <figcaption className="text-[12px] text-muted">{v}</figcaption>
                 </figure>
               ))}
             </div>
           )}
-          {theme && theme.assets.length === 0 && (
+          {theme && theme.pending.length > 0 && (
             <div className="rounded-card border border-dashed border-line p-4 text-sm text-muted">
               <p className="font-semibold text-ink">Pendente</p>
               <p>Os arquivos do ícone ainda não foram entregues ao DS:</p>
@@ -86,6 +86,15 @@ function Panel({ mode, product }: { mode: Mode; product?: string }) {
             </div>
           )}
         </section>
+
+        {product === 'koti' && (
+          <section>
+            <h3 className="mb-3 text-[15px] font-semibold">Logotipo</h3>
+            <div className="w-64">
+              <ProductLogo product="koti" mode={mode} label="Koti" />
+            </div>
+          </section>
+        )}
 
         <section>
           <h3 className="mb-3 text-[15px] font-semibold">Mascotes</h3>

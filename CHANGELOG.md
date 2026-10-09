@@ -5,6 +5,21 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+- Ícones do Koti em `products/koti/icon/` (claro, escuro, tingido; SVG e PNG 1024) e logotipos em `products/koti/logo/`
+  (ameixa, para fundos claros, e papel, para fundos escuros e ameixa), no mesmo padrão do PetHealthTracker.
+  Nomes em inglês na web (`koti-icon-light`, `koti-logo-plum`) e em português no app (`koti-icone-claro`,
+  `koti-logotipo-ameixa`), em `themes.koti.assets`. Sem o metadata C2PA dos arquivos originais.
+- `ProductIcon` funciona com `product="koti"` e o novo `ProductLogo` mostra o logotipo certo para claro e escuro.
+- Storybook: a página Marca/Temas de produto mostra os ícones e o logotipo do Koti no lugar de "pendente".
+- `npm run sync:app -- --theme koti` passa a copiar ícones e logotipos do Koti para `docs/design/assets/products/`.
+
+### Pendente
+
+- Corrigir o `lockBackground` da base (`#DB9A5B` com `onLock` `#FFF8EE` dá 2,27:1; o par não está no CI). Os dois
+  apps usam o próprio tema e passam.
+
 ## 0.5.0 — 2026-10-09
 
 ### Adicionado
