@@ -9,3 +9,4 @@ export { Icon, iconData, iconNames, type IconName, type IconProps } from './comp
 export { Mascot, mascotPaths, type MascotProps } from './components/Mascot';
 export { AppIcon, type AppIconProps } from './components/AppIcon';
 export { tokens, type ToskiTokens, type ToskiColorName } from './generated/tokens';
+export { ProductIcon, ProductMascot, type ProductId, type ProductIconProps, type ProductMascotProps } from './components/ProductArt';

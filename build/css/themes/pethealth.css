@@ -1,0 +1,32 @@
+/* Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão. */
+/* Tema de produto: PetHealthTracker. Só troca o destaque; o resto vem de tokens.css.
+   Uso: @import "@toski-labs/ds/themes/pethealth.css"; e <html data-product="pethealth"> */
+
+:root[data-product="pethealth"] {
+  --toski-hero: #E3E6F5;
+  --toski-accent: #3E4C8A;
+  --toski-accent-hover: #2C376A;
+  --toski-on-accent: #FFF8EE;
+  --toski-accent-text: #3E4C8A;
+  --toski-link: #2C376A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-product="pethealth"]:not([data-theme="light"]) {
+    --toski-hero: #2A2E45;
+    --toski-accent: #A9B4E8;
+    --toski-accent-hover: #C9D0F2;
+    --toski-on-accent: #231B17;
+    --toski-accent-text: #A9B4E8;
+    --toski-link: #C9D0F2;
+  }
+}
+
+:root[data-product="pethealth"][data-theme="dark"] {
+  --toski-hero: #2A2E45;
+  --toski-accent: #A9B4E8;
+  --toski-accent-hover: #C9D0F2;
+  --toski-on-accent: #231B17;
+  --toski-accent-text: #A9B4E8;
+  --toski-link: #C9D0F2;
+}

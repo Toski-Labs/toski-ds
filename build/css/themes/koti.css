@@ -1,0 +1,35 @@
+/* Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão. */
+/* Tema de produto: Koti. Só troca o destaque; o resto vem de tokens.css.
+   Uso: @import "@toski-labs/ds/themes/koti.css"; e <html data-product="koti"> */
+
+:root[data-product="koti"] {
+  --toski-tint: #F0E1EC;
+  --toski-hero: #E8D2E1;
+  --toski-accent: #7A3F6E;
+  --toski-accent-hover: #5E2F55;
+  --toski-on-accent: #FFF8EE;
+  --toski-accent-text: #7A3F6E;
+  --toski-link: #5E2F55;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-product="koti"]:not([data-theme="light"]) {
+    --toski-tint: #3A2436;
+    --toski-hero: #46293F;
+    --toski-accent: #D9A6CC;
+    --toski-accent-hover: #E8C2DD;
+    --toski-on-accent: #231B17;
+    --toski-accent-text: #D9A6CC;
+    --toski-link: #E8C2DD;
+  }
+}
+
+:root[data-product="koti"][data-theme="dark"] {
+  --toski-tint: #3A2436;
+  --toski-hero: #46293F;
+  --toski-accent: #D9A6CC;
+  --toski-accent-hover: #E8C2DD;
+  --toski-on-accent: #231B17;
+  --toski-accent-text: #D9A6CC;
+  --toski-link: #E8C2DD;
+}

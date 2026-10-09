@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { readdirSync } from 'node:fs';
 import {
   brand,
+  camel,
   colors,
   component,
   font,
@@ -24,6 +25,11 @@ import {
   mobileRadiusNote,
   motion,
   radii,
+  themeIds,
+  themeOverrides,
+  themedColors,
+  themes,
+  validateThemes,
   webMotion,
   webRadii,
 } from '../src/tokens/index';
@@ -141,8 +147,9 @@ ${layoutVars}
 `;
 }
 
-function webData() {
-  const mode = (m: 'light' | 'dark') => Object.fromEntries(colors.map((c) => [c.name, c[m]]));
+function webData(themeId?: string) {
+  const palette = themeId ? themedColors('web', themeId) : colors;
+  const mode = (m: 'light' | 'dark') => Object.fromEntries(palette.map((c) => [c.name, c[m]]));
   return {
     brand: Object.fromEntries(brand.map((b) => [b.name, b.value])),
     light: mode('light'),
@@ -152,6 +159,22 @@ function webData() {
     layout: Object.fromEntries(layout.map((l) => [l.name, l.value])),
     motion: stripDescriptions(motion),
     icons: iconEntries.map((i) => i.web),
+    ...(themeId ? { product: productData(themeId, 'web') } : {}),
+  };
+}
+
+/** Bloco "product" dos JSON de tema: identidade do produto (marca, mascotes, membros, arquivos). */
+function productData(themeId: string, platform: 'web' | 'mobile') {
+  const t = themes[themeId];
+  return {
+    id: t.id,
+    name: t.name,
+    scheme: t.scheme,
+    brand: Object.fromEntries(t.brand.map((b) => [b.name, b.value])),
+    ...(t.mascots ? { mascots: t.mascots } : {}),
+    ...(t.members ? { members: t.members } : {}),
+    assets: t.assets.map((a) => ({ name: a[platform], file: `products/${t.id}/${a.file}`, kind: a.kind })),
+    pending: t.pending,
   };
 }
 
@@ -167,8 +190,9 @@ function stripDescriptions<T>(v: T): T {
   return v;
 }
 
-function buildWebJson(): string {
-  return `${JSON.stringify({ $description: `${HEADER} Plataforma: web.`, ...webData() }, null, 2)}\n`;
+function buildWebJson(themeId?: string): string {
+  const label = themeId ? `web, tema ${themes[themeId].name}` : 'web';
+  return `${JSON.stringify({ $description: `${HEADER} Plataforma: ${label}.`, ...webData(themeId) }, null, 2)}\n`;
 }
 
 function buildTs(): string {
@@ -228,10 +252,11 @@ function ordered<T>(entries: [string, T][], order: string[]): [string, T][] {
 /** O app lê "none" (não "transparent"). */
 const appValue = (v: string) => (v === 'transparent' ? 'none' : v);
 
-function buildAppJson(): string {
+function buildAppJson(themeId?: string): string {
+  const palette = themeId ? themedColors('mobile', themeId) : mobileColors;
   const color = Object.fromEntries(
     ordered(
-      mobileColors.map((c) => [c.name, { light: appValue(c.light), dark: appValue(c.dark), use: c.description }]),
+      palette.map((c) => [c.name, { light: appValue(c.light), dark: appValue(c.dark), use: c.description }]),
       APP_COLOR_ORDER,
     ),
   );
@@ -242,19 +267,21 @@ function buildAppJson(): string {
       r.side ? { radius: r.value, side: r.side } : r.value,
     ]),
   ];
-  const data = {
+  const data: Record<string, unknown> & { $description: string } = {
     $description: `Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app.`,
     brand: Object.fromEntries(brand.map((b) => [b.name, b.value])),
     color,
     pet: mobile.pet,
-    blackFriday: mobile.blackFriday,
+    blackFriday: themeId ? { ...mobile.blackFriday, ...themes[themeId].blackFriday } : mobile.blackFriday,
     typography: { family: font.family, weights: font.weights, styles: mobile.typography },
     radius: { $description: mobileRadiusNote, ...Object.fromEntries(ordered(radiusEntries, APP_RADIUS_ORDER)) },
     shadow: { $description: mobile.shadowNote, ...mobile.shadow },
     spacing: mobile.spacing,
     size: mobile.size,
     ...Object.fromEntries(Object.entries(mobile.rules).map(([k, rule]) => [k, { rule }])),
+    ...(themeId ? { product: productData(themeId, 'mobile') } : {}),
   };
+  if (themeId) data.$description = `${data.$description} Tema: ${themes[themeId].name} (base + tema ${themeId}).`;
   return `${JSON.stringify(data, null, 2)}\n`;
 }
 
@@ -556,6 +583,164 @@ function buildIconsTs(): string {
 }
 
 // =====================================================================
+// TEMAS DE PRODUTO
+// =====================================================================
+
+/** Só as variáveis que o tema troca. Carregue depois de tokens.css e ligue com <html data-product="…">. */
+function buildThemeCss(themeId: string): string {
+  const t = themes[themeId];
+  const vars = themeOverrides('web', themeId);
+  const block = (mode: 'light' | 'dark', indent: string) => vars.map((c) => `${indent}--toski-${c.name}: ${c[mode]};`).join('\n');
+  const sel = `:root[data-product="${themeId}"]`;
+  return `/* ${HEADER} */
+/* Tema de produto: ${t.name}. Só troca o destaque; o resto vem de tokens.css.
+   Uso: @import "@toski-labs/ds/themes/${themeId}.css"; e <html data-product="${themeId}"> */
+
+${sel} {
+${block('light', '  ')}
+}
+
+@media (prefers-color-scheme: dark) {
+  ${sel}:not([data-theme="light"]) {
+${block('dark', '    ')}
+  }
+}
+
+${sel}[data-theme="dark"] {
+${block('dark', '  ')}
+}
+`;
+}
+
+const SWIFT_HELPERS = `    // MARK: Auxiliares
+
+    private static func components(_ hex: UInt32) -> (CGFloat, CGFloat, CGFloat) {
+        (CGFloat((hex >> 16) & 0xFF) / 255, CGFloat((hex >> 8) & 0xFF) / 255, CGFloat(hex & 0xFF) / 255)
+    }
+
+    private static func fixed(_ hex: UInt32, alpha: CGFloat = 1) -> Color {
+        let (r, g, b) = components(hex)
+        return Color(.sRGB, red: r, green: g, blue: b, opacity: alpha)
+    }
+
+    private static func dynamic(light: UInt32, lightAlpha: CGFloat = 1, dark: UInt32, darkAlpha: CGFloat = 1) -> Color {
+        #if canImport(UIKit)
+        return Color(UIColor { traits in
+            let isDark = traits.userInterfaceStyle == .dark
+            let (r, g, b) = components(isDark ? dark : light)
+            return UIColor(red: r, green: g, blue: b, alpha: isDark ? darkAlpha : lightAlpha)
+        })
+        #elseif canImport(AppKit)
+        return Color(NSColor(name: nil) { appearance in
+            let isDark = appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+            let (r, g, b) = components(isDark ? dark : light)
+            return NSColor(srgbRed: r, green: g, blue: b, alpha: isDark ? darkAlpha : lightAlpha)
+        })
+        #else
+        return fixed(light, alpha: lightAlpha)
+        #endif
+    }`;
+
+/** Cores do tema para o app em SwiftUI (nomes iguais aos do app). Não mexe no ToskiColors. */
+function buildThemeSwift(themeId: string): string {
+  const t = themes[themeId];
+  const doc = (d: string) => `    /// ${d}`;
+  const overrides = themeOverrides('mobile', themeId);
+  const colorLines = overrides
+    .map((c) => `${doc(c.description)}\n    public static let ${c.name} = ${swiftDynamic(c.light, c.dark)}`)
+    .join('\n');
+  const brandLines = t.brand.map((b) => `${doc(b.description)}\n    public static let ${camel(b.name)} = ${swiftFixed(b.value)}`).join('\n');
+  const bf = Object.entries(t.blackFriday)
+    .map(([k, v]) => `        public static let ${k} = ${swiftFixed(v)}`)
+    .join('\n');
+  const mascots = t.mascots as Record<string, unknown> | undefined;
+  const mascotLines = mascots
+    ? Object.entries(mascots)
+        .filter(([k]) => k !== 'description')
+        .map(([k, v]) =>
+          typeof v === 'string'
+            ? `    public static let ${k} = ${swiftFixed(v)}`
+            : `    public static let ${k} = ${swiftDynamic((v as { light: string }).light, (v as { dark: string }).dark)}`,
+        )
+        .join('\n')
+    : '';
+  const members = t.members ? Object.entries(t.members) : [];
+  const memberLines = members.length
+    ? `    // MARK: Membros da casa
+
+    /// Nomes dos membros, na ordem de cadastro.
+    public static let memberNames = [${members.map(([k]) => JSON.stringify(camel(k))).join(', ')}]
+    /// Fundo do avatar de cada membro (igual nos dois modos).
+    public static let memberAvatars: [Color] = [${members.map(([, m]) => swiftFixed(m.avatar)).join(', ')}]
+    /// Check e calendário: no claro uma variante mais escura (≥ 3:1), no escuro o próprio avatar.
+    public static let memberMarks: [Color] = [
+            ${members.map(([, m]) => swiftDynamic(m.mark.light, m.mark.dark)).join(',\n            ')}
+    ]
+
+`
+    : '';
+  return `//  ToskiTheme${t.swift}.swift
+//  ${HEADER}
+//  Tema de produto: ${t.name}. Só o que muda em relação ao ToskiColors (destaque e ligados a ele).
+//
+//  Uso: Text("Olá").foregroundStyle(Toski${t.swift}Theme.accent)
+//  Os neutros, critical e success continuam em ToskiColors.
+
+import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
+public enum Toski${t.swift}Theme {
+    // MARK: Marca do produto
+
+${brandLines}
+
+    // MARK: Destaque (troca as de mesmo nome em ToskiColors)
+
+${colorLines}
+
+${memberLines}${mascotLines ? `    // MARK: Mascotes\n\n${mascotLines}\n\n` : ''}    // MARK: Black Friday
+
+    public enum BlackFriday {
+${bf}
+    }
+
+${SWIFT_HELPERS}
+}
+`;
+}
+
+/** SVGs de ícone e mascote de cada produto, em texto, para os componentes ProductIcon e ProductMascot. */
+function buildProductsTs(): string {
+  const data: Record<string, Record<string, string>> = {};
+  for (const id of themeIds) {
+    data[id] = {};
+    for (const a of themes[id].assets) {
+      if (a.kind !== 'icon' && a.kind !== 'mascot') continue;
+      data[id][a.web] = readFileSync(join(root, 'products', id, a.file), 'utf8').trim();
+    }
+  }
+  return `// ${HEADER}\n// Ícones e mascotes dos produtos (products/<produto>/), exportados como \`productArt\`.\n\nexport const productArt = ${JSON.stringify(data, null, 2)} as const;\n\nexport type ProductId = keyof typeof productArt;\n`;
+}
+
+function checkThemeAssets(): void {
+  const errors = validateThemes();
+  for (const id of themeIds) {
+    for (const a of themes[id].assets) {
+      if (!existsSync(join(root, 'products', id, a.file))) errors.push(`${id}: falta products/${id}/${a.file}`);
+    }
+  }
+  if (errors.length > 0) {
+    console.error(errors.map((e) => `✗ ${e}`).join('\n'));
+    process.exit(1);
+  }
+}
+checkThemeAssets();
+
+// =====================================================================
 
 const outputs: Record<string, string> = {
   'build/css/tokens.css': buildCss(),
@@ -567,6 +752,15 @@ const outputs: Record<string, string> = {
   'build/json/app-tokens.json': buildAppJson(),
   'src/generated/tokens.ts': buildTs(),
   'src/generated/icons.ts': buildIconsTs(),
+  'src/generated/products.ts': buildProductsTs(),
+  ...Object.fromEntries(
+    themeIds.flatMap((id) => [
+      [`build/json/app-tokens.${id}.json`, buildAppJson(id)],
+      [`build/json/web.${id}.json`, buildWebJson(id)],
+      [`build/css/themes/${id}.css`, buildThemeCss(id)],
+      [`build/swift/ToskiTheme${themes[id].swift}.swift`, buildThemeSwift(id)],
+    ]),
+  ),
 };
 
 const check = process.argv.includes('--check');

@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ProductThemes } from './ProductThemes';
+
+<Meta title="Marca/Temas de produto" />
+
+# Temas de produto
+
+O Toski DS é a base (neutros quentes, Outfit, raios, sombras, semânticas). Cada app ganha um **tema** que só troca
+o destaque: **PetHealthTracker** (Índigo) e **Koti** (Ameixa). A marca Toski Labs, o site e os temas de
+VS Code, iTerm e Oh My Zsh continuam no caramelo/ferrugem, com a Paçoca.
+
+Use o seletor **Produto** na barra do Storybook: todas as páginas de Tokens e os componentes seguem o produto
+escolhido, nos modos claro e escuro.
+
+## Como usar
+
+**Web:** importe o tema depois do `tokens.css` e ligue no `<html>`:
+
+```css
+@import "@toski-labs/ds/tailwind.css";
+@import "@toski-labs/ds/themes/pethealth.css";
+```
+
+```html
+<html data-product="pethealth" data-theme="dark">
+```
+
+**App (iOS):** `app-tokens.pethealth.json` / `app-tokens.koti.json` (mesmo formato do `app-tokens.json`, com um bloco
+`product` no fim) e `ToskiThemePetHealth.swift` / `ToskiThemeKoti.swift`. `npm run sync:app -- --theme koti`.
+
+**Ícones e mascotes:** `products/<produto>/` (nomes em inglês na web, em português no app) e os componentes
+`ProductIcon` e `ProductMascot`.
+
+## O que cada tema troca
+
+`accent`, `on-accent`, `accent-hover` (`accentDeep` no app), `accent-text`, `link`, `tint` e `hero` (compartilhados
+com a web); `toastAction`, `featureCard`, `lockBackground` e `themePreviewCard` (só do app); `blackFriday.accent`.
+O build falha se um tema mexer em qualquer outro token (neutros, critical, success, avatares e bolinhas dos pets,
+avatarUser, tipografia, raios, sombras).
+
+<ProductThemes />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, font, layout, mobile, mobileRadii, platformColors, radii, type Platform } from '../src/tokens';
-import { ThemeFrame } from './ThemeFrame';
+import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, themeContrastReport, themedColors, font, layout, mobile, mobileRadii, radii, type Platform } from '../src/tokens';
+import { ThemeFrame, useProduct } from './ThemeFrame';
 
 function Swatch({ value, label }: { value: string; label?: string }) {
   return (
@@ -31,7 +31,7 @@ export function BrandPalette() {
 const scopeLabel = { shared: 'web + mobile', web: 'só web', mobile: 'só mobile' } as const;
 
 export function SemanticPalette({ platform = 'web' }: { platform?: Platform }) {
-  const list = platformColors(platform);
+  const list = themedColors(platform, useProduct());
   return (
     <div className="sb-unstyled text-ink font-sans overflow-x-auto">
       <table className="w-full border-collapse text-left text-sm">
@@ -67,19 +67,20 @@ export function SemanticPalette({ platform = 'web' }: { platform?: Platform }) {
 }
 
 export function ContrastTable({ platform = 'web' }: { platform?: Platform }) {
-  const report = contrastReport(platform);
+  const product = useProduct();
+  const report = product ? themeContrastReport(product).filter((r) => r.platform === platform) : contrastReport(platform);
   return (
     <div className="sb-unstyled text-ink font-sans flex flex-col gap-4 lg:flex-row">
       {(['light', 'dark'] as const).map((mode) => (
         <ThemeFrame key={mode} mode={mode}>
           <ul className="flex flex-col gap-2">
             {report
-              .filter((r) => r.mode === mode)
+              .filter((r) => r.mode === mode && !r.fg.startsWith('membro') && !r.bg.startsWith('membro') && r.fg !== 'onPetAvatar')
               .map((r) => (
                 <li
                   key={`${r.fg}-${r.bg}-${r.level}`}
                   className="flex items-center justify-between gap-3 rounded-[10px] px-3 py-2"
-                  style={{ background: colorValue(platform, r.bg, mode), color: colorValue(platform, r.fg, mode) }}
+                  style={{ background: colorValue(platform, r.bg, mode, product), color: colorValue(platform, r.fg, mode, product) }}
                 >
                   <span className={r.level === 'large' ? 'text-[18px] font-semibold' : 'text-sm'}>
                     {r.fg} / {r.bg}
