@@ -5,6 +5,22 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Removido
+
+- **Remoção de tokens:** os tokens de mascote da Paçoca `mascot-outline` / `mascotOutline`, `mascot-nose` /
+  `mascotNose` e `ball-outline` / `ballOutline` saíram de `tokens.json` e de todas as saídas (`app-tokens*.json`,
+  `web*.json`, `mobile.json`, CSS, `ToskiColors.swift`, `src/generated/tokens.ts`), sem uso desde a dupla
+  cachorro/gato. Quem consome deve apagar as referências. Os temas `pethealth` e `koti` herdam da base, então os
+  arquivos `*.koti.*` e `*.pethealth.*` também perdem as linhas.
+
+### Alterado
+
+- Bolinha da dupla no tema escuro em lilás `#A9B4E8` com costura `#2C376A` (contraste 6,6:1 sobre o hero), em
+  `ball-indigo-dark.svg` e `pair-error-dark.svg`. O tema claro não muda.
+- `Mascot` (Paçoca) passa a ter as cores de contorno, focinho e bolinha dentro do componente, em variáveis CSS locais
+  com `light-dark()`. A aparência é a mesma de antes, no claro e no escuro.
+- `products/pethealth/animations.md`: cores da bolinha por aparência.
+
 ## 0.5.2 — 2026-10-09
 
 ### Corrigido

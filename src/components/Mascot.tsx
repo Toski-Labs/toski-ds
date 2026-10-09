@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { cx } from '../utils/cx';
 import { tokens } from '../generated/tokens';
 
@@ -12,12 +13,18 @@ export const mascotPaths = {
 } as const;
 
 /*
-  Cores que dependem do tema (tokens mascot-outline, mascot-nose e ball-outline da web):
-  no escuro o corpo ganha contorno creme e o focinho fica mais escuro.
+  Cores da Paçoca (marca Toski Labs). Não são tokens públicos desde a 0.5.3.
+  Variáveis locais, só dentro do <svg>: `light-dark()` segue o color-scheme (data-theme, prefers-color-scheme
+  ou o quadro claro/escuro do Storybook). No escuro o corpo ganha contorno creme e o focinho fica mais escuro.
 */
-const outline = 'var(--toski-mascot-outline)';
-const nose = 'var(--toski-mascot-nose)';
-const ballOutline = 'var(--toski-ball-outline)';
+const outline = 'var(--mascot-outline)';
+const nose = 'var(--mascot-nose)';
+const ballOutline = 'var(--mascot-ball-outline)';
+const mascotVars = {
+  '--mascot-outline': 'light-dark(transparent, #F4E4CC)',
+  '--mascot-nose': 'light-dark(#231B17, #100C0A)',
+  '--mascot-ball-outline': 'light-dark(#EFDCC2, #F4E4CC)',
+} as CSSProperties;
 
 export interface MascotProps {
   /** Largura (px ou CSS). Padrão 100%. */
@@ -37,7 +44,7 @@ export function Mascot({ width = '100%', ball = 'bounce', label, className }: Ma
   const viewBox = ball === 'ground' ? '-40 -6 250 212' : '-6 -6 222 212';
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true as const };
   return (
-    <svg width={width} viewBox={viewBox} focusable="false" className={className} {...a11y}>
+    <svg width={width} viewBox={viewBox} focusable="false" className={className} style={mascotVars} {...a11y}>
       {(ball === 'bounce' || ball === 'still') && (
         <g className={cx(ball === 'bounce' && 'toski-ball')} data-ball={ball}>
           <circle cx="34" cy="168" r="16" fill={caramelo} strokeWidth="5" style={{ stroke: ballOutline }} />
