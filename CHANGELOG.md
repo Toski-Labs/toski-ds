@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.5.2 — 2026-10-09
+
 ### Corrigido
 
 - `mobile.pet.calendarDots` estava truncado em 2 cores claras e 2 escuras, mas o app usa 6 de cada
