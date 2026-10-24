@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.6.0 — 2026-10-24
+
 ### Alterado (quebra)
 
 - **O tema `pethealth` agora se chama `pawta`** (o app PetHealthTracker virou Pawta). Cores, mascotes e ícones não
