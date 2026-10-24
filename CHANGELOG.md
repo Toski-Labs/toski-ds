@@ -5,6 +5,29 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Alterado (quebra)
+
+- **O tema `pethealth` agora se chama `pawta`** (o app PetHealthTracker virou Pawta). Cores, mascotes e ícones não
+  mudam (as saídas são byte a byte iguais às da 0.5.3, a não ser pelo nome); só os nomes:
+  - `themes/pethealth.css` e `<html data-product="pethealth">` → `themes/pawta.css` e `data-product="pawta"`;
+  - `app-tokens.pethealth.json` → `app-tokens.pawta.json`; `web.pethealth.json` → `web.pawta.json`;
+  - `ToskiThemePetHealth.swift` (`ToskiPetHealthTheme`) → `ToskiThemePawta.swift` (`ToskiPawtaTheme`);
+  - `products/pethealth/` → `products/pawta/`, com `pethealth-icon-*` → `pawta-icon-*` na web e
+    `pethealth-icone-*` → `pawta-icone-*` no app (`themes.pawta.assets`);
+  - `ProductIcon`, `ProductMascot` e `ProductLogo`: `product="pethealth"` → `product="pawta"`;
+  - `npm run sync:app` usa `pawta` como tema padrão (o app continua em `../../mobile/PetHealthTracker`).
+- O nome antigo dá erro com o nome novo, sem alias que funcione: os caminhos antigos saíram do pacote (o build para
+  no `import`); no Swift, `ToskiPetHealthTheme` não compila e o Xcode oferece trocar por `ToskiPawtaTheme`;
+  `product="pethealth"`, `themedColors(…, 'pethealth')` e `sync:app -- --theme pethealth` falham com "O tema
+  "pethealth" agora se chama "pawta"". Esses avisos saem na 0.7.0.
+- Troque o `data-product` junto com o CSS: uma página com `themes/pawta.css` e `data-product="pethealth"` fica com o
+  destaque da base (caramelo), e o CSS não tem como avisar.
+
+### Adicionado
+
+- `npm run tokens:build` apaga de `build/` o que não gera mais, e `npm run tokens:check` falha se sobrar algum arquivo
+  assim, para um tema renomeado não ir para o npm com o nome antigo.
+
 ## 0.5.3 — 2026-10-09
 
 ### Removido

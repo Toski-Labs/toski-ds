@@ -1,6 +1,6 @@
 /**
  * Confere o contraste dos pares declarados em tokens.json → contrast (web e mobile), nos dois temas,
- * para a base e para cada tema de produto (PetHealthTracker, Koti).
+ * para a base e para cada tema de produto (Pawta, Koti).
  * Texto: 4,5:1. Texto grande, ícones e foco: 3:1. Falha (exit 1) se algum par ficar abaixo.
  */
 import { allContrastReports, themeIds, themes, validateThemes } from '../src/tokens/index';

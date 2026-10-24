@@ -6,7 +6,7 @@ describe('página Temas de produto', () => {
 
   it.each([
     [undefined, 'Toski Labs'],
-    ['pethealth', 'PetHealthTracker'],
+    ['pawta', 'Pawta'],
     ['koti', 'Koti'],
   ])('renderiza claro e escuro para %s', (product, name) => {
     if (product) document.documentElement.setAttribute('data-product', product);

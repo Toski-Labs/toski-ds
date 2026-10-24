@@ -23,7 +23,7 @@ components used on the website (Astro + Tailwind CSS 4), the iOS app (SwiftUI) a
 | `build/css/theme.css` | Tailwind CSS 4 `@theme` block (colors, `--radius-*`, `--font-sans`) |
 | `build/swift/ToskiColors.swift` | SwiftUI (app names): light/dark colors, radii, spacing, sizes and text styles |
 | `build/json/web.json` · `mobile.json` | Plain JSON per platform (VS Code and iTerm2 themes, scripts) |
-| `build/json/app-tokens.json` | Tokens in the PetHealthTracker app format (copied with `npm run sync:app`) |
+| `build/json/app-tokens.json` | Tokens in the Pawta app format (copied with `npm run sync:app`) |
 | `build/swift/ToskiTokens.swift` | SwiftUI: app component sizes (`ToskiComponent`) and animations (`ToskiMotionTokens`) |
 | `icons/` | 64 stroke icons (`svg/`) and the web ↔ app name map (`icons.json`) |
 | `styles/tailwind.css` | Everything a Tailwind CSS 4 project needs to import |
@@ -51,7 +51,7 @@ npm install @toski-labs/ds @fontsource-variable/outfit
 import { Button, SectionHeading } from '@toski-labs/ds';
 
 <SectionHeading kicker="Projects" title="What comes out of the lab" />
-<Button href="/pethealthtracker" icon="arrow-right">Learn more</Button>
+<Button href="/pawta" icon="arrow-right">Learn more</Button>
 ```
 
 ```swift
@@ -68,7 +68,7 @@ npm install
 npm run dev              # Storybook at http://localhost:6006
 npm run tokens:build     # generate build/ from tokens/tokens.json
 npm run contrast         # check token contrast pairs
-npm run sync:app         # copy tokens and icons into the PetHealthTracker app
+npm run sync:app         # copy tokens and icons into the Pawta app
 npm run verify           # everything CI runs
 ```
 

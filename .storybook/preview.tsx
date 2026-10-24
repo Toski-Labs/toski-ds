@@ -28,7 +28,7 @@ const preview: Preview = {
         dynamicTitle: true,
         items: [
           { value: 'toski', title: 'Toski Labs' },
-          { value: 'pethealth', title: 'PetHealthTracker' },
+          { value: 'pawta', title: 'Pawta' },
           { value: 'koti', title: 'Koti' },
         ],
       },

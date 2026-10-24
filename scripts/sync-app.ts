@@ -1,12 +1,12 @@
 /**
- * Leva o Toski DS para o app PetHealthTracker:
+ * Leva o Toski DS para o app Pawta (pasta ../../mobile/PetHealthTracker):
  *   - build/json/app-tokens.<tema>.json → docs/design/assets/tokens/tokens.json (lido pelos testes do app)
  *   - icons/svg/*.svg (os que têm nome no app) → docs/design/assets/svg/icons/<nome>.svg
  *   - products/<tema>/ (ícone, camadas e mascotes) → docs/design/assets/products/<nome-no-app>.<ext>
  *
- *   npm run sync:app                           → tema pethealth, app em ../../mobile/PetHealthTracker
+ *   npm run sync:app                           → tema pawta, app em ../../mobile/PetHealthTracker
  *   npm run sync:app -- /caminho/do/app        → outro caminho
- *   npm run sync:app -- --theme koti /caminho  → outro tema (pethealth | koti)
+ *   npm run sync:app -- --theme koti /caminho  → outro tema (pawta | koti)
  *   npm run sync:app -- --out /pasta/temp      → escreve numa pasta qualquer (cria o que faltar), sem tocar no app
  *   npm run sync:app -- --check                → só confere, sem escrever (exit 1 se algo estiver diferente)
  *
@@ -16,6 +16,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { iconEntries, themeIds, themes } from '../src/tokens/index';
+import { renamedThemeMessage } from '../src/renamed';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -24,7 +25,12 @@ const flag = (name: string) => {
   const i = args.indexOf(name);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const themeId = flag('--theme') ?? 'pethealth';
+const themeId = flag('--theme') ?? 'pawta';
+const renamed = renamedThemeMessage(themeId);
+if (renamed) {
+  console.error(`✗ ${renamed}`);
+  process.exit(1);
+}
 if (!themeIds.includes(themeId)) {
   console.error(`✗ Tema desconhecido: ${themeId}. Temas: ${themeIds.join(', ')}`);
   process.exit(1);
@@ -32,7 +38,7 @@ if (!themeIds.includes(themeId)) {
 const out = flag('--out');
 const valueOf = new Set([flag('--theme'), out]);
 const positional = args.find((a) => !a.startsWith('--') && !valueOf.has(a));
-const appRoot = resolve(root, out ?? positional ?? (themeId === 'pethealth' ? '../../mobile/PetHealthTracker' : `../../mobile/${themes[themeId].name}`));
+const appRoot = resolve(root, out ?? positional ?? (themeId === 'pawta' ? '../../mobile/PetHealthTracker' : `../../mobile/${themes[themeId].name}`));
 
 const theme = themes[themeId];
 const pairs: [string, string][] = [

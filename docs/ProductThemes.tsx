@@ -62,7 +62,7 @@ function Panel({ mode, product }: { mode: Mode; product?: string }) {
         <section>
           <h3 className="mb-3 text-[15px] font-semibold">Ícone</h3>
           {!product && <AppIcon size={72} label="Ícone da Toski Labs" />}
-          {(product === 'pethealth' || product === 'koti') && (
+          {(product === 'pawta' || product === 'koti') && (
             <div className="flex flex-wrap items-end gap-4">
               {(['light', 'dark', 'tinted'] as const).map((v) => (
                 <figure key={v} className="flex flex-col items-center gap-1">
@@ -103,11 +103,11 @@ function Panel({ mode, product }: { mode: Mode; product?: string }) {
               <Mascot ball="still" label="Paçoca, a mascote da Toski Labs" />
             </div>
           )}
-          {product === 'pethealth' && (
+          {product === 'pawta' && (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {(['pair', 'pair-base', 'pair-error', 'ball-indigo'] as const).map((a) => (
                 <figure key={a} className={a === 'ball-indigo' ? 'w-16' : ''}>
-                  <ProductMascot product="pethealth" art={a} mode={mode} label={`PetHealthTracker, ${a}`} />
+                  <ProductMascot product="pawta" art={a} mode={mode} label={`Pawta, ${a}`} />
                   <figcaption className="mt-1 text-[12px] text-muted">{a}</figcaption>
                 </figure>
               ))}
@@ -130,7 +130,7 @@ function Panel({ mode, product }: { mode: Mode; product?: string }) {
   );
 }
 
-/** Mostra o produto escolhido na barra (Toski Labs, PetHealthTracker ou Koti), em claro e escuro. */
+/** Mostra o produto escolhido na barra (Toski Labs, Pawta ou Koti), em claro e escuro. */
 export function ProductThemes() {
   const product = useProduct();
   const name = product && themeIds.includes(product) ? themes[product as ProductId].name : 'Toski Labs';

@@ -7,7 +7,7 @@
  * Web  (CSS, Tailwind, JSON web, TS): tokens compartilhados + web, nomes em kebab-case.
  * Mobile (Swift, JSON mobile):        tokens compartilhados + mobile, nomes do app em camelCase.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readdirSync } from 'node:fs';
@@ -33,6 +33,7 @@ import {
   webMotion,
   webRadii,
 } from '../src/tokens/index';
+import { renamedThemes } from '../src/renamed';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HEADER = 'Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão.';
@@ -229,7 +230,7 @@ function mobileData() {
   };
 }
 
-// ---------- App (PetHealthTracker): mesmo formato do docs/design/assets/tokens/tokens.json ----------
+// ---------- App (Pawta): mesmo formato do docs/design/assets/tokens/tokens.json ----------
 // Ordem das chaves igual à do arquivo do app (só formatação; chaves novas entram no fim).
 const APP_COLOR_ORDER = [
   'background', 'surface', 'tint', 'heroBackground', 'textPrimary', 'textSecondary', 'border', 'accent',
@@ -679,6 +680,17 @@ function buildThemeSwift(themeId: string): string {
 
 `
     : '';
+  // Nome antigo: não compila, e o Xcode oferece trocar pelo novo (fix-it).
+  const renamed = Object.entries(renamedThemes)
+    .filter(([, r]) => r.to === themeId)
+    .map(
+      ([id, r]) => `
+/// O tema "${id}" agora se chama "${themeId}" (Toski DS ${r.since}).
+@available(*, unavailable, renamed: "Toski${t.swift}Theme")
+public typealias Toski${r.swift}Theme = Toski${t.swift}Theme
+`,
+    )
+    .join('');
   return `//  ToskiTheme${t.swift}.swift
 //  ${HEADER}
 //  Tema de produto: ${t.name}. Só o que muda em relação ao ToskiColors (destaque e ligados a ele).
@@ -710,7 +722,7 @@ ${bf}
 
 ${SWIFT_HELPERS}
 }
-`;
+${renamed}`;
 }
 
 /** SVGs de ícone e mascote de cada produto, em texto, para os componentes ProductIcon e ProductMascot. */
@@ -765,6 +777,22 @@ const outputs: Record<string, string> = {
 
 const check = process.argv.includes('--check');
 let stale = 0;
+
+// Arquivos em build/ que o build não gera mais (ex.: um tema renomeado). Iriam para o npm, porque
+// "files" inclui build/ inteiro: o build apaga, o --check falha.
+const listFiles = (dir: string): string[] =>
+  readdirSync(join(root, dir), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? listFiles(join(dir, e.name)) : [join(dir, e.name)]));
+for (const file of listFiles('build')) {
+  if (file in outputs || file.endsWith('.DS_Store')) continue;
+  if (check) {
+    console.error(`✗ ${file} não é mais gerado. Rode: npm run tokens:build`);
+    stale++;
+  } else {
+    rmSync(join(root, file));
+    console.log(`✗ ${file} (apagado: não é mais gerado)`);
+  }
+}
+
 for (const [file, content] of Object.entries(outputs)) {
   const path = join(root, file);
   if (check) {

@@ -1,7 +1,14 @@
 import { useId } from 'react';
 import { productArt, type ProductId } from '../generated/products';
+import { assertThemeNotRenamed } from '../renamed';
 
 export type { ProductId };
+
+/** SVGs do produto. Um nome antigo (ex.: "pethealth") dá erro com o nome novo. */
+function artOf(product: ProductId): Record<string, string> {
+  assertThemeNotRenamed(product);
+  return productArt[product] as Record<string, string>;
+}
 
 /** Ajusta o SVG do produto: tamanho, acessibilidade e ids únicos (vários na mesma página). */
 function inline(svg: string, uid: string, width: number | string, label?: string): string {
@@ -30,10 +37,10 @@ export interface ProductIconProps {
   className?: string;
 }
 
-/** Ícone do app de um produto (PetHealthTracker ou Koti). */
+/** Ícone do app de um produto (Pawta ou Koti). */
 export function ProductIcon({ product, variant = 'light', size = 64, label, className }: ProductIconProps) {
   const uid = useId().replace(/:/g, '');
-  const art = productArt[product] as Record<string, string>;
+  const art = artOf(product);
   const svg = art[`${product}-icon-${variant}`];
   if (!svg) return null;
   return <span className={className} style={{ display: 'inline-block', lineHeight: 0 }} dangerouslySetInnerHTML={{ __html: inline(svg, uid, size, label) }} />;
@@ -55,7 +62,7 @@ export interface ProductMascotProps {
 /** Mascotes de um produto, com o contorno na cor oposta ao fundo (claro/escuro). */
 export function ProductMascot({ product, art = 'pair', mode, width = '100%', label, className }: ProductMascotProps) {
   const uid = useId().replace(/:/g, '');
-  const arts = productArt[product] as Record<string, string>;
+  const arts = artOf(product);
   const modes = mode ? [mode] : (['light', 'dark'] as const);
   return (
     <span className={className} style={{ display: 'inline-block', width: typeof width === 'number' ? width : width, lineHeight: 0 }}>
@@ -89,7 +96,7 @@ export interface ProductLogoProps {
 /** Logotipo do produto (Koti): versão para fundo claro ou escuro. */
 export function ProductLogo({ product, mode, width = '100%', label, className }: ProductLogoProps) {
   const uid = useId().replace(/:/g, '');
-  const arts = productArt[product] as Record<string, string>;
+  const arts = artOf(product);
   const versions = (mode ? [mode] : (['light', 'dark'] as const)).map((m) => ({ m, svg: arts[`${product}-logo-${m === 'light' ? 'plum' : 'paper'}`] }));
   return (
     <span className={className} style={{ display: 'inline-block', width, lineHeight: 0 }}>
