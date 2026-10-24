@@ -1,5 +1,5 @@
 {
-  "$description": "Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app. Tema: PetHealthTracker (base + tema pethealth).",
+  "$description": "Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app. Tema: Pawta (base + tema pawta).",
   "brand": {
     "caramelo": "#DB9A5B",
     "ferrugem": "#A9541F",
@@ -355,8 +355,8 @@
     "rule": "Botão \"Continuar com a Apple\" segue a diretriz da Apple e fica fora da paleta: claro = fundo #000000, texto #FFFFFF; escuro = fundo #FFFFFF, texto #000000."
   },
   "product": {
-    "id": "pethealth",
-    "name": "PetHealthTracker",
+    "id": "pawta",
+    "name": "Pawta",
     "scheme": "indigo",
     "brand": {
       "indigo": "#3E4C8A",
@@ -382,113 +382,113 @@
     },
     "assets": [
       {
-        "name": "pethealth-icone-claro",
-        "file": "products/pethealth/icon/pethealth-icon-light.svg",
+        "name": "pawta-icone-claro",
+        "file": "products/pawta/icon/pawta-icon-light.svg",
         "kind": "icon"
       },
       {
-        "name": "pethealth-icone-claro-1024",
-        "file": "products/pethealth/icon/pethealth-icon-light-1024.png",
+        "name": "pawta-icone-claro-1024",
+        "file": "products/pawta/icon/pawta-icon-light-1024.png",
         "kind": "icon-png"
       },
       {
-        "name": "pethealth-icone-escuro",
-        "file": "products/pethealth/icon/pethealth-icon-dark.svg",
+        "name": "pawta-icone-escuro",
+        "file": "products/pawta/icon/pawta-icon-dark.svg",
         "kind": "icon"
       },
       {
-        "name": "pethealth-icone-escuro-1024",
-        "file": "products/pethealth/icon/pethealth-icon-dark-1024.png",
+        "name": "pawta-icone-escuro-1024",
+        "file": "products/pawta/icon/pawta-icon-dark-1024.png",
         "kind": "icon-png"
       },
       {
-        "name": "pethealth-icone-tingido",
-        "file": "products/pethealth/icon/pethealth-icon-tinted.svg",
+        "name": "pawta-icone-tingido",
+        "file": "products/pawta/icon/pawta-icon-tinted.svg",
         "kind": "icon"
       },
       {
-        "name": "pethealth-icone-tingido-1024",
-        "file": "products/pethealth/icon/pethealth-icon-tinted-1024.png",
+        "name": "pawta-icone-tingido-1024",
+        "file": "products/pawta/icon/pawta-icon-tinted-1024.png",
         "kind": "icon-png"
       },
       {
         "name": "camada-1-fundo",
-        "file": "products/pethealth/icon-layers/1-background.svg",
+        "file": "products/pawta/icon-layers/1-background.svg",
         "kind": "icon-layer"
       },
       {
         "name": "camada-2-cachorro",
-        "file": "products/pethealth/icon-layers/2-dog.svg",
+        "file": "products/pawta/icon-layers/2-dog.svg",
         "kind": "icon-layer"
       },
       {
         "name": "camada-3-gato",
-        "file": "products/pethealth/icon-layers/3-cat.svg",
+        "file": "products/pawta/icon-layers/3-cat.svg",
         "kind": "icon-layer"
       },
       {
         "name": "camada-4-coracao",
-        "file": "products/pethealth/icon-layers/4-heart.svg",
+        "file": "products/pawta/icon-layers/4-heart.svg",
         "kind": "icon-layer"
       },
       {
         "name": "dupla-claro",
-        "file": "products/pethealth/mascots/pair-light.svg",
+        "file": "products/pawta/mascots/pair-light.svg",
         "kind": "mascot"
       },
       {
         "name": "dupla-escuro",
-        "file": "products/pethealth/mascots/pair-dark.svg",
+        "file": "products/pawta/mascots/pair-dark.svg",
         "kind": "mascot"
       },
       {
         "name": "dupla-base-claro",
-        "file": "products/pethealth/mascots/pair-base-light.svg",
+        "file": "products/pawta/mascots/pair-base-light.svg",
         "kind": "mascot"
       },
       {
         "name": "dupla-base-escuro",
-        "file": "products/pethealth/mascots/pair-base-dark.svg",
+        "file": "products/pawta/mascots/pair-base-dark.svg",
         "kind": "mascot"
       },
       {
         "name": "dupla-erro-claro",
-        "file": "products/pethealth/mascots/pair-error-light.svg",
+        "file": "products/pawta/mascots/pair-error-light.svg",
         "kind": "mascot"
       },
       {
         "name": "dupla-erro-escuro",
-        "file": "products/pethealth/mascots/pair-error-dark.svg",
+        "file": "products/pawta/mascots/pair-error-dark.svg",
         "kind": "mascot"
       },
       {
         "name": "bolinha-indigo-claro",
-        "file": "products/pethealth/mascots/ball-indigo-light.svg",
+        "file": "products/pawta/mascots/ball-indigo-light.svg",
         "kind": "mascot"
       },
       {
         "name": "bolinha-indigo-escuro",
-        "file": "products/pethealth/mascots/ball-indigo-dark.svg",
+        "file": "products/pawta/mascots/ball-indigo-dark.svg",
         "kind": "mascot"
       },
       {
-        "name": "pethealth-icone-noite",
-        "file": "products/pethealth/icon-alt/pethealth-icon-night.svg",
+        "name": "pawta-icone-noite",
+        "file": "products/pawta/icon-alt/pawta-icon-night.svg",
         "kind": "icon-alt"
       },
       {
-        "name": "pethealth-icone-noite-1024",
-        "file": "products/pethealth/icon-alt/pethealth-icon-night-1024.png",
+        "name": "pawta-icone-noite-1024",
+        "file": "products/pawta/icon-alt/pawta-icon-night-1024.png",
         "kind": "icon-alt-png"
       },
       {
-        "name": "pethealth-icone-papel",
-        "file": "products/pethealth/icon-alt/pethealth-icon-paper.svg",
+        "name": "pawta-icone-papel",
+        "file": "products/pawta/icon-alt/pawta-icon-paper.svg",
         "kind": "icon-alt"
       },
       {
-        "name": "pethealth-icone-papel-1024",
-        "file": "products/pethealth/icon-alt/pethealth-icon-paper-1024.png",
+        "name": "pawta-icone-papel-1024",
+        "file": "products/pawta/icon-alt/pawta-icon-paper-1024.png",
         "kind": "icon-alt-png"
       }
     ],

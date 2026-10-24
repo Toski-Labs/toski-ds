@@ -1,8 +1,8 @@
-//  ToskiThemePetHealth.swift
+//  ToskiThemePawta.swift
 //  Gerado por scripts/build-tokens.ts a partir de tokens/tokens.json. Não edite à mão.
-//  Tema de produto: PetHealthTracker. Só o que muda em relação ao ToskiColors (destaque e ligados a ele).
+//  Tema de produto: Pawta. Só o que muda em relação ao ToskiColors (destaque e ligados a ele).
 //
-//  Uso: Text("Olá").foregroundStyle(ToskiPetHealthTheme.accent)
+//  Uso: Text("Olá").foregroundStyle(ToskiPawtaTheme.accent)
 //  Os neutros, critical e success continuam em ToskiColors.
 
 import SwiftUI
@@ -12,10 +12,10 @@ import UIKit
 import AppKit
 #endif
 
-public enum ToskiPetHealthTheme {
+public enum ToskiPawtaTheme {
     // MARK: Marca do produto
 
-    /// Destaque do PetHealthTracker no claro.
+    /// Destaque do Pawta no claro.
     public static let indigo = fixed(0x3E4C8A)
     /// Destaque no escuro.
     public static let lilas = fixed(0xA9B4E8)
@@ -88,3 +88,7 @@ public enum ToskiPetHealthTheme {
         #endif
     }
 }
+
+/// O tema "pethealth" agora se chama "pawta" (Toski DS 0.6.0).
+@available(*, unavailable, renamed: "ToskiPawtaTheme")
+public typealias ToskiPetHealthTheme = ToskiPawtaTheme

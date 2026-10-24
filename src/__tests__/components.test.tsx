@@ -104,24 +104,33 @@ describe('Mascot e AppIcon', () => {
 
 describe('ProductIcon e ProductMascot', () => {
   it('ícone decorativo sem label e acessível com label', () => {
-    const { container, rerender } = render(<ProductIcon product="pethealth" variant="dark" />);
+    const { container, rerender } = render(<ProductIcon product="pawta" variant="dark" />);
     expect(container.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
-    rerender(<ProductIcon product="pethealth" label="PetHealthTracker" />);
-    expect(screen.getByRole('img', { name: 'PetHealthTracker' })).toBeInTheDocument();
+    rerender(<ProductIcon product="pawta" label="Pawta" />);
+    expect(screen.getByRole('img', { name: 'Pawta' })).toBeInTheDocument();
   });
 
   it('mascote renderiza claro e escuro quando não recebe mode', () => {
-    const { container } = render(<ProductMascot product="pethealth" label="Cachorro e gato" />);
+    const { container } = render(<ProductMascot product="pawta" label="Cachorro e gato" />);
     expect(container.querySelectorAll('[data-art]')).toHaveLength(2);
     expect(container.querySelectorAll('[data-art="dark"] svg')).toHaveLength(1);
+  });
+
+  it('o nome antigo "pethealth" dá erro com o nome novo', () => {
+    const silence = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const old = 'pethealth' as unknown as 'pawta';
+    expect(() => render(<ProductIcon product={old} />)).toThrow('O tema "pethealth" agora se chama "pawta"');
+    expect(() => render(<ProductMascot product={old} />)).toThrow('agora se chama "pawta"');
+    expect(() => render(<ProductLogo product={old} />)).toThrow('agora se chama "pawta"');
+    silence.mockRestore();
   });
 
   it('com mode renderiza só uma versão e ids não colidem', () => {
     const { container } = render(
       <>
-        <ProductIcon product="pethealth" />
-        <ProductIcon product="pethealth" />
-        <ProductMascot product="pethealth" art="pair-error" mode="dark" />
+        <ProductIcon product="pawta" />
+        <ProductIcon product="pawta" />
+        <ProductMascot product="pawta" art="pair-error" mode="dark" />
       </>,
     );
     expect(container.querySelectorAll('[data-art]')).toHaveLength(0);

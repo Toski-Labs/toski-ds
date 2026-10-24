@@ -13,7 +13,7 @@ const meta = {
   },
   render: (args) => (
     <Card {...args}>
-      <p className="font-semibold text-ink">PetHealthTracker</p>
+      <p className="font-semibold text-ink">Pawta</p>
       <p className="mt-1 text-muted">Vacinas, remédios e lembretes do seu pet.</p>
     </Card>
   ),

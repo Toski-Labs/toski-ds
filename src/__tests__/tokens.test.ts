@@ -1,5 +1,5 @@
 import { contrastRatio } from '../tokens/contrast';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   allContrastReports,
@@ -45,11 +45,11 @@ describe('temas de produto', () => {
     }
   });
 
-  it('PetHealthTracker usa os valores aprovados', () => {
-    expect(colorValue('web', 'accent', 'light', 'pethealth')).toBe('#3E4C8A');
-    expect(colorValue('mobile', 'accentDeep', 'dark', 'pethealth')).toBe('#C9D0F2');
-    expect(colorValue('mobile', 'lockBackground', 'light', 'pethealth')).toBe('#5C69A4');
-    expect(colorValue('web', 'tint', 'light', 'pethealth')).toBe('#F3E4CF'); // neutro da base
+  it('Pawta usa os valores aprovados', () => {
+    expect(colorValue('web', 'accent', 'light', 'pawta')).toBe('#3E4C8A');
+    expect(colorValue('mobile', 'accentDeep', 'dark', 'pawta')).toBe('#C9D0F2');
+    expect(colorValue('mobile', 'lockBackground', 'light', 'pawta')).toBe('#5C69A4');
+    expect(colorValue('web', 'tint', 'light', 'pawta')).toBe('#F3E4CF'); // neutro da base
   });
 
   it('Koti usa os valores aprovados', () => {
@@ -57,6 +57,21 @@ describe('temas de produto', () => {
     expect(colorValue('mobile', 'accentDeep', 'light', 'koti')).toBe('#5E2F55');
     expect(colorValue('mobile', 'heroBackground', 'dark', 'koti')).toBe('#46293F');
     expect(colorValue('mobile', 'tint', 'dark', 'koti')).toBe('#3A2436');
+  });
+
+  it('o nome antigo "pethealth" dá erro com o nome novo', () => {
+    expect(themeIds).not.toContain('pethealth');
+    expect(() => themedColors('web', 'pethealth')).toThrow('O tema "pethealth" agora se chama "pawta"');
+    expect(() => colorValue('mobile', 'accent', 'light', 'pethealth')).toThrow('agora se chama "pawta"');
+    expect(() => themedColors('web', 'nao-existe')).toThrow('Tema não existe: nao-existe');
+  });
+
+  it('o Swift do Pawta não deixa usar ToskiPetHealthTheme e sugere o nome novo', () => {
+    const swift = readFileSync(join(__dirname, '../../build/swift/ToskiThemePawta.swift'), 'utf8');
+    expect(swift).toContain('public enum ToskiPawtaTheme {');
+    expect(swift).toContain('@available(*, unavailable, renamed: "ToskiPawtaTheme")\npublic typealias ToskiPetHealthTheme = ToskiPawtaTheme');
+    expect(existsSync(join(__dirname, '../../build/swift/ToskiThemePetHealth.swift'))).toBe(false);
+    expect(existsSync(join(__dirname, '../../build/css/themes/pethealth.css'))).toBe(false);
   });
 
   it('todo arquivo de produto citado existe', () => {

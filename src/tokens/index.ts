@@ -7,6 +7,7 @@
 import raw from '../../tokens/tokens.json';
 import iconManifest from '../../icons/icons.json';
 import { contrastRatio, MIN_LARGE, MIN_TEXT } from './contrast';
+import { assertThemeNotRenamed } from '../renamed';
 
 export type Mode = 'light' | 'dark';
 export type Platform = 'web' | 'mobile';
@@ -163,7 +164,7 @@ export interface ThemeAsset {
 export interface ThemeDef {
   id: string;
   name: string;
-  /** Sufixo dos tipos Swift (ToskiPetHealthTheme). */
+  /** Sufixo dos tipos Swift (ToskiPawtaTheme). */
   swift: string;
   scheme: string;
   description: string;
@@ -246,12 +247,19 @@ export function validateThemes(): string[] {
   return errors;
 }
 
+/** Tema pelo id. Nome antigo ou inexistente dá erro. */
+export function themeById(themeId: string): ThemeDef {
+  assertThemeNotRenamed(themeId);
+  const t = themes[themeId];
+  if (!t) throw new Error(`Tema não existe: ${themeId}`);
+  return t;
+}
+
 /** Cores de uma plataforma com o tema aplicado (sem tema = base). */
 export function themedColors(platform: Platform, themeId?: string): ColorToken[] {
   const base = platformColors(platform);
   if (!themeId) return base;
-  const t = themes[themeId];
-  if (!t) throw new Error(`Tema não existe: ${themeId}`);
+  const t = themeById(themeId);
   const over: Record<string, LM> = platform === 'web' ? t.color : { ...t.color, ...t.mobileColor };
   return base.map((c) => {
     const key = c.webName ?? c.name;
@@ -264,7 +272,7 @@ export function themedColors(platform: Platform, themeId?: string): ColorToken[]
 
 /** Nomes (da plataforma) dos tokens que o tema sobrescreve. */
 export function themeOverrides(platform: Platform, themeId: string): ColorToken[] {
-  const t = themes[themeId];
+  const t = themeById(themeId);
   const keys = new Set(platform === 'web' ? Object.keys(t.color) : [...Object.keys(t.color), ...Object.keys(t.mobileColor)]);
   return themedColors(platform, themeId).filter((c) => keys.has(c.webName ?? c.name));
 }
@@ -312,7 +320,7 @@ export function themeContrastReport(themeId: string): ContrastResult[] {
       ...expand(p, extra[p].large, 'large', themeId),
     );
   }
-  const members = themes[themeId].members;
+  const members = themeById(themeId).members;
   if (members) {
     const surfaces = ['background', 'surface', 'tint', 'heroBackground'];
     const mark = (mode: Mode, id: string) => members[id].mark[mode];

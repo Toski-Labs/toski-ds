@@ -1,4 +1,4 @@
-# Animações da dupla — PetHealthTracker
+# Animações da dupla — Pawta
 
 Como a dupla (cachorro e gato) e a bolinha se movem no app. Curvas e tempos seguem `motion` do `tokens.json`;
 aqui só ficam as regras de cada tela.
