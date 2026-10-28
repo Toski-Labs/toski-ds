@@ -44,7 +44,8 @@
     "alertBackground": "#F7F1E8",
     "bannerBackground": "rgba(255,253,249,.92)",
     "previewBackdrop": "#EDE3D6",
-    "themePreviewCard": "rgba(169,84,31,.35)"
+    "themePreviewCard": "rgba(169,84,31,.35)",
+    "unreadBackground": "#F6F7FC"
   },
   "dark": {
     "background": "#231B17",
@@ -83,7 +84,8 @@
     "alertBackground": "#3A2D23",
     "bannerBackground": "rgba(46,36,29,.92)",
     "previewBackdrop": "#1B1511",
-    "themePreviewCard": "rgba(169,84,31,.35)"
+    "themePreviewCard": "rgba(169,84,31,.35)",
+    "unreadBackground": "#33292A"
   },
   "pet": {
     "avatars": [

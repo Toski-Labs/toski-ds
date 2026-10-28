@@ -5,6 +5,15 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+- **Token `unreadBackground`** (mobile): fundo dos avisos não lidos da central de notificações do app. Claro `#F6F7FC`,
+  escuro `#33292A` (os mesmos valores que o app usava como token local). Sai em `app-tokens.json`,
+  `app-tokens.pawta.json`, `app-tokens.koti.json`, `mobile.json` e `ToskiColors.swift` (`ToskiColors.unreadBackground`),
+  e `npm run sync:app` passa a levá-lo ao app em vez de apagá-lo. Não muda por tema: Pawta e Koti herdam da base.
+- Contraste: `textPrimary`, `textSecondary` e `critical` sobre `unreadBackground` entram nos pares checados
+  (mínimo 4,5:1; passam no claro e no escuro).
+
 ## 0.6.0 — 2026-10-24
 
 ### Alterado (quebra)
