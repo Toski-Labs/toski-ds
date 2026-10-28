@@ -215,6 +215,7 @@ export const tokens = {
     "clock",
     "medicine",
     "repeat",
+    "summary",
     "spinner",
     "theme",
     "grooming",
