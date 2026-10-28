@@ -105,6 +105,8 @@ public enum ToskiColors {
     public static let previewBackdrop    = dynamic(light: 0xEDE3D6, dark: 0x1B1511)
     /// Cartões das miniaturas de tema (Aparência)
     public static let themePreviewCard   = dynamic(light: 0xA9541F, lightAlpha: 0.35, dark: 0xA9541F, darkAlpha: 0.35)
+    /// Fundo de um aviso não lido na central de notificações
+    public static let unreadBackground   = dynamic(light: 0xF6F7FC, dark: 0x33292A)
 
     // MARK: Pets
 

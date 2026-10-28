@@ -238,7 +238,7 @@ const APP_COLOR_ORDER = [
   'tabBar', 'tabIdle', 'segmentSelected', 'switchOff', 'toastBackground', 'toastText', 'toastAction', 'scrim',
   'faint', 'divider', 'borderStrong', 'barInactive', 'accentDeep',
   'featureCard', 'onFeatureCard', 'onAccentSubtle', 'lockBackground', 'onLock', 'alertBackground',
-  'bannerBackground', 'previewBackdrop', 'themePreviewCard',
+  'bannerBackground', 'previewBackdrop', 'themePreviewCard', 'unreadBackground',
 ];
 const APP_RADIUS_ORDER = [
   'checkbox', 'swatch', 'pdfPage', 'small', 'iconBox', 'buttonSmall', 'segmentTrack', 'input', 'button', 'tile',

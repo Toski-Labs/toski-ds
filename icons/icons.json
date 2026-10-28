@@ -212,6 +212,10 @@
     "web": "repeat",
     "mobile": "repetir"
   },
+  "resumo": {
+    "web": "summary",
+    "mobile": "resumo"
+  },
   "spinner": {
     "web": "spinner",
     "mobile": "spinner"

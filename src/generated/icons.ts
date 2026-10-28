@@ -650,6 +650,18 @@ export const iconData = {
       }
     ]
   },
+  "summary": {
+    "mobile": "resumo",
+    "size": 19,
+    "stroke": 1.9,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M4 6h16 M4 12h16 M4 18h10"
+      }
+    ]
+  },
   "spinner": {
     "mobile": "spinner",
     "size": 22,
