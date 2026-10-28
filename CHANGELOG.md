@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.6.1 — 2026-10-28
+
 ### Adicionado
 
 - **Token `unreadBackground`** (mobile): fundo dos avisos não lidos da central de notificações do app. Claro `#F6F7FC`,
