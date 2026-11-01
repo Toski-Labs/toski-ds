@@ -107,6 +107,26 @@ public enum ToskiColors {
     public static let themePreviewCard   = dynamic(light: 0xA9541F, lightAlpha: 0.35, dark: 0xA9541F, darkAlpha: 0.35)
     /// Fundo de um aviso não lido na central de notificações
     public static let unreadBackground   = dynamic(light: 0xF6F7FC, dark: 0x33292A)
+    /// Preenchimento neutro da Nova XP: fundo dos botões secundários, chips e ícones em círculo
+    public static let neutralFill        = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
+    /// Vidro: botões e cartões translúcidos sobre o fundo (Nova XP). Junto com glassBorder e a sombra glass
+    public static let glass              = dynamic(light: 0xFFFDF9, lightAlpha: 0.62, dark: 0x2E241D, darkAlpha: 0.62)
+    /// Borda de 1 pt do vidro
+    public static let glassBorder        = dynamic(light: 0x958373, dark: 0x806E5E)
+    /// Barra de abas em vidro (Nova XP)
+    public static let tabGlass           = dynamic(light: 0xFFFDF9, lightAlpha: 0.78, dark: 0x1B1511, darkAlpha: 0.8)
+    /// Contorno do círculo de marcar como feito
+    public static let checkLine          = dynamic(light: 0x7D6858, dark: 0xA08B78)
+    /// Fundo do selo (contador, aviso) sobre o fundo da tela
+    public static let badgeBg            = dynamic(light: 0xFFFFFF, dark: 0x2E241D)
+    /// Fundo A do retrato do pet (igual nas duas paletas)
+    public static let petA               = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
+    /// Fundo B do retrato do pet (igual nas duas paletas)
+    public static let petB               = dynamic(light: 0xE4EEDC, dark: 0x2C3A27)
+    /// Linha do mascote
+    public static let mLine              = dynamic(light: 0x231B17, dark: 0xF4E4CC)
+    /// Olho e focinho do mascote
+    public static let mInk               = dynamic(light: 0x231B17, dark: 0x100C0A)
 
     // MARK: Pets
 
@@ -198,6 +218,8 @@ public enum ToskiRadius {
     public static let appIconSide: CGFloat = 96
     /// Raio do ícone para um lado qualquer (proporcional ao de referência).
     public static func appIcon(side: CGFloat) -> CGFloat { side * appIconRadius / appIconSide }
+    /// Raio único da Nova XP: botões, selos, campos, toasts e folhas
+    public static let surface: CGFloat = 22
 }
 
 /// Valores do box-shadow do canvas (x = 0). Em SwiftUI o radius é blur / 2. Iguais no claro e no escuro.
@@ -215,6 +237,28 @@ public enum ToskiShadow {
     public static let raised = Style(y: 1, blur: 3, color: ToskiColors.fixed(0x231B17), opacity: 0.15)
     public static let floating = Style(y: 8, blur: 24, color: ToskiColors.fixed(0x231B17), opacity: 0.22)
     public static let sheet = Style(y: -8, blur: 32, color: ToskiColors.fixed(0x231B17), opacity: 0.18)
+
+    /// Anel de contorno fino que acompanha uma sombra (SwiftUI: .overlay(shape.stroke(color.opacity(opacity), lineWidth: width))).
+    public struct Ring: Sendable {
+        public let width: CGFloat
+        public let color: Color
+        public let opacity: Double
+    }
+
+    /// Sombra com o anel de contorno.
+    public struct Layered: Sendable {
+        public let shadow: Style
+        public let ring: Ring
+    }
+
+    /// Sombra que muda entre o claro e o escuro. Sombras que mudam entre o claro e o escuro (as de shadow são iguais nos dois). Sombra {y, blur, color, opacity} mais um anel de ring.width pt. Em SwiftUI o radius é blur / 2. A paleta Neve tem a sua em palettes.neve.
+    public struct ByMode: Sendable {
+        public let light: Layered
+        public let dark: Layered
+    }
+
+    public static let glass = ByMode(light: Layered(shadow: Style(y: 1, blur: 3, color: ToskiColors.fixed(0x231B17), opacity: 0.15), ring: Ring(width: 0.5, color: ToskiColors.fixed(0x231B17), opacity: 0.06)), dark: Layered(shadow: Style(y: 1, blur: 3, color: ToskiColors.fixed(0x000000), opacity: 0.35), ring: Ring(width: 0.5, color: ToskiColors.fixed(0xF7F1E8), opacity: 0.06)))
+    public static let glassNeve = ByMode(light: Layered(shadow: Style(y: 1, blur: 3, color: ToskiColors.fixed(0x000000), opacity: 0.08), ring: Ring(width: 0.5, color: ToskiColors.fixed(0x000000), opacity: 0.06)), dark: Layered(shadow: Style(y: 1, blur: 3, color: ToskiColors.fixed(0x000000), opacity: 0.4), ring: Ring(width: 0.5, color: ToskiColors.fixed(0xFFFFFF), opacity: 0.06)))
 }
 
 public enum ToskiSpacing {
@@ -225,6 +269,8 @@ public enum ToskiSpacing {
     public static let xl: CGFloat = 20
     public static let xxl: CGFloat = 24
     public static let screenPadding: CGFloat = 20
+    public static let screenMargin: CGFloat = 24
+    public static let block: CGFloat = 14
 }
 
 public enum ToskiSize {
@@ -233,6 +279,18 @@ public enum ToskiSize {
     public static let avatarSmall: CGFloat = 24
     public static let avatar: CGFloat = 48
     public static let avatarLarge: CGFloat = 76
+    public static let rowHome: CGFloat = 98
+    public static let rowList: CGFloat = 76
+    public static let rowForm: CGFloat = 52
+    public static let rowDetail: CGFloat = 44
+    public static let glassButton: CGFloat = 54
+    public static let roundButton: CGFloat = 44
+    public static let chip: CGFloat = 36
+    public static let checkCircle: CGFloat = 26
+    public static let iconCircleS: CGFloat = 32
+    public static let iconCircleM: CGFloat = 36
+    public static let iconCircleL: CGFloat = 44
+    public static let toast: CGFloat = 56
 }
 
 public enum ToskiFont {
@@ -244,19 +302,33 @@ public enum ToskiFont {
         public let weight: Font.Weight
         /// Espaçamento entre letras em em (multiplique pelo tamanho para pontos).
         public let tracking: CGFloat
+        /// Altura de linha em múltiplos do tamanho (1.15 = 115%). 0 = a do sistema.
+        public let lineHeight: CGFloat
         public let uppercase: Bool
+        public let alignment: TextAlignment
 
-        public init(size: CGFloat, weight: Font.Weight, tracking: CGFloat = 0, uppercase: Bool = false) {
+        public init(
+            size: CGFloat,
+            weight: Font.Weight,
+            tracking: CGFloat = 0,
+            lineHeight: CGFloat = 0,
+            uppercase: Bool = false,
+            alignment: TextAlignment = .leading
+        ) {
             self.size = size
             self.weight = weight
             self.tracking = tracking
+            self.lineHeight = lineHeight
             self.uppercase = uppercase
+            self.alignment = alignment
         }
 
         /// Fonte Outfit que acompanha o Tamanho do Texto do sistema.
         public var font: Font { .custom(ToskiFont.family, size: size).weight(weight) }
         /// Tracking em pontos, para .tracking(_:).
         public var trackingPoints: CGFloat { tracking * size }
+        /// Altura de linha em pontos (0 = a do sistema).
+        public var lineHeightPoints: CGFloat { lineHeight * size }
     }
 
     public static let largeTitle = Style(size: 28, weight: .semibold, tracking: -0.01)
@@ -269,4 +341,11 @@ public enum ToskiFont {
     public static let sectionLabel = Style(size: 13, weight: .semibold, tracking: 0.06, uppercase: true)
     public static let caption = Style(size: 12, weight: .regular)
     public static let tabLabel = Style(size: 11, weight: .medium)
+    public static let screenTitle = Style(size: 27, weight: .bold, tracking: -0.01, lineHeight: 1.15, alignment: .leading)
+    public static let sheetTitle = Style(size: 22, weight: .bold, lineHeight: 1.15)
+    public static let nameLarge = Style(size: 17, weight: .semibold)
+    public static let name = Style(size: 16, weight: .semibold)
+    public static let support = Style(size: 15, weight: .regular)
+    public static let supportSmall = Style(size: 14, weight: .regular)
+    public static let label = Style(size: 13, weight: .semibold, tracking: 0.06, uppercase: true)
 }

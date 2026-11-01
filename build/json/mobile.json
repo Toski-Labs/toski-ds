@@ -45,7 +45,17 @@
     "bannerBackground": "rgba(255,253,249,.92)",
     "previewBackdrop": "#EDE3D6",
     "themePreviewCard": "rgba(169,84,31,.35)",
-    "unreadBackground": "#F6F7FC"
+    "unreadBackground": "#F6F7FC",
+    "neutralFill": "#F3E4CF",
+    "glass": "rgba(255,253,249,0.62)",
+    "glassBorder": "#958373",
+    "tabGlass": "rgba(255,253,249,0.78)",
+    "checkLine": "#7D6858",
+    "badgeBg": "#FFFFFF",
+    "petA": "#F3E4CF",
+    "petB": "#E4EEDC",
+    "mLine": "#231B17",
+    "mInk": "#231B17"
   },
   "dark": {
     "background": "#231B17",
@@ -85,7 +95,17 @@
     "bannerBackground": "rgba(46,36,29,.92)",
     "previewBackdrop": "#1B1511",
     "themePreviewCard": "rgba(169,84,31,.35)",
-    "unreadBackground": "#33292A"
+    "unreadBackground": "#33292A",
+    "neutralFill": "#3A2D23",
+    "glass": "rgba(46,36,29,0.62)",
+    "glassBorder": "#806E5E",
+    "tabGlass": "rgba(27,21,17,0.80)",
+    "checkLine": "#A08B78",
+    "badgeBg": "#2E241D",
+    "petA": "#3A2D23",
+    "petB": "#2C3A27",
+    "mLine": "#F4E4CC",
+    "mInk": "#100C0A"
   },
   "pet": {
     "avatars": [
@@ -176,6 +196,40 @@
     "tabLabel": {
       "size": 11,
       "weight": 500
+    },
+    "screenTitle": {
+      "size": 27,
+      "weight": 700,
+      "tracking": -0.01,
+      "lineHeight": 1.15,
+      "align": "leading"
+    },
+    "sheetTitle": {
+      "size": 22,
+      "weight": 700,
+      "lineHeight": 1.15
+    },
+    "nameLarge": {
+      "size": 17,
+      "weight": 600
+    },
+    "name": {
+      "size": 16,
+      "weight": 600
+    },
+    "support": {
+      "size": 15,
+      "weight": 400
+    },
+    "supportSmall": {
+      "size": 14,
+      "weight": 400
+    },
+    "label": {
+      "size": 13,
+      "weight": 600,
+      "tracking": 0.06,
+      "uppercase": true
     }
   },
   "radius": {
@@ -195,7 +249,8 @@
     "appIcon": {
       "radius": 22,
       "side": 96
-    }
+    },
+    "surface": 22
   },
   "shadow": {
     "knob": {
@@ -223,6 +278,32 @@
       "opacity": 0.18
     }
   },
+  "shadowMode": {
+    "glass": {
+      "light": {
+        "y": 1,
+        "blur": 3,
+        "color": "#231B17",
+        "opacity": 0.15,
+        "ring": {
+          "width": 0.5,
+          "color": "#231B17",
+          "opacity": 0.06
+        }
+      },
+      "dark": {
+        "y": 1,
+        "blur": 3,
+        "color": "#000000",
+        "opacity": 0.35,
+        "ring": {
+          "width": 0.5,
+          "color": "#F7F1E8",
+          "opacity": 0.06
+        }
+      }
+    }
+  },
   "spacing": {
     "xs": 4,
     "s": 8,
@@ -230,14 +311,28 @@
     "l": 16,
     "xl": 20,
     "xxl": 24,
-    "screenPadding": 20
+    "screenPadding": 20,
+    "screenMargin": 24,
+    "block": 14
   },
   "size": {
     "minTouchTarget": 44,
     "primaryButtonHeight": 54,
     "avatarSmall": 24,
     "avatar": 48,
-    "avatarLarge": 76
+    "avatarLarge": 76,
+    "rowHome": 98,
+    "rowList": 76,
+    "rowForm": 52,
+    "rowDetail": 44,
+    "glassButton": 54,
+    "roundButton": 44,
+    "chip": 36,
+    "checkCircle": 26,
+    "iconCircleS": 32,
+    "iconCircleM": 36,
+    "iconCircleL": 44,
+    "toast": 56
   },
   "component": {
     "button": {

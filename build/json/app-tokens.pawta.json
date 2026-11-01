@@ -197,6 +197,143 @@
       "light": "#F6F7FC",
       "dark": "#33292A",
       "use": "Fundo de um aviso não lido na central de notificações"
+    },
+    "neutralFill": {
+      "light": "#F3E4CF",
+      "dark": "#3A2D23",
+      "use": "Preenchimento neutro da Nova XP: fundo dos botões secundários, chips e ícones em círculo"
+    },
+    "glass": {
+      "light": "rgba(255,253,249,0.62)",
+      "dark": "rgba(46,36,29,0.62)",
+      "use": "Vidro: botões e cartões translúcidos sobre o fundo (Nova XP). Junto com glassBorder e a sombra glass"
+    },
+    "glassBorder": {
+      "light": "#958373",
+      "dark": "#806E5E",
+      "use": "Borda de 1 pt do vidro"
+    },
+    "tabGlass": {
+      "light": "rgba(255,253,249,0.78)",
+      "dark": "rgba(27,21,17,0.80)",
+      "use": "Barra de abas em vidro (Nova XP)"
+    },
+    "checkLine": {
+      "light": "#7D6858",
+      "dark": "#A08B78",
+      "use": "Contorno do círculo de marcar como feito"
+    },
+    "badgeBg": {
+      "light": "#FFFFFF",
+      "dark": "#2E241D",
+      "use": "Fundo do selo (contador, aviso) sobre o fundo da tela"
+    },
+    "petA": {
+      "light": "#F3E4CF",
+      "dark": "#3A2D23",
+      "use": "Fundo A do retrato do pet (igual nas duas paletas)"
+    },
+    "petB": {
+      "light": "#E4EEDC",
+      "dark": "#2C3A27",
+      "use": "Fundo B do retrato do pet (igual nas duas paletas)"
+    },
+    "mLine": {
+      "light": "#231B17",
+      "dark": "#F4E4CC",
+      "use": "Linha do mascote"
+    },
+    "mInk": {
+      "light": "#231B17",
+      "dark": "#100C0A",
+      "use": "Olho e focinho do mascote"
+    }
+  },
+  "colorNeve": {
+    "neutralFill": {
+      "light": "#E5E5EA",
+      "dark": "#2C2C2E",
+      "use": "Preenchimento neutro da Nova XP: fundo dos botões secundários, chips e ícones em círculo"
+    },
+    "glass": {
+      "light": "rgba(255,255,255,0.62)",
+      "dark": "rgba(44,44,46,0.62)",
+      "use": "Vidro: botões e cartões translúcidos sobre o fundo (Nova XP). Junto com glassBorder e a sombra glass"
+    },
+    "glassBorder": {
+      "light": "#88888C",
+      "dark": "#68686D",
+      "use": "Borda de 1 pt do vidro"
+    },
+    "tabGlass": {
+      "light": "rgba(250,250,252,0.78)",
+      "dark": "rgba(28,28,30,0.80)",
+      "use": "Barra de abas em vidro (Nova XP)"
+    },
+    "checkLine": {
+      "light": "#8A8A8E",
+      "dark": "#8E8E93",
+      "use": "Contorno do círculo de marcar como feito"
+    },
+    "badgeBg": {
+      "light": "#FFFFFF",
+      "dark": "#2C2C2E",
+      "use": "Fundo do selo (contador, aviso) sobre o fundo da tela"
+    },
+    "petA": {
+      "light": "#F3E4CF",
+      "dark": "#3A2D23",
+      "use": "Fundo A do retrato do pet (igual nas duas paletas)"
+    },
+    "petB": {
+      "light": "#E4EEDC",
+      "dark": "#2C3A27",
+      "use": "Fundo B do retrato do pet (igual nas duas paletas)"
+    },
+    "mLine": {
+      "light": "#1C1C1E",
+      "dark": "#F4E4CC",
+      "use": "Linha do mascote"
+    },
+    "mInk": {
+      "light": "#1C1C1E",
+      "dark": "#100C0A",
+      "use": "Olho e focinho do mascote"
+    },
+    "heroBackground": {
+      "light": "#E3E6F5",
+      "dark": "#2A2E45",
+      "use": "Círculo atrás dos mascotes"
+    },
+    "toastAction": {
+      "light": "#B7C0EE",
+      "dark": "#3E4C8A",
+      "use": "Ação do toast (Desfazer, Abrir)"
+    },
+    "background": {
+      "light": "#F5F5F7",
+      "dark": "#121214",
+      "use": "Fundo das telas"
+    },
+    "textPrimary": {
+      "light": "#1C1C1E",
+      "dark": "#F5F5F7",
+      "use": "Texto principal"
+    },
+    "textSecondary": {
+      "light": "#6E6E73",
+      "dark": "#A1A1A6",
+      "use": "Texto de apoio, rótulos"
+    },
+    "tabIdle": {
+      "light": "#6E6E73",
+      "dark": "#A1A1A6",
+      "use": "Aba inativa"
+    },
+    "onAccent": {
+      "light": "#FFF8EE",
+      "dark": "#121214",
+      "use": "Texto sobre o destaque"
     }
   },
   "pet": {
@@ -287,6 +424,40 @@
       "tabLabel": {
         "size": 11,
         "weight": 500
+      },
+      "screenTitle": {
+        "size": 27,
+        "weight": 700,
+        "tracking": -0.01,
+        "lineHeight": 1.15,
+        "align": "leading"
+      },
+      "sheetTitle": {
+        "size": 22,
+        "weight": 700,
+        "lineHeight": 1.15
+      },
+      "nameLarge": {
+        "size": 17,
+        "weight": 600
+      },
+      "name": {
+        "size": 16,
+        "weight": 600
+      },
+      "support": {
+        "size": 15,
+        "weight": 400
+      },
+      "supportSmall": {
+        "size": 14,
+        "weight": 400
+      },
+      "label": {
+        "size": 13,
+        "weight": 600,
+        "tracking": 0.06,
+        "uppercase": true
       }
     }
   },
@@ -308,7 +479,8 @@
     "appIcon": {
       "radius": 22,
       "side": 96
-    }
+    },
+    "surface": 22
   },
   "shadow": {
     "$description": "Valores do box-shadow do canvas (x = 0). Em SwiftUI o radius é blur / 2. Iguais no claro e no escuro.",
@@ -335,6 +507,54 @@
       "blur": 32,
       "color": "#231B17",
       "opacity": 0.18
+    },
+    "glass": {
+      "light": {
+        "y": 1,
+        "blur": 3,
+        "color": "#231B17",
+        "opacity": 0.15,
+        "ring": {
+          "width": 0.5,
+          "color": "#231B17",
+          "opacity": 0.06
+        }
+      },
+      "dark": {
+        "y": 1,
+        "blur": 3,
+        "color": "#000000",
+        "opacity": 0.35,
+        "ring": {
+          "width": 0.5,
+          "color": "#F7F1E8",
+          "opacity": 0.06
+        }
+      }
+    },
+    "glassNeve": {
+      "light": {
+        "y": 1,
+        "blur": 3,
+        "color": "#000000",
+        "opacity": 0.08,
+        "ring": {
+          "width": 0.5,
+          "color": "#000000",
+          "opacity": 0.06
+        }
+      },
+      "dark": {
+        "y": 1,
+        "blur": 3,
+        "color": "#000000",
+        "opacity": 0.4,
+        "ring": {
+          "width": 0.5,
+          "color": "#FFFFFF",
+          "opacity": 0.06
+        }
+      }
     }
   },
   "spacing": {
@@ -344,14 +564,28 @@
     "l": 16,
     "xl": 20,
     "xxl": 24,
-    "screenPadding": 20
+    "screenPadding": 20,
+    "screenMargin": 24,
+    "block": 14
   },
   "size": {
     "minTouchTarget": 44,
     "primaryButtonHeight": 54,
     "avatarSmall": 24,
     "avatar": 48,
-    "avatarLarge": 76
+    "avatarLarge": 76,
+    "rowHome": 98,
+    "rowList": 76,
+    "rowForm": 52,
+    "rowDetail": 44,
+    "glassButton": 54,
+    "roundButton": 44,
+    "chip": 36,
+    "checkCircle": 26,
+    "iconCircleS": 32,
+    "iconCircleM": 36,
+    "iconCircleL": 44,
+    "toast": 56
   },
   "pdf": {
     "rule": "O PDF usa sempre os valores claros dos tokens, nunca o tema do aparelho."
