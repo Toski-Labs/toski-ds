@@ -13,8 +13,9 @@ Tudo aditivo: nenhum valor nem nome existente muda, e o `app-tokens*.json` de an
 - **Paletas do app** (novo eixo, independente do tema de produto): `bege` (a atual, padrão e base) e `neve`, cada uma
   com claro e escuro. Em `tokens.json` › `palettes`; a paleta só lista o que muda e o build falha se ela mexer em token
   fora de `$allowed`. Ordem de aplicação: base → tema de produto → paleta. Pawta e Koti combinam com as duas.
-  - **Neve** troca `background` (`#F5F5F7` / `#121214`), `textPrimary` (`#1C1C1E` / `#F5F5F7`), `textSecondary` e
-    `tabIdle` (`#6E6E73` / `#A1A1A6`), `onAccent` (`#FFF8EE` / `#121214`) e os tokens novos abaixo. `accent`, `critical`,
+  - **Neve** troca `background` (`#F5F5F7` / `#121214`), `textPrimary` (`#1C1C1E` / `#F5F5F7`), `textSecondary`
+    (`#666669` / `#A1A1A6`), `tabIdle` (`#6E6E73` / `#A1A1A6`), `onAccent` (`#FFF8EE` / `#121214`) e os tokens novos
+    abaixo. **`textSecondary` claro é `#666669`, não o `#6E6E73` do canvas** (ver "Atenção"). `accent`, `critical`,
     `heroBackground` e `toastAction` continuam vindo do tema de produto e do Bege. Os tokens antigos que a Nova XP
     aposenta (`surface`, `border`, `divider`, `successBackground`…) não são definidos no Neve: o app usa os do Bege.
   - No Pawta+Neve, `onAccent` escuro é `#121214` (a paleta vence o tema nesse token). O Bege escuro continua `#231B17`.
@@ -47,10 +48,12 @@ Tudo aditivo: nenhum valor nem nome existente muda, e o `app-tokens*.json` de an
 
 ### Atenção
 
-- **Neve claro: `textSecondary` (`#6E6E73`) sobre `neutralFill` (`#E5E5EA`) dá 4,04:1**, abaixo de 4,5:1, e o canvas usa
-  esse par (chips e selos). Sobre `heroBackground` dá 3,56 a 4,08:1 conforme o tema (o canvas não escreve texto ali).
-  Os valores são os aprovados e não foram alterados: os dois pares ficam em `contrast.palettes.known`, aparecem como ⚠ no
-  `npm run contrast` e um teste impede que a lista cresça. `#666669` passaria nos dois. Decisão do design.
+- **Neve claro: `textSecondary` mudou de `#6E6E73` (canvas) para `#666669`.** Com o do canvas, o apoio sobre `neutralFill`
+  (`#E5E5EA`, usado em chips e selos) dava 4,04:1, abaixo de 4,5:1; agora dá 4,56:1 (5,26:1 sobre `background`). É a única
+  cor da paleta que difere do canvas, e o `tabIdle` do Neve continua `#6E6E73`. Falta o canvas acompanhar.
+- **Ressalva que sobra:** `textSecondary` claro do Neve sobre `heroBackground` passa no Pawta (4,61:1), mas dá 4,27:1 com
+  a base e 4,02:1 com o Koti. Fica em `contrast.palettes.known`, aparece como ⚠ no `npm run contrast` e um teste impede
+  que a lista cresça; o canvas não escreve texto de apoio sobre o círculo do mascote.
 - **`link` da Nova XP não é o do DS**: a Nova XP usa o próprio `accent` (`#3E4C8A` / `#A9B4E8`); o DS tem `link`
   `#2C376A` / `#C9D0F2` (`accentDeep` no app). Nada mudou; só registro a diferença.
 - O `ToskiColorTests` do app compara as chaves de `color` com o enum Swift do app: ao levar este `app-tokens` para o
