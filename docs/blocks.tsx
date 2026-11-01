@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, themeContrastReport, themedColors, font, layout, mobile, mobileRadii, radii, type Platform } from '../src/tokens';
-import { ThemeFrame, useProduct } from './ThemeFrame';
+import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, themeContrastReport, themedColors, font, layout, mobile, mobileRadii, radii, paletteById, paletteColorSet, paletteContrastReport, paletteIds, paletteShadows, type ModeShadowStyle, type Platform } from '../src/tokens';
+import { ThemeFrame, usePalette, useProduct } from './ThemeFrame';
 
 function Swatch({ value, label }: { value: string; label?: string }) {
   return (
@@ -31,7 +31,8 @@ export function BrandPalette() {
 const scopeLabel = { shared: 'web + mobile', web: 'só web', mobile: 'só mobile' } as const;
 
 export function SemanticPalette({ platform = 'web' }: { platform?: Platform }) {
-  const list = themedColors(platform, useProduct());
+  const palette = usePalette();
+  const list = themedColors(platform, useProduct(), platform === 'mobile' ? palette : undefined);
   return (
     <div className="sb-unstyled text-ink font-sans overflow-x-auto">
       <table className="w-full border-collapse text-left text-sm">
@@ -192,14 +193,18 @@ export function MobileTypeScale() {
           <span className="text-[13px] text-muted">
             <code>ToskiFont.{name}</code> — {t.size}pt · {t.weight}
             {t.tracking ? ` · tracking ${t.tracking}em` : ''}
+            {t.lineHeight ? ` · altura de linha ${t.lineHeight}` : ''}
             {t.uppercase ? ' · caixa alta' : ''}
+            {t.align === 'leading' ? ' · alinhado à esquerda' : ''}
           </span>
           <span
             style={{
               fontSize: t.size,
               fontWeight: t.weight,
+              lineHeight: t.lineHeight,
               letterSpacing: t.tracking ? `${t.tracking}em` : undefined,
               textTransform: t.uppercase ? 'uppercase' : undefined,
+              textAlign: t.align === 'leading' ? 'left' : undefined,
             }}
           >
             A Paçoca cuida de você
@@ -231,6 +236,7 @@ export function MobileExtras() {
         {Object.entries(mobile.shadow)
           .map(([k, v]) => `${k} y ${v.y} · blur ${v.blur} · ${v.color} ${Math.round(v.opacity * 100)}%`)
           .join(' | ')}
+        . Exceção: <code>glass</code> e <code>glassNeve</code> mudam com o modo (veja Paletas, abaixo).
       </div>
       {Object.entries(mobile.rules).map(([k, rule]) => (
         <div key={k} className="py-2 text-sm">
@@ -384,6 +390,130 @@ export function BallDemo() {
           </svg>
           <code className="text-xs text-muted">{k} · {motion.ball[k].duration}s · {motion.ball[k].rise}</code>
         </div>
+      ))}
+    </div>
+  );
+}
+
+// ---------- Paletas do app (Nova XP) ----------
+
+const hexToRgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(', ');
+
+/** "#RRGGBB" + opacidade → rgba(), para montar o box-shadow do vidro. */
+const rgbaOf = (hex: string, opacity: number) => `rgba(${hexToRgb(hex)}, ${opacity})`;
+
+function glassBoxShadow(s: ModeShadowStyle): string {
+  return `0 ${s.y}px ${s.blur}px ${rgbaOf(s.color, s.opacity)}, 0 0 0 ${s.ring.width}px ${rgbaOf(s.ring.color, s.ring.opacity)}`;
+}
+
+/** O vocabulário da Nova XP nas duas paletas, claro e escuro, com o produto escolhido na barra. */
+export function PaletteVocabulary() {
+  const product = useProduct();
+  const sets = paletteIds.map((id) => ({ id, list: paletteColorSet(id, product) }));
+  const names = sets[0].list.map((c) => c.name);
+  const bg = (id: string, mode: 'light' | 'dark') => sets.find((s) => s.id === id)!.list.find((c) => c.name === 'background')![mode];
+  return (
+    <div className="sb-unstyled text-ink font-sans overflow-x-auto">
+      <table className="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr>
+            <th className="py-2 pr-4">Token</th>
+            {paletteIds.flatMap((id) => [
+              <th key={`${id}-l`} className="py-2 pr-4">{paletteById(id).name} claro</th>,
+              <th key={`${id}-d`} className="py-2 pr-4">{paletteById(id).name} escuro</th>,
+            ])}
+          </tr>
+        </thead>
+        <tbody>
+          {names.map((name) => (
+            <tr key={name} className="border-t border-line">
+              <td className="py-2 pr-4"><code>{name}</code></td>
+              {sets.flatMap((s) =>
+                (['light', 'dark'] as const).map((mode) => {
+                  const value = s.list.find((c) => c.name === name)![mode];
+                  return (
+                    <td key={`${s.id}-${mode}`} className="py-2 pr-4">
+                      <div className="flex items-center gap-2">
+                        {/* translúcidas aparecem sobre o fundo da própria paleta */}
+                        <span className="size-8 shrink-0 rounded-[8px] border border-line" style={{ background: bg(s.id, mode) }} aria-hidden="true">
+                          <span className="block size-full rounded-[7px]" style={{ background: value }} />
+                        </span>
+                        <code className="text-[13px]">{value}</code>
+                      </div>
+                    </td>
+                  );
+                }),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Sombra do vidro (sombra + anel de 0,5 pt) em cada paleta e modo. */
+export function GlassShadows() {
+  const product = useProduct();
+  return (
+    <div className="sb-unstyled text-ink font-sans grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
+      {paletteIds.flatMap((id) =>
+        (['light', 'dark'] as const).map((mode) => {
+          const set = paletteColorSet(id, product);
+          const c = (name: string) => set.find((x) => x.name === name)![mode];
+          const shadow = paletteShadows(id).glass[mode];
+          return (
+            <div key={`${id}-${mode}`} className="flex flex-col gap-2 rounded-card p-5" style={{ background: c('background'), color: c('textPrimary') }}>
+              <span className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: c('textSecondary') }}>
+                {paletteById(id).name} · {mode === 'light' ? 'claro' : 'escuro'}
+              </span>
+              <div
+                className="flex h-14 items-center justify-center text-sm font-semibold"
+                style={{
+                  borderRadius: mobileRadii.find((r) => r.name === 'surface')!.value,
+                  background: c('glass'),
+                  border: `1px solid ${c('glassBorder')}`,
+                  boxShadow: glassBoxShadow(shadow),
+                  backdropFilter: 'blur(20px)',
+                }}
+              >
+                Vidro
+              </div>
+              <code className="text-[13px]" style={{ color: c('textSecondary') }}>
+                y {shadow.y} · blur {shadow.blur} · {shadow.color} {Math.round(shadow.opacity * 100)}% · anel {shadow.ring.width}pt {shadow.ring.color} {Math.round(shadow.ring.opacity * 100)}%
+              </code>
+            </div>
+          );
+        }),
+      )}
+    </div>
+  );
+}
+
+/** Pares de contraste da Nova XP na paleta escolhida na barra, com o produto escolhido. */
+export function PaletteContrast() {
+  const palette = usePalette() ?? 'bege';
+  const product = useProduct();
+  const report = paletteContrastReport(palette, product);
+  return (
+    <div className="sb-unstyled text-ink font-sans flex flex-col gap-4 lg:flex-row">
+      {(['light', 'dark'] as const).map((mode) => (
+        <ThemeFrame key={mode} mode={mode} title={`${paletteById(palette).name} · ${mode === 'light' ? 'claro' : 'escuro'}`}>
+          <ul className="flex flex-col gap-2 text-sm">
+            {report
+              .filter((r) => r.mode === mode)
+              .map((r) => (
+                <li key={`${r.fg}-${r.bg}-${r.level}`} className="flex items-center justify-between gap-3 border-b border-line pb-2" title={r.known}>
+                  <span>
+                    {r.fg} / {r.bg}
+                  </span>
+                  <span className="font-semibold tabular-nums">
+                    {r.ratio.toFixed(2)}:1 {r.pass ? '✓' : r.known ? '⚠' : '✗'}
+                  </span>
+                </li>
+              ))}
+          </ul>
+        </ThemeFrame>
       ))}
     </div>
   );

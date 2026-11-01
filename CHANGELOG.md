@@ -5,6 +5,60 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+Tudo aditivo: nenhum valor nem nome existente muda, e o `app-tokens*.json` de antes continua válido linha a linha
+(só entram chaves novas, no fim de cada grupo; `colorNeve` entra logo depois de `color`). A web (`tokens.css`, `web*.json`, `theme.css`, `tokens.ts`) não muda.
+
+- **Paletas do app** (novo eixo, independente do tema de produto): `bege` (a atual, padrão e base) e `neve`, cada uma
+  com claro e escuro. Em `tokens.json` › `palettes`; a paleta só lista o que muda e o build falha se ela mexer em token
+  fora de `$allowed`. Ordem de aplicação: base → tema de produto → paleta. Pawta e Koti combinam com as duas.
+  - **Neve** troca `background` (`#F5F5F7` / `#121214`), `textPrimary` (`#1C1C1E` / `#F5F5F7`), `textSecondary`
+    (`#666669` / `#A1A1A6`), `tabIdle` (`#6E6E73` / `#A1A1A6`), `onAccent` (`#FFF8EE` / `#121214`) e os tokens novos
+    abaixo. **`textSecondary` claro é `#666669`, não o `#6E6E73` do canvas** (ver "Atenção"). `accent`, `critical`,
+    `heroBackground` e `toastAction` continuam vindo do tema de produto e do Bege. Os tokens antigos que a Nova XP
+    aposenta (`surface`, `border`, `divider`, `successBackground`…) não são definidos no Neve: o app usa os do Bege.
+  - No Pawta+Neve, `onAccent` escuro é `#121214` (a paleta vence o tema nesse token). O Bege escuro continua `#231B17`.
+- **Cores novas** (mobile, claro/escuro; no `color` do `app-tokens` com os valores do Bege): `neutralFill`, `glass`,
+  `glassBorder`, `tabGlass`, `checkLine`, `badgeBg`, `petA`, `petB`, `mLine` (linha do mascote), `mInk` (olho e focinho).
+  Saem também em `mobile.json` e `ToskiColors.swift`. `ballLine` não virou token: a bola do pet já existe nos SVGs do
+  Pawta (`ball-indigo-*`, com `#F4E4CC` / `#2C376A`) e o canvas só a declara, sem usar. `heroBg` e `toastAction` já existiam
+  (`heroBackground`, `toastAction`) e não foram duplicados.
+- **`app-tokens*.json`**: `colorNeve` (o vocabulário completo da Nova XP no Neve, com o tema de produto aplicado, em
+  ordem fixa: os tokens novos, `heroBackground`, `toastAction`, `background`, `textPrimary`, `textSecondary`, `tabIdle`,
+  `onAccent`) e `shadow.glass` / `shadow.glassNeve`. Quem lê `shadow` precisa saber que essas duas chaves são diferentes
+  das outras (as de sempre são iguais no claro e no escuro): trazem `{light, dark}`, cada um com a sombra
+  `{y, blur, color, opacity}` e um anel `ring: {width, color, opacity}`.
+- **Sombra do vidro** (`shadowMode` em `tokens.json`, `ToskiShadow.glass` / `ToskiShadow.glassNeve` no Swift): Bege claro
+  `rgba(35,27,23,.15)` + anel `.06`; Bege escuro `rgba(0,0,0,.35)` + anel `rgba(247,241,232,.06)`; Neve claro
+  `rgba(0,0,0,.08)` + anel `.06`; Neve escuro `rgba(0,0,0,.40)` + anel `rgba(255,255,255,.06)`. Sombra `y 1, blur 3`, anel 0,5 pt.
+- **Forma e espaço**: `radius.surface` 22 (os raios atuais ficam); `spacing.screenMargin` 24 e `spacing.block` 14
+  (`screenPadding` 20 continua); `size.rowHome` 98, `rowList` 76, `rowForm` 52, `rowDetail` 44, `glassButton` 54, `roundButton` 44,
+  `chip` 36, `checkCircle` 26, `iconCircleS` 32, `iconCircleM` 36, `iconCircleL` 44, `toast` 56.
+- **Tipografia** (Outfit): `typography.styles.screenTitle` (27 · 700 · à esquerda), `sheetTitle` (22 · 700), `nameLarge` (17 · 600),
+  `name` (16 · 600), `support` (15 · 400), `supportSmall` (14 · 400) e `label` (13 · 600 · caixa alta · +0,06; igual ao
+  `sectionLabel`, que continua). Conferido nos quadros: `screenTitle` e `sheetTitle` têm altura de linha 1,15 e
+  `screenTitle` tem tracking −0,01 em (78 dos 79 usos); por isso entram `lineHeight` e `align` no JSON e no Swift
+  (`ToskiFont.Style.lineHeight`, `.alignment`). Os outros estilos não têm altura fixa nos quadros (varia de 1,4 a 1,5).
+- **Swift**: `build/swift/ToskiPaletteNeve.swift` (`ToskiNevePalette`, exportado como `@toski-labs/ds/ToskiPaletteNeve.swift`).
+- **Contraste**: os pares da Nova XP (texto, apoio e `onAccent` sobre `accent`, vidro composto sobre o fundo, bordas e
+  linhas a 3:1) passam a ser checados em cada paleta × (base, Pawta, Koti). Um fundo `a/b` é `a` translúcida sobre `b`.
+- **Storybook**: seletor **Paleta** na barra, e em Tokens/Cores a seção "Paletas do app (Nova XP)" com o vocabulário
+  Bege × Neve, a sombra do vidro e os pares de contraste.
+
+### Atenção
+
+- **Neve claro: `textSecondary` mudou de `#6E6E73` (canvas) para `#666669`.** Com o do canvas, o apoio sobre `neutralFill`
+  (`#E5E5EA`, usado em chips e selos) dava 4,04:1, abaixo de 4,5:1; agora dá 4,56:1 (5,26:1 sobre `background`). É a única
+  cor da paleta que difere do canvas, e o `tabIdle` do Neve continua `#6E6E73`. Falta o canvas acompanhar.
+- **Ressalva que sobra:** `textSecondary` claro do Neve sobre `heroBackground` passa no Pawta (4,61:1), mas dá 4,27:1 com
+  a base e 4,02:1 com o Koti. Fica em `contrast.palettes.known`, aparece como ⚠ no `npm run contrast` e um teste impede
+  que a lista cresça; o canvas não escreve texto de apoio sobre o círculo do mascote.
+- **`link` da Nova XP não é o do DS**: a Nova XP usa o próprio `accent` (`#3E4C8A` / `#A9B4E8`); o DS tem `link`
+  `#2C376A` / `#C9D0F2` (`accentDeep` no app). Nada mudou; só registro a diferença.
+- O `ToskiColorTests` do app compara as chaves de `color` com o enum Swift do app: ao levar este `app-tokens` para o
+  app, o enum e os testes dele precisam dos tokens novos (e de `colorNeve`/`shadow.glass*`) no mesmo passo.
+
 ## 0.6.1 — 2026-10-28
 
 ### Adicionado

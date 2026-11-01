@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { BrandPalette, SemanticPalette, ContrastTable, MobileExtras } from '../blocks';
+import { BrandPalette, SemanticPalette, ContrastTable, MobileExtras, PaletteVocabulary, GlassShadows, PaletteContrast } from '../blocks';
 
 <Meta title="Tokens/Cores" />
 
@@ -34,6 +34,44 @@ Swift: `ToskiColors.surface`, `ToskiColors.textPrimary`… (nomes iguais aos do 
 ### Pets, Black Friday, sombras, espaçamentos, tamanhos e regras (só mobile)
 
 <MobileExtras />
+
+## Paletas do app (Nova XP)
+
+Um eixo novo, **independente do tema de produto**: a paleta troca fundo, texto e neutros; o tema (Pawta, Koti)
+continua mandando no destaque e combina com qualquer paleta. Duas paletas, cada uma com claro e escuro:
+
+- **Bege** (padrão): a base. `color` do `app-tokens` é sempre o Bege.
+- **Neve**: neutros frios. Só lista o que muda e sai no `app-tokens` em `colorNeve` e `shadow.glassNeve`.
+
+Ordem de aplicação: base → tema de produto → paleta. A paleta vence só nos tokens que declara; por isso `onAccent`
+do Neve (`#121214` no escuro) vale mesmo com o Pawta. Use o seletor **Paleta** na barra para ver o Bege ou o Neve nas
+tabelas do app (as da web não mudam: paletas existem só no app). No Neve, `accent`, `critical`, `heroBackground` e
+`toastAction` seguem o tema; os tokens antigos que a Nova XP aposenta (`surface`, `border`, `divider`,
+`successBackground`…) não são definidos: o app usa os do Bege.
+
+Swift: `ToskiColors.glass` (Bege) e `ToskiNevePalette.glass` (Neve); `ToskiShadow.glass` e `ToskiShadow.glassNeve`.
+
+### Vocabulário da Nova XP
+
+Os mesmos nomes nas duas paletas, com o produto escolhido na barra. As cores translúcidas aparecem sobre o fundo da paleta.
+
+<PaletteVocabulary />
+
+### Sombra do vidro
+
+Diferente das outras sombras (iguais no claro e no escuro), `glass` e `glassNeve` têm um valor por modo: uma sombra
+`{y, blur, color, opacity}` mais um anel de 0,5 pt `{width, color, opacity}`.
+
+<GlassShadows />
+
+### Contraste da Nova XP
+
+Texto, apoio e `onAccent` sobre `accent`, vidro sobre o fundo e linhas (3:1), na paleta escolhida na barra e com o produto
+escolhido. ⚠ = abaixo do mínimo, aceito com ressalva (`contrast.palettes.known` em `tokens.json`): no Neve claro,
+`textSecondary` sobre `heroBackground` passa no Pawta (4,61:1) mas dá 4,27:1 na base e 4,02:1 no Koti; o canvas não
+escreve texto de apoio sobre o círculo do mascote.
+
+<PaletteContrast />
 
 ## Contraste
 

@@ -14,6 +14,19 @@ export function useProduct(): string | undefined {
   return product;
 }
 
+/** Paleta escolhida na barra do Storybook (data-palette no <html>). undefined = Bege (a padrão). Só vale para o app. */
+export function usePalette(): string | undefined {
+  const read = () => document.documentElement.getAttribute('data-palette') ?? undefined;
+  const [palette, setPalette] = useState<string | undefined>(typeof document === 'undefined' ? undefined : read());
+  useEffect(() => {
+    setPalette(read());
+    const observer = new MutationObserver(() => setPalette(read()));
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-palette'] });
+    return () => observer.disconnect();
+  }, []);
+  return palette;
+}
+
 /** Aplica as variáveis de um tema só dentro do quadro (para mostrar claro e escuro lado a lado). */
 export function themeVars(mode: Mode, product?: string): CSSProperties {
   const vars: Record<string, string> = { colorScheme: mode };

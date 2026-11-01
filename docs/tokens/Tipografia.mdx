@@ -21,4 +21,10 @@ Fonte única: **Outfit** (variável). Na web vem de `@fontsource-variable/outfit
 No Swift: `Text("Hoje").font(ToskiFont.headline.font)`. Para `sectionLabel`, use também
 `.tracking(ToskiFont.sectionLabel.trackingPoints)` e `.textCase(.uppercase)`.
 
+Nova XP (ao lado dos de sempre): `screenTitle` (27 · 700 · à esquerda · altura de linha 1,15 · tracking −0,01),
+`sheetTitle` (22 · 700 · 1,15), `nameLarge` (17 · 600), `name` (16 · 600), `support` (15 · 400), `supportSmall` (14 · 400)
+e `label` (13 · 600 · caixa alta · +0,06; é o `sectionLabel` com o nome novo). A altura de linha só está nos dois
+títulos porque só neles o canvas usa um valor fixo; nos textos corridos ela varia de 1,4 a 1,5 conforme o quadro.
+`ToskiFont.Style` ganhou `lineHeight` (em múltiplos do tamanho) e `alignment`.
+
 <MobileTypeScale />

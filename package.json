@@ -45,6 +45,7 @@
     "./themes/*.css": "./build/css/themes/*.css",
     "./ToskiThemePawta.swift": "./build/swift/ToskiThemePawta.swift",
     "./ToskiThemeKoti.swift": "./build/swift/ToskiThemeKoti.swift",
+    "./ToskiPaletteNeve.swift": "./build/swift/ToskiPaletteNeve.swift",
     "./products/*": "./products/*",
     "./ToskiColors.swift": "./build/swift/ToskiColors.swift",
     "./ToskiTokens.swift": "./build/swift/ToskiTokens.swift",

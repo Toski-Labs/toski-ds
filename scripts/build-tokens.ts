@@ -16,6 +16,7 @@ import {
   camel,
   colors,
   component,
+  extraPaletteIds,
   font,
   iconEntries,
   layout,
@@ -24,14 +25,19 @@ import {
   mobileRadii,
   mobileRadiusNote,
   motion,
+  paletteColorSet,
+  paletteShadows,
+  palettes,
   radii,
   themeIds,
   themeOverrides,
   themedColors,
   themes,
+  validatePalettes,
   validateThemes,
   webMotion,
   webRadii,
+  type ModeShadow,
 } from '../src/tokens/index';
 import { renamedThemes } from '../src/renamed';
 
@@ -221,6 +227,7 @@ function mobileData() {
       ),
     },
     shadow: mobile.shadow,
+    shadowMode: mobile.shadowMode,
     spacing: mobile.spacing,
     size: mobile.size,
     component: stripDescriptions(component),
@@ -239,6 +246,7 @@ const APP_COLOR_ORDER = [
   'faint', 'divider', 'borderStrong', 'barInactive', 'accentDeep',
   'featureCard', 'onFeatureCard', 'onAccentSubtle', 'lockBackground', 'onLock', 'alertBackground',
   'bannerBackground', 'previewBackdrop', 'themePreviewCard', 'unreadBackground',
+  'neutralFill', 'glass', 'glassBorder', 'tabGlass', 'checkLine', 'badgeBg', 'petA', 'petB', 'mLine', 'mInk',
 ];
 const APP_RADIUS_ORDER = [
   'checkbox', 'swatch', 'pdfPage', 'small', 'iconBox', 'buttonSmall', 'segmentTrack', 'input', 'button', 'tile',
@@ -253,6 +261,14 @@ function ordered<T>(entries: [string, T][], order: string[]): [string, T][] {
 /** O app lê "none" (não "transparent"). */
 const appValue = (v: string) => (v === 'transparent' ? 'none' : v);
 
+/** Sombras que mudam com o modo: a da paleta padrão (glass) e, depois, a de cada outra paleta (glassNeve). */
+function modeShadowEntries(): [string, ModeShadow][] {
+  return Object.entries(mobile.shadowMode).flatMap(([name, base]) => [
+    [name, base] as [string, ModeShadow],
+    ...extraPaletteIds.map((id): [string, ModeShadow] => [`${name}${palettes[id].suffix}`, paletteShadows(id)[name]]),
+  ]);
+}
+
 function buildAppJson(themeId?: string): string {
   const palette = themeId ? themedColors('mobile', themeId) : mobileColors;
   const color = Object.fromEntries(
@@ -260,6 +276,15 @@ function buildAppJson(themeId?: string): string {
       palette.map((c) => [c.name, { light: appValue(c.light), dark: appValue(c.dark), use: c.description }]),
       APP_COLOR_ORDER,
     ),
+  );
+  // Paletas além da padrão (Bege = color): colorNeve com o vocabulário da Nova XP, já com o tema de produto.
+  const paletteColor = Object.fromEntries(
+    extraPaletteIds.map((id) => [
+      `color${palettes[id].suffix}`,
+      Object.fromEntries(
+        paletteColorSet(id, themeId).map((c) => [c.name, { light: appValue(c.light), dark: appValue(c.dark), use: c.description }]),
+      ),
+    ]),
   );
   const radiusEntries: [string, number | { radius: number; side: number }][] = [
     ...radii.map((r): [string, number] => [r.mobileName, r.value]),
@@ -272,11 +297,18 @@ function buildAppJson(themeId?: string): string {
     $description: `Tokens de design do Toski. Cores semânticas têm valor para o tema claro e para o escuro. Gerado pelo Toski DS (github.com/Toski-Labs/toski-ds): não edite à mão; mude tokens/tokens.json no DS e rode npm run sync:app.`,
     brand: Object.fromEntries(brand.map((b) => [b.name, b.value])),
     color,
+    ...paletteColor,
     pet: mobile.pet,
     blackFriday: themeId ? { ...mobile.blackFriday, ...themes[themeId].blackFriday } : mobile.blackFriday,
     typography: { family: font.family, weights: font.weights, styles: mobile.typography },
     radius: { $description: mobileRadiusNote, ...Object.fromEntries(ordered(radiusEntries, APP_RADIUS_ORDER)) },
-    shadow: { $description: mobile.shadowNote, ...mobile.shadow },
+    // O texto de $description fica igual ao de antes (nada do que existe muda); glass e glassNeve são a exceção
+    // "iguais no claro e no escuro": trazem light e dark. Isso está em docs/tokens/Cores.mdx e no CHANGELOG.
+    shadow: {
+      $description: mobile.shadowNote,
+      ...mobile.shadow,
+      ...Object.fromEntries(modeShadowEntries()),
+    },
     spacing: mobile.spacing,
     size: mobile.size,
     ...Object.fromEntries(Object.entries(mobile.rules).map(([k, rule]) => [k, { rule }])),
@@ -349,6 +381,13 @@ function buildSwift(): string {
         `    public static let ${k} = Style(y: ${v.y}, blur: ${v.blur}, color: ToskiColors.${swiftFixed(v.color)}, opacity: ${v.opacity})`,
     )
     .join('\n');
+  const ring = (r: { width: number; color: string; opacity: number }) =>
+    `Ring(width: ${r.width}, color: ToskiColors.${swiftFixed(r.color)}, opacity: ${r.opacity})`;
+  const modeStyle = (v: ModeShadow['light']) =>
+    `Layered(shadow: Style(y: ${v.y}, blur: ${v.blur}, color: ToskiColors.${swiftFixed(v.color)}, opacity: ${v.opacity}), ring: ${ring(v.ring)})`;
+  const modeShadowLines = modeShadowEntries()
+    .map(([k, v]) => `    public static let ${k} = ByMode(light: ${modeStyle(v.light)}, dark: ${modeStyle(v.dark)})`)
+    .join('\n');
   const numLines = (o: Record<string, number>) =>
     Object.entries(o)
       .map(([k, v]) => `    public static let ${k}: CGFloat = ${v}`)
@@ -357,7 +396,9 @@ function buildSwift(): string {
     .map(([k, t]) => {
       const args = [`size: ${t.size}`, `weight: ${swiftWeight[t.weight] ?? '.regular'}`];
       if (t.tracking) args.push(`tracking: ${t.tracking}`);
+      if (t.lineHeight) args.push(`lineHeight: ${t.lineHeight}`);
       if (t.uppercase) args.push('uppercase: true');
+      if (t.align) args.push(`alignment: .${t.align}`);
       return `    public static let ${k} = Style(${args.join(', ')})`;
     })
     .join('\n');
@@ -454,6 +495,27 @@ public enum ToskiShadow {
     }
 
 ${shadowLines}
+
+    /// Anel de contorno fino que acompanha uma sombra (SwiftUI: .overlay(shape.stroke(color.opacity(opacity), lineWidth: width))).
+    public struct Ring: Sendable {
+        public let width: CGFloat
+        public let color: Color
+        public let opacity: Double
+    }
+
+    /// Sombra com o anel de contorno.
+    public struct Layered: Sendable {
+        public let shadow: Style
+        public let ring: Ring
+    }
+
+    /// Sombra que muda entre o claro e o escuro. ${mobile.shadowModeNote}
+    public struct ByMode: Sendable {
+        public let light: Layered
+        public let dark: Layered
+    }
+
+${modeShadowLines}
 }
 
 public enum ToskiSpacing {
@@ -473,19 +535,33 @@ public enum ToskiFont {
         public let weight: Font.Weight
         /// Espaçamento entre letras em em (multiplique pelo tamanho para pontos).
         public let tracking: CGFloat
+        /// Altura de linha em múltiplos do tamanho (1.15 = 115%). 0 = a do sistema.
+        public let lineHeight: CGFloat
         public let uppercase: Bool
+        public let alignment: TextAlignment
 
-        public init(size: CGFloat, weight: Font.Weight, tracking: CGFloat = 0, uppercase: Bool = false) {
+        public init(
+            size: CGFloat,
+            weight: Font.Weight,
+            tracking: CGFloat = 0,
+            lineHeight: CGFloat = 0,
+            uppercase: Bool = false,
+            alignment: TextAlignment = .leading
+        ) {
             self.size = size
             self.weight = weight
             self.tracking = tracking
+            self.lineHeight = lineHeight
             self.uppercase = uppercase
+            self.alignment = alignment
         }
 
         /// Fonte Outfit que acompanha o Tamanho do Texto do sistema.
         public var font: Font { .custom(ToskiFont.family, size: size).weight(weight) }
         /// Tracking em pontos, para .tracking(_:).
         public var trackingPoints: CGFloat { tracking * size }
+        /// Altura de linha em pontos (0 = a do sistema).
+        public var lineHeightPoints: CGFloat { lineHeight * size }
     }
 
 ${typeLines}
@@ -725,6 +801,42 @@ ${SWIFT_HELPERS}
 ${renamed}`;
 }
 
+/** Cores da paleta para o app em SwiftUI: só o que a paleta declara (troca as de mesmo nome em ToskiColors). */
+function buildPaletteSwift(paletteId: string): string {
+  const p = palettes[paletteId];
+  const names = Object.keys(p.color);
+  const base = themedColors('mobile');
+  const colorLines = names
+    .map((name) => {
+      const c = base.find((x) => x.name === name)!;
+      const v = p.color[name];
+      return `    /// ${c.description}\n    public static let ${name} = ${swiftDynamic(v.light, v.dark)}`;
+    })
+    .join('\n');
+  return `//  ToskiPalette${p.suffix}.swift
+//  ${HEADER}
+//  Paleta: ${p.name}. Só o que muda em relação ao ToskiColors (fundo, texto, neutros, vidro e mascote).
+//
+//  Uso: Text("Olá").foregroundStyle(Toski${p.suffix}Palette.textPrimary)
+//  O destaque, critical, heroBackground e toastAction vêm do tema de produto (ToskiPawtaTheme) e do ToskiColors.
+//  onAccent: a paleta vence o tema (no escuro, a cor do texto sobre o destaque depende do fundo).
+//  A sombra do vidro desta paleta é ToskiShadow.glass${p.suffix}.
+
+import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
+public enum Toski${p.suffix}Palette {
+${colorLines}
+
+${SWIFT_HELPERS}
+}
+`;
+}
+
 /** SVGs de ícone e mascote de cada produto, em texto, para os componentes ProductIcon e ProductMascot. */
 function buildProductsTs(): string {
   const data: Record<string, Record<string, string>> = {};
@@ -739,7 +851,7 @@ function buildProductsTs(): string {
 }
 
 function checkThemeAssets(): void {
-  const errors = validateThemes();
+  const errors = [...validateThemes(), ...validatePalettes()];
   for (const id of themeIds) {
     for (const a of themes[id].assets) {
       if (!existsSync(join(root, 'products', id, a.file))) errors.push(`${id}: falta products/${id}/${a.file}`);
@@ -765,6 +877,9 @@ const outputs: Record<string, string> = {
   'src/generated/tokens.ts': buildTs(),
   'src/generated/icons.ts': buildIconsTs(),
   'src/generated/products.ts': buildProductsTs(),
+  ...Object.fromEntries(
+    extraPaletteIds.map((id) => [`build/swift/ToskiPalette${palettes[id].suffix}.swift`, buildPaletteSwift(id)]),
+  ),
   ...Object.fromEntries(
     themeIds.flatMap((id) => [
       [`build/json/app-tokens.${id}.json`, buildAppJson(id)],
