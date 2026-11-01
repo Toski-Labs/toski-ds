@@ -20,7 +20,7 @@ public enum ToskiNevePalette {
     /// Texto principal
     public static let textPrimary = dynamic(light: 0x1C1C1E, dark: 0xF5F5F7)
     /// Texto de apoio, rótulos
-    public static let textSecondary = dynamic(light: 0x6E6E73, dark: 0xA1A1A6)
+    public static let textSecondary = dynamic(light: 0x666669, dark: 0xA1A1A6)
     /// Aba inativa
     public static let tabIdle = dynamic(light: 0x6E6E73, dark: 0xA1A1A6)
     /// Texto sobre o destaque

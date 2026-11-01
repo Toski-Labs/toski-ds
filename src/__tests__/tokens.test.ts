@@ -130,7 +130,8 @@ describe('paletas (Nova XP)', () => {
     expect(colorValue('mobile', 'background', 'light', 'pawta', 'neve')).toBe('#F5F5F7');
     expect(colorValue('mobile', 'background', 'dark', 'pawta', 'neve')).toBe('#121214');
     expect(colorValue('mobile', 'textPrimary', 'dark', 'pawta', 'neve')).toBe('#F5F5F7');
-    expect(colorValue('mobile', 'textSecondary', 'light', 'pawta', 'neve')).toBe('#6E6E73');
+    expect(colorValue('mobile', 'textSecondary', 'light', 'pawta', 'neve')).toBe('#666669'); // ajustado do #6E6E73 do canvas (4,5:1 sobre neutralFill)
+    expect(colorValue('mobile', 'textSecondary', 'dark', 'pawta', 'neve')).toBe('#A1A1A6');
     expect(colorValue('mobile', 'tabIdle', 'dark', 'pawta', 'neve')).toBe('#A1A1A6');
     expect(colorValue('mobile', 'neutralFill', 'dark', 'pawta', 'neve')).toBe('#2C2C2E');
     expect(colorValue('mobile', 'glass', 'light', 'pawta', 'neve')).toBe('rgba(255,255,255,0.62)');
@@ -199,10 +200,9 @@ describe('paletas (Nova XP)', () => {
   });
 
   it('as ressalvas de contraste não crescem sem ninguém ver', () => {
-    expect(knownGaps.map((k) => `${k.palette} ${k.mode} ${k.fg}/${k.bg}`)).toEqual([
-      'neve light textSecondary/neutralFill',
-      'neve light textSecondary/heroBackground',
-    ]);
+    expect(knownGaps.map((k) => `${k.palette} ${k.mode} ${k.fg}/${k.bg}`)).toEqual(['neve light textSecondary/heroBackground']);
+    // o app da Nova XP é o Pawta: nele nada fica abaixo do mínimo, em nenhuma paleta
+    for (const palette of paletteIds) expect(paletteContrastReport(palette, 'pawta').filter((r) => !r.pass)).toEqual([]);
     const failing = paletteIds.flatMap((p) => [undefined, ...themeIds].flatMap((t) => paletteContrastReport(p, t))).filter((r) => !r.pass);
     expect(new Set(failing.map((r) => `${r.palette} ${r.mode} ${r.fg}/${r.bg}`))).toEqual(
       new Set(knownGaps.map((k) => `${k.palette} ${k.mode} ${k.fg}/${k.bg}`)),

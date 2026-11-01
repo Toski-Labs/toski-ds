@@ -321,7 +321,7 @@
       "use": "Texto principal"
     },
     "textSecondary": {
-      "light": "#6E6E73",
+      "light": "#666669",
       "dark": "#A1A1A6",
       "use": "Texto de apoio, rótulos"
     },
