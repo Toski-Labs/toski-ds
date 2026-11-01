@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.7.0 — 2026-11-01
+
 ### Adicionado
 
 Tudo aditivo: nenhum valor nem nome existente muda, e o `app-tokens*.json` de antes continua válido linha a linha
