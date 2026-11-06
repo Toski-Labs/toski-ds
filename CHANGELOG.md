@@ -17,11 +17,11 @@ O `app-tokens*.json` do Pawta perde o que segue; só o app é afetado, salvo ond
   `onFeatureCard`, `onAccentSubtle`, `lockBackground`, `onLock`, `alertBackground`, `bannerBackground`, `previewBackdrop`,
   `themePreviewCard` e `unreadBackground`. `featureCard`, `lockBackground` e `themePreviewCard` também saem dos tokens que
   o tema de produto pode trocar (`themes.$allowed.mobile` fica só com `toastAction`) e dos temas Pawta e Koti.
-- **Cores compartilhadas que a web não usa** (saem da web e do app: `--toski-*`, `bg-*`, `web*.json`, `tokens.ts`):
-  `success-bg` (`successBackground`), `tabbar` (`tabBar`), `critical-bg` (`criticalBackground`) e `critical-line`
-  (`criticalBorder`). O site e os temas de editor/terminal (que têm paleta própria) não usam nenhuma.
-- **Só fora do app** (a web continua com elas, porque o site e o Storybook usam): as cores `success` e `segment`
-  (`segmentSelected`) e os raios `icon` (`iconBox`), `button`, `card` e `panel` (`sheet`). Marca nova em `tokens.json`:
+- **Cor compartilhada que nenhuma web usa** (sai da web e do app: `--toski-*`, `bg-*`, `web*.json`, `tokens.ts`):
+  `success-bg` (`successBackground`). O `rasti` define a dele no próprio CSS; os temas de editor/terminal têm paleta própria.
+- **Só fora do app** (a web continua com elas, porque os sites e o Storybook usam): as cores `success`, `segment`
+  (`segmentSelected`), `tabbar` (`tabBar`), `critical-bg` (`criticalBackground`) e `critical-line` (`criticalBorder`),
+  e os raios `icon` (`iconBox`), `button`, `card` e `panel` (`sheet`). Marca nova em `tokens.json`:
   `"app": false` num token de `color` ou de `radius` o tira de `mobile.json`, dos `app-tokens*.json` e do Swift.
 - **Raios do app**: saem `checkbox` 7, `swatch` 3, `small` 9, `buttonSmall` 12, `segmentTrack` 12, `tile` 16 e
   `notification` 22. Ficam `surface` 22, `appIcon` {22, 96}, `pdfPage` 4 e `inset`.
@@ -29,7 +29,7 @@ O `app-tokens*.json` do Pawta perde o que segue; só o app é afetado, salvo ond
   e `block` 14.
 - **`product.mascots`** (Pawta) sai de `app-tokens.pawta.json`, de `web.pawta.json` e das cores de mascote em
   `ToskiThemePawta.swift`. O componente `Mascot` e os SVGs não mudam.
-- Os pares de contraste dessas cores saem de `contrast` (os da web e do app que sobram continuam checados).
+- Os pares de contraste do app com essas cores saem de `contrast.mobile`; os da web continuam como estavam.
 
 ### Alterado
 

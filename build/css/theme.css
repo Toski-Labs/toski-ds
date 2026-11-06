@@ -14,8 +14,11 @@
   --color-accent-hover: var(--toski-accent-hover);
   --color-on-accent: var(--toski-on-accent);
   --color-critical: var(--toski-critical);
+  --color-critical-bg: var(--toski-critical-bg);
+  --color-critical-line: var(--toski-critical-line);
   --color-success: var(--toski-success);
   --color-segment: var(--toski-segment);
+  --color-tabbar: var(--toski-tabbar);
   --color-tab-idle: var(--toski-tab-idle);
   --color-accent-text: var(--toski-accent-text);
   --color-link: var(--toski-link);
