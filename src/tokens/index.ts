@@ -48,6 +48,8 @@ interface RawColor {
   mobileName?: string;
   /** Descrição usada no app quando é diferente da web. */
   mobileDescription?: string;
+  /** false: só a web tem o token; o app (mobile.json, app-tokens, Swift) não. */
+  app?: boolean;
 }
 
 export const camel = (s: string) => s.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
@@ -64,14 +66,16 @@ const mobileOnly = raw.mobile.color as Record<string, RawColor>;
 
 /** Cores de uma plataforma: compartilhadas + exclusivas, já com o nome daquela plataforma. */
 export function platformColors(platform: Platform): ColorToken[] {
-  const common = Object.entries(shared).map(([name, t]) => ({
-    name: platform === 'web' ? name : (t.mobileName ?? camel(name)),
-    webName: name,
-    light: t.light,
-    dark: t.dark,
-    description: platform === 'mobile' ? (t.mobileDescription ?? t.description) : t.description,
-    scope: 'shared' as const,
-  }));
+  const common = Object.entries(shared)
+    .filter(([, t]) => platform === 'web' || t.app !== false)
+    .map(([name, t]) => ({
+      name: platform === 'web' ? name : (t.mobileName ?? camel(name)),
+      webName: name,
+      light: t.light,
+      dark: t.dark,
+      description: platform === 'mobile' ? (t.mobileDescription ?? t.description) : t.description,
+      scope: 'shared' as const,
+    }));
   const own = Object.entries(platform === 'web' ? webOnly : mobileOnly).map(([name, t]) => ({
     name,
     light: t.light,
@@ -91,7 +95,12 @@ export const radii = Object.entries(raw.radius).map(([name, t]) => ({
   mobileName: (t as { mobileName?: string }).mobileName ?? name,
   value: t.value,
   description: t.description,
+  /** false: o raio é só da web (o app não tem). */
+  app: (t as { app?: boolean }).app !== false,
 }));
+
+/** Raios compartilhados que o app também tem. */
+export const appRadii = radii.filter((r) => r.app);
 
 interface RawMobileRadius {
   value?: number;

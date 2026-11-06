@@ -53,7 +53,6 @@
   --toski-critical-bg: #F8E0D4;
   --toski-critical-line: #EBC0AA;
   --toski-success: #3F6E3B;
-  --toski-success-bg: #E4EEDC;
   --toski-segment: #FFFFFF;
   --toski-tabbar: #FFFDF9;
   --toski-tab-idle: #7D6858;
@@ -84,7 +83,6 @@
     --toski-critical-bg: #45261A;
     --toski-critical-line: #6A3A26;
     --toski-success: #9CC48F;
-    --toski-success-bg: #2C3A27;
     --toski-segment: #4A3A2E;
     --toski-tabbar: #1B1511;
     --toski-tab-idle: #A08B78;
@@ -115,7 +113,6 @@
   --toski-critical-bg: #45261A;
   --toski-critical-line: #6A3A26;
   --toski-success: #9CC48F;
-  --toski-success-bg: #2C3A27;
   --toski-segment: #4A3A2E;
   --toski-tabbar: #1B1511;
   --toski-tab-idle: #A08B78;

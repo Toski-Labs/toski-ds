@@ -63,55 +63,10 @@
       "dark": "#231B17",
       "use": "Texto sobre crítico"
     },
-    "criticalBackground": {
-      "light": "#F8E0D4",
-      "dark": "#45261A",
-      "use": "Fundo de alertas"
-    },
-    "criticalBorder": {
-      "light": "#EBC0AA",
-      "dark": "#6A3A26",
-      "use": "Borda de cards atrasados"
-    },
-    "success": {
-      "light": "#3F6E3B",
-      "dark": "#9CC48F",
-      "use": "Em dia, concluído"
-    },
-    "successBackground": {
-      "light": "#E4EEDC",
-      "dark": "#2C3A27",
-      "use": "Fundo de status positivo"
-    },
-    "tabBar": {
-      "light": "#FFFDF9",
-      "dark": "#1B1511",
-      "use": "Barra de abas"
-    },
     "tabIdle": {
       "light": "#7D6858",
       "dark": "#A08B78",
       "use": "Aba inativa"
-    },
-    "segmentSelected": {
-      "light": "#FFFFFF",
-      "dark": "#4A3A2E",
-      "use": "Opção selecionada do controle segmentado"
-    },
-    "switchOff": {
-      "light": "#DCCDB9",
-      "dark": "#5A4A3D",
-      "use": "Interruptor desligado"
-    },
-    "toastBackground": {
-      "light": "#231B17",
-      "dark": "#F7F1E8",
-      "use": "Fundo do toast (invertido)"
-    },
-    "toastText": {
-      "light": "#F7F1E8",
-      "dark": "#231B17",
-      "use": "Texto do toast"
     },
     "toastAction": {
       "light": "#E8B27C",
@@ -123,80 +78,15 @@
       "dark": "rgba(20,14,10,0.45)",
       "use": "Fundo atrás de painéis"
     },
-    "faint": {
-      "light": "#B3A190",
-      "dark": "#6E5D50",
-      "use": "Texto e elementos apagados (dia fora do mês, texto miúdo do PDF)"
-    },
     "divider": {
       "light": "#EDE3D6",
       "dark": "#43352B",
       "use": "Linhas finas internas (grade do gráfico, linhas do PDF)"
     },
-    "borderStrong": {
-      "light": "#DCCDB9",
-      "dark": "#5A4A3D",
-      "use": "Borda mais forte (botão do Google no login)"
-    },
-    "barInactive": {
-      "light": "#DCCDB9",
-      "dark": "#6E5D50",
-      "use": "Barra do valor antigo (troca de ração)"
-    },
     "accentDeep": {
       "light": "#7E3C14",
       "dark": "#E8B27C",
       "use": "Ferrugem escura (no escuro, caramelo claro): botão de texto da tela Erro, links ao passar o mouse"
-    },
-    "featureCard": {
-      "light": "#A9541F",
-      "dark": "#7E3C14",
-      "use": "Cartão de destaque (plano de saúde, Fase 2)"
-    },
-    "onFeatureCard": {
-      "light": "#FFF8EE",
-      "dark": "#FFF8EE",
-      "use": "Texto sobre o cartão de destaque"
-    },
-    "onAccentSubtle": {
-      "light": "rgba(255,248,238,.18)",
-      "dark": "rgba(255,248,238,.18)",
-      "use": "Caixa translúcida sobre o destaque"
-    },
-    "lockBackground": {
-      "light": "#DB9A5B",
-      "dark": "#3A2D23",
-      "use": "Fundo do cadeado (recurso do Plus, pet congelado)"
-    },
-    "onLock": {
-      "light": "#FFF8EE",
-      "dark": "#F7F1E8",
-      "use": "Ícone do cadeado"
-    },
-    "alertBackground": {
-      "light": "#F7F1E8",
-      "dark": "#3A2D23",
-      "use": "Fundo do alerta do sistema (ex.: desconectar calendário)"
-    },
-    "bannerBackground": {
-      "light": "rgba(255,253,249,.92)",
-      "dark": "rgba(46,36,29,.92)",
-      "use": "Fundo do aviso de notificação"
-    },
-    "previewBackdrop": {
-      "light": "#EDE3D6",
-      "dark": "#1B1511",
-      "use": "Fundo atrás da prévia do PDF"
-    },
-    "themePreviewCard": {
-      "light": "rgba(169,84,31,.35)",
-      "dark": "rgba(169,84,31,.35)",
-      "use": "Cartões das miniaturas de tema (Aparência)"
-    },
-    "unreadBackground": {
-      "light": "#F6F7FC",
-      "dark": "#33292A",
-      "use": "Fundo de um aviso não lido na central de notificações"
     },
     "neutralFill": {
       "light": "#F3E4CF",
@@ -462,20 +352,9 @@
     }
   },
   "radius": {
-    "$description": "Pílula = Capsule e círculo (50%) = Circle: não têm token. sheet arredonda só os cantos de cima. appIcon(side:) = side × radius / side de referência.",
-    "checkbox": 7,
-    "swatch": 3,
+    "$description": "Pílula = Capsule e círculo (50%) = Circle: não têm token. appIcon(side:) = side × radius / side de referência.",
     "pdfPage": 4,
-    "small": 9,
-    "iconBox": 12,
-    "buttonSmall": 12,
-    "segmentTrack": 12,
-    "input": 14,
-    "button": 14,
-    "tile": 16,
-    "card": 18,
-    "notification": 22,
-    "sheet": 28,
+    "inset": 14,
     "appIcon": {
       "radius": 22,
       "side": 96
@@ -558,13 +437,6 @@
     }
   },
   "spacing": {
-    "xs": 4,
-    "s": 8,
-    "m": 12,
-    "l": 16,
-    "xl": 20,
-    "xxl": 24,
-    "screenPadding": 20,
     "screenMargin": 24,
     "block": 14
   },

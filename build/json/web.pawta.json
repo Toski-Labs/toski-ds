@@ -22,7 +22,6 @@
     "critical-bg": "#F8E0D4",
     "critical-line": "#EBC0AA",
     "success": "#3F6E3B",
-    "success-bg": "#E4EEDC",
     "segment": "#FFFFFF",
     "tabbar": "#FFFDF9",
     "tab-idle": "#7D6858",
@@ -49,7 +48,6 @@
     "critical-bg": "#45261A",
     "critical-line": "#6A3A26",
     "success": "#9CC48F",
-    "success-bg": "#2C3A27",
     "segment": "#4A3A2E",
     "tabbar": "#1B1511",
     "tab-idle": "#A08B78",
@@ -240,22 +238,6 @@
       "lilas": "#A9B4E8",
       "lilas-claro": "#E3E6F5",
       "circulo-icone": "#5C69A4"
-    },
-    "mascots": {
-      "dog": "#B88250",
-      "dogEar": "#6E4529",
-      "cat": "#7C8199",
-      "catEarInner": "#E8B4B0",
-      "catNose": "#D98C8C",
-      "outline": {
-        "light": "#231B17",
-        "dark": "#F4E4CC"
-      },
-      "eye": {
-        "light": "#231B17",
-        "dark": "#100C0A"
-      },
-      "description": "Contorno na cor oposta ao fundo; olhos e focinho escuros."
     },
     "assets": [
       {

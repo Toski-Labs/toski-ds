@@ -29,104 +29,60 @@ public enum ToskiColors {
     // MARK: Semânticas — compartilhadas com a web
 
     /// Fundo das telas
-    public static let background         = dynamic(light: 0xF7F1E8, dark: 0x231B17)
+    public static let background     = dynamic(light: 0xF7F1E8, dark: 0x231B17)
     /// Cards, listas, campos
-    public static let surface            = dynamic(light: 0xFFFFFF, dark: 0x2E241D)
+    public static let surface        = dynamic(light: 0xFFFFFF, dark: 0x2E241D)
     /// Fundos suaves, caixas de ícone, chips
-    public static let tint               = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
+    public static let tint           = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
     /// Círculo atrás da Paçoca
-    public static let heroBackground     = dynamic(light: 0xEFDCC2, dark: 0x33271F)
+    public static let heroBackground = dynamic(light: 0xEFDCC2, dark: 0x33271F)
     /// Texto principal
-    public static let textPrimary        = dynamic(light: 0x231B17, dark: 0xF7F1E8)
+    public static let textPrimary    = dynamic(light: 0x231B17, dark: 0xF7F1E8)
     /// Texto de apoio, rótulos
-    public static let textSecondary      = dynamic(light: 0x6B5648, dark: 0xC2AE98)
+    public static let textSecondary  = dynamic(light: 0x6B5648, dark: 0xC2AE98)
     /// Bordas e divisores
-    public static let border             = dynamic(light: 0xE6D8C4, dark: 0x43352B)
+    public static let border         = dynamic(light: 0xE6D8C4, dark: 0x43352B)
     /// Botão principal, aba ativa, links
-    public static let accent             = dynamic(light: 0xA9541F, dark: 0xDB9A5B)
+    public static let accent         = dynamic(light: 0xA9541F, dark: 0xDB9A5B)
     /// Ferrugem escura (no escuro, caramelo claro): botão de texto da tela Erro, links ao passar o mouse
-    public static let accentDeep         = dynamic(light: 0x7E3C14, dark: 0xE8B27C)
+    public static let accentDeep     = dynamic(light: 0x7E3C14, dark: 0xE8B27C)
     /// Texto sobre o destaque
-    public static let onAccent           = dynamic(light: 0xFFF8EE, dark: 0x231B17)
+    public static let onAccent       = dynamic(light: 0xFFF8EE, dark: 0x231B17)
     /// Atrasados, alertas, ações destrutivas
-    public static let critical           = dynamic(light: 0xA3341A, dark: 0xF09A78)
-    /// Fundo de alertas
-    public static let criticalBackground = dynamic(light: 0xF8E0D4, dark: 0x45261A)
-    /// Borda de cards atrasados
-    public static let criticalBorder     = dynamic(light: 0xEBC0AA, dark: 0x6A3A26)
-    /// Em dia, concluído
-    public static let success            = dynamic(light: 0x3F6E3B, dark: 0x9CC48F)
-    /// Fundo de status positivo
-    public static let successBackground  = dynamic(light: 0xE4EEDC, dark: 0x2C3A27)
-    /// Opção selecionada do controle segmentado
-    public static let segmentSelected    = dynamic(light: 0xFFFFFF, dark: 0x4A3A2E)
-    /// Barra de abas
-    public static let tabBar             = dynamic(light: 0xFFFDF9, dark: 0x1B1511)
+    public static let critical       = dynamic(light: 0xA3341A, dark: 0xF09A78)
     /// Aba inativa
-    public static let tabIdle            = dynamic(light: 0x7D6858, dark: 0xA08B78)
+    public static let tabIdle        = dynamic(light: 0x7D6858, dark: 0xA08B78)
 
     // MARK: Semânticas — só do app
 
     /// Texto sobre crítico
-    public static let onCritical         = dynamic(light: 0xFFF8EE, dark: 0x231B17)
-    /// Interruptor desligado
-    public static let switchOff          = dynamic(light: 0xDCCDB9, dark: 0x5A4A3D)
-    /// Fundo do toast (invertido)
-    public static let toastBackground    = dynamic(light: 0x231B17, dark: 0xF7F1E8)
-    /// Texto do toast
-    public static let toastText          = dynamic(light: 0xF7F1E8, dark: 0x231B17)
+    public static let onCritical     = dynamic(light: 0xFFF8EE, dark: 0x231B17)
     /// Ação do toast (Desfazer, Abrir)
-    public static let toastAction        = dynamic(light: 0xE8B27C, dark: 0xA9541F)
+    public static let toastAction    = dynamic(light: 0xE8B27C, dark: 0xA9541F)
     /// Fundo atrás de painéis
-    public static let scrim              = dynamic(light: 0x140E0A, lightAlpha: 0.45, dark: 0x140E0A, darkAlpha: 0.45)
-    /// Texto e elementos apagados (dia fora do mês, texto miúdo do PDF)
-    public static let faint              = dynamic(light: 0xB3A190, dark: 0x6E5D50)
+    public static let scrim          = dynamic(light: 0x140E0A, lightAlpha: 0.45, dark: 0x140E0A, darkAlpha: 0.45)
     /// Linhas finas internas (grade do gráfico, linhas do PDF)
-    public static let divider            = dynamic(light: 0xEDE3D6, dark: 0x43352B)
-    /// Borda mais forte (botão do Google no login)
-    public static let borderStrong       = dynamic(light: 0xDCCDB9, dark: 0x5A4A3D)
-    /// Barra do valor antigo (troca de ração)
-    public static let barInactive        = dynamic(light: 0xDCCDB9, dark: 0x6E5D50)
-    /// Cartão de destaque (plano de saúde, Fase 2)
-    public static let featureCard        = dynamic(light: 0xA9541F, dark: 0x7E3C14)
-    /// Texto sobre o cartão de destaque
-    public static let onFeatureCard      = dynamic(light: 0xFFF8EE, dark: 0xFFF8EE)
-    /// Caixa translúcida sobre o destaque
-    public static let onAccentSubtle     = dynamic(light: 0xFFF8EE, lightAlpha: 0.18, dark: 0xFFF8EE, darkAlpha: 0.18)
-    /// Fundo do cadeado (recurso do Plus, pet congelado)
-    public static let lockBackground     = dynamic(light: 0xDB9A5B, dark: 0x3A2D23)
-    /// Ícone do cadeado
-    public static let onLock             = dynamic(light: 0xFFF8EE, dark: 0xF7F1E8)
-    /// Fundo do alerta do sistema (ex.: desconectar calendário)
-    public static let alertBackground    = dynamic(light: 0xF7F1E8, dark: 0x3A2D23)
-    /// Fundo do aviso de notificação
-    public static let bannerBackground   = dynamic(light: 0xFFFDF9, lightAlpha: 0.92, dark: 0x2E241D, darkAlpha: 0.92)
-    /// Fundo atrás da prévia do PDF
-    public static let previewBackdrop    = dynamic(light: 0xEDE3D6, dark: 0x1B1511)
-    /// Cartões das miniaturas de tema (Aparência)
-    public static let themePreviewCard   = dynamic(light: 0xA9541F, lightAlpha: 0.35, dark: 0xA9541F, darkAlpha: 0.35)
-    /// Fundo de um aviso não lido na central de notificações
-    public static let unreadBackground   = dynamic(light: 0xF6F7FC, dark: 0x33292A)
+    public static let divider        = dynamic(light: 0xEDE3D6, dark: 0x43352B)
     /// Preenchimento neutro da Nova XP: fundo dos botões secundários, chips e ícones em círculo
-    public static let neutralFill        = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
+    public static let neutralFill    = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
     /// Vidro: botões e cartões translúcidos sobre o fundo (Nova XP). Junto com glassBorder e a sombra glass
-    public static let glass              = dynamic(light: 0xFFFDF9, lightAlpha: 0.62, dark: 0x2E241D, darkAlpha: 0.62)
+    public static let glass          = dynamic(light: 0xFFFDF9, lightAlpha: 0.62, dark: 0x2E241D, darkAlpha: 0.62)
     /// Borda de 1 pt do vidro
-    public static let glassBorder        = dynamic(light: 0x958373, dark: 0x806E5E)
+    public static let glassBorder    = dynamic(light: 0x958373, dark: 0x806E5E)
     /// Barra de abas em vidro (Nova XP)
-    public static let tabGlass           = dynamic(light: 0xFFFDF9, lightAlpha: 0.78, dark: 0x1B1511, darkAlpha: 0.8)
+    public static let tabGlass       = dynamic(light: 0xFFFDF9, lightAlpha: 0.78, dark: 0x1B1511, darkAlpha: 0.8)
     /// Contorno do círculo de marcar como feito
-    public static let checkLine          = dynamic(light: 0x7D6858, dark: 0xA08B78)
+    public static let checkLine      = dynamic(light: 0x7D6858, dark: 0xA08B78)
     /// Fundo do selo (contador, aviso) sobre o fundo da tela
-    public static let badgeBg            = dynamic(light: 0xFFFFFF, dark: 0x2E241D)
+    public static let badgeBg        = dynamic(light: 0xFFFFFF, dark: 0x2E241D)
     /// Fundo A do retrato do pet (igual nas duas paletas)
-    public static let petA               = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
+    public static let petA           = dynamic(light: 0xF3E4CF, dark: 0x3A2D23)
     /// Fundo B do retrato do pet (igual nas duas paletas)
-    public static let petB               = dynamic(light: 0xE4EEDC, dark: 0x2C3A27)
+    public static let petB           = dynamic(light: 0xE4EEDC, dark: 0x2C3A27)
     /// Linha do mascote
-    public static let mLine              = dynamic(light: 0x231B17, dark: 0xF4E4CC)
+    public static let mLine          = dynamic(light: 0x231B17, dark: 0xF4E4CC)
     /// Olho e focinho do mascote
-    public static let mInk               = dynamic(light: 0x231B17, dark: 0x100C0A)
+    public static let mInk           = dynamic(light: 0x231B17, dark: 0x100C0A)
 
     // MARK: Pets
 
@@ -187,32 +143,10 @@ public enum ToskiColors {
 }
 
 public enum ToskiRadius {
-    /// Caixa de ícone
-    public static let iconBox: CGFloat = 12
-    /// Botões
-    public static let button: CGFloat = 14
-    /// Cards
-    public static let card: CGFloat = 18
-    /// Painéis, faixas e painel inferior
-    public static let sheet: CGFloat = 28
-    /// Caixa de seleção
-    public static let checkbox: CGFloat = 7
-    /// Amostra de cor
-    public static let swatch: CGFloat = 3
     /// Página do PDF
     public static let pdfPage: CGFloat = 4
-    /// Elementos pequenos
-    public static let small: CGFloat = 9
-    /// Botão de card
-    public static let buttonSmall: CGFloat = 12
-    /// Trilho do controle segmentado
-    public static let segmentTrack: CGFloat = 12
-    /// Campos
-    public static let input: CGFloat = 14
-    /// Tiles
-    public static let tile: CGFloat = 16
-    /// Aviso de notificação
-    public static let notification: CGFloat = 22
+    /// Alerta e miniaturas da Aparência
+    public static let inset: CGFloat = 14
     /// Ícone do app: raio 22 num lado de referência 96 (escala com o lado)
     public static let appIconRadius: CGFloat = 22
     public static let appIconSide: CGFloat = 96
@@ -262,13 +196,6 @@ public enum ToskiShadow {
 }
 
 public enum ToskiSpacing {
-    public static let xs: CGFloat = 4
-    public static let s: CGFloat = 8
-    public static let m: CGFloat = 12
-    public static let l: CGFloat = 16
-    public static let xl: CGFloat = 20
-    public static let xxl: CGFloat = 24
-    public static let screenPadding: CGFloat = 20
     public static let screenMargin: CGFloat = 24
     public static let block: CGFloat = 14
 }

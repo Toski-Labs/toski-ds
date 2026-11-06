@@ -65,7 +65,7 @@ describe('temas de produto', () => {
   it('Pawta usa os valores aprovados', () => {
     expect(colorValue('web', 'accent', 'light', 'pawta')).toBe('#3E4C8A');
     expect(colorValue('mobile', 'accentDeep', 'dark', 'pawta')).toBe('#C9D0F2');
-    expect(colorValue('mobile', 'lockBackground', 'light', 'pawta')).toBe('#5C69A4');
+    expect(colorValue('mobile', 'toastAction', 'light', 'pawta')).toBe('#B7C0EE');
     expect(colorValue('web', 'tint', 'light', 'pawta')).toBe('#F3E4CF'); // neutro da base
   });
 
@@ -230,8 +230,7 @@ describe('paletas (Nova XP)', () => {
   it('forma, espaço e tipografia da Nova XP saem no app-tokens', () => {
     const app = read('app-tokens.pawta.json');
     expect(app.radius.surface).toBe(22);
-    expect(app.radius.notification).toBe(22);
-    expect(app.spacing).toMatchObject({ screenPadding: 20, screenMargin: 24, block: 14 });
+    expect(app.spacing).toEqual({ screenMargin: 24, block: 14 });
     expect(app.size).toMatchObject({
       rowHome: 98, rowList: 76, rowForm: 52, rowDetail: 44, glassButton: 54, roundButton: 44, chip: 36,
       checkCircle: 26, iconCircleS: 32, iconCircleM: 36, iconCircleL: 44, toast: 56, primaryButtonHeight: 54,
@@ -245,6 +244,30 @@ describe('paletas (Nova XP)', () => {
     expect(styles.supportSmall).toEqual({ size: 14, weight: 400 });
     expect(styles.label).toEqual(styles.sectionLabel);
     expect(styles.title).toEqual({ size: 22, weight: 600 }); // os de sempre ficam como estavam
+  });
+
+  it('o app só recebe os raios, espaços e cores que o Pawta usa', () => {
+    for (const file of ['app-tokens.pawta.json', 'app-tokens.koti.json', 'app-tokens.json']) {
+      const app = read(file);
+      expect(Object.keys(app.radius).filter((k) => !k.startsWith('$'))).toEqual(['pdfPage', 'inset', 'appIcon', 'surface']);
+      expect(app.radius).toMatchObject({ pdfPage: 4, inset: 14, surface: 22, appIcon: { radius: 22, side: 96 } });
+      const gone = [
+        'success', 'successBackground', 'tabBar', 'segmentSelected', 'switchOff', 'toastBackground', 'toastText', 'barInactive',
+        'criticalBorder', 'criticalBackground', 'faint', 'borderStrong', 'featureCard', 'onFeatureCard', 'onAccentSubtle',
+        'lockBackground', 'onLock', 'alertBackground', 'bannerBackground', 'previewBackdrop', 'themePreviewCard', 'unreadBackground',
+      ];
+      for (const name of gone) expect(app.color).not.toHaveProperty(name);
+      expect(app.product?.mascots).toBeUndefined();
+      expect(app.shadow).toHaveProperty('raised');
+    }
+  });
+
+  it('o que o app aposentou continua na web quando o site usa', () => {
+    const css = readFileSync('build/css/tokens.css', 'utf8');
+    for (const name of ['success', 'segment', 'tabbar', 'critical-bg', 'critical-line']) expect(css).toContain(`--toski-${name}:`);
+    for (const name of ['card', 'button', 'icon', 'panel']) expect(css).toContain(`--toski-radius-${name}:`);
+    const swift = readFileSync('build/swift/ToskiColors.swift', 'utf8');
+    expect(swift).not.toMatch(/static let (success|segmentSelected|tabBar|criticalBackground|criticalBorder)\b/);
   });
 
   it('o Swift da paleta Neve e o glass chegam ao pacote', () => {

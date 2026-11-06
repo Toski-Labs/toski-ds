@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, themeContrastReport, themedColors, font, layout, mobile, mobileRadii, radii, paletteById, paletteColorSet, paletteContrastReport, paletteIds, paletteShadows, type ModeShadowStyle, type Platform } from '../src/tokens';
+import { brand, colorValue, component, motion, webMotion, webRadii, contrastReport, themeContrastReport, themedColors, font, layout, mobile, mobileRadii, radii, appRadii, paletteById, paletteColorSet, paletteContrastReport, paletteIds, paletteShadows, type ModeShadowStyle, type Platform } from '../src/tokens';
 import { ThemeFrame, usePalette, useProduct } from './ThemeFrame';
 
 function Swatch({ value, label }: { value: string; label?: string }) {
@@ -151,7 +151,7 @@ export function Radii({ platform = 'web' }: { platform?: Platform }) {
           ...webRadii.map((r) => ({ ...r, code: `var(--toski-radius-${r.name})` })),
         ]
       : [
-          ...radii.map((r) => ({ ...r, name: r.mobileName, code: `ToskiRadius.${r.mobileName}` })),
+          ...appRadii.map((r) => ({ ...r, name: r.mobileName, code: `ToskiRadius.${r.mobileName}` })),
           ...mobileRadii.map((r) => ({
             ...r,
             code: r.side ? `ToskiRadius.${r.name}(side:) · ${r.value} em ${r.side}` : `ToskiRadius.${r.name}`,
