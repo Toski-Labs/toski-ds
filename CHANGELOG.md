@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.8.0 — 2026-11-06
+
 Sugestão de número ao lançar: **0.8.0** (muda o que o app e a web recebem; pré-1.0, mesma regra do 0.6.0).
 
 ### Removido (quebra)
