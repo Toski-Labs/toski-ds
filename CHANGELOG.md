@@ -5,6 +5,44 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+Sugestão de número ao lançar: **0.8.0** (muda o que o app e a web recebem; pré-1.0, mesma regra do 0.6.0).
+
+### Removido (quebra)
+
+A Nova XP do Pawta terminou a limpeza do desenho antigo (app: PRs #163 a #166) e mediu o que deixou de ter uso.
+O `app-tokens*.json` do Pawta perde o que segue; só o app é afetado, salvo onde está dito.
+
+- **Cores só do app** (saem de `mobile.color`, de `mobile.json`, de `ToskiColors.swift`, dos `app-tokens*.json` e dos
+  `ToskiTheme*.swift`): `switchOff`, `toastBackground`, `toastText`, `barInactive`, `faint`, `borderStrong`, `featureCard`,
+  `onFeatureCard`, `onAccentSubtle`, `lockBackground`, `onLock`, `alertBackground`, `bannerBackground`, `previewBackdrop`,
+  `themePreviewCard` e `unreadBackground`. `featureCard`, `lockBackground` e `themePreviewCard` também saem dos tokens que
+  o tema de produto pode trocar (`themes.$allowed.mobile` fica só com `toastAction`) e dos temas Pawta e Koti.
+- **Cores compartilhadas que a web não usa** (saem da web e do app: `--toski-*`, `bg-*`, `web*.json`, `tokens.ts`):
+  `success-bg` (`successBackground`), `tabbar` (`tabBar`), `critical-bg` (`criticalBackground`) e `critical-line`
+  (`criticalBorder`). O site e os temas de editor/terminal (que têm paleta própria) não usam nenhuma.
+- **Só fora do app** (a web continua com elas, porque o site e o Storybook usam): as cores `success` e `segment`
+  (`segmentSelected`) e os raios `icon` (`iconBox`), `button`, `card` e `panel` (`sheet`). Marca nova em `tokens.json`:
+  `"app": false` num token de `color` ou de `radius` o tira de `mobile.json`, dos `app-tokens*.json` e do Swift.
+- **Raios do app**: saem `checkbox` 7, `swatch` 3, `small` 9, `buttonSmall` 12, `segmentTrack` 12, `tile` 16 e
+  `notification` 22. Ficam `surface` 22, `appIcon` {22, 96}, `pdfPage` 4 e `inset`.
+- **Espaços do app**: saem `xs` 4, `s` 8, `m` 12, `l` 16, `xl` 20, `xxl` 24 e `screenPadding` 20. Ficam `screenMargin` 24
+  e `block` 14.
+- **`product.mascots`** (Pawta) sai de `app-tokens.pawta.json`, de `web.pawta.json` e das cores de mascote em
+  `ToskiThemePawta.swift`. O componente `Mascot` e os SVGs não mudam.
+- Os pares de contraste dessas cores saem de `contrast` (os da web e do app que sobram continuam checados).
+
+### Alterado
+
+- **`radius.input` e `radius.button` do app viram `radius.inset`** (14): alerta (`ToskiAlertCard`) e miniaturas da Aparência.
+  Na web, `--toski-radius-button` continua como estava.
+- `$description` dos raios do app atualizado.
+- Sombras (`raised`, `glass`, `glassNeve`) e tudo o que não está listado acima: sem mudança.
+
+### Atenção
+
+- `component.button` (`radius: "button"` / `"buttonSmall"`) ainda aponta para raios que o app não tem mais; o app não lê
+  `component` (só `mobile.json` e `ToskiComponent` no Swift). Fica para decidir junto com o PR do app.
+
 ## 0.7.0 — 2026-11-01
 
 ### Adicionado

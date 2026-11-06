@@ -36,22 +36,6 @@ public enum ToskiPawtaTheme {
     public static let onAccent = dynamic(light: 0xFFF8EE, dark: 0x231B17)
     /// Ação do toast (Desfazer, Abrir)
     public static let toastAction = dynamic(light: 0xB7C0EE, dark: 0x3E4C8A)
-    /// Cartão de destaque (plano de saúde, Fase 2)
-    public static let featureCard = dynamic(light: 0x3E4C8A, dark: 0x2C376A)
-    /// Fundo do cadeado (recurso do Plus, pet congelado)
-    public static let lockBackground = dynamic(light: 0x5C69A4, dark: 0x3A2D23)
-    /// Cartões das miniaturas de tema (Aparência)
-    public static let themePreviewCard = dynamic(light: 0x3E4C8A, lightAlpha: 0.35, dark: 0x3E4C8A, darkAlpha: 0.35)
-
-    // MARK: Mascotes
-
-    public static let dog = fixed(0xB88250)
-    public static let dogEar = fixed(0x6E4529)
-    public static let cat = fixed(0x7C8199)
-    public static let catEarInner = fixed(0xE8B4B0)
-    public static let catNose = fixed(0xD98C8C)
-    public static let outline = dynamic(light: 0x231B17, dark: 0xF4E4CC)
-    public static let eye = dynamic(light: 0x231B17, dark: 0x100C0A)
 
     // MARK: Black Friday
 

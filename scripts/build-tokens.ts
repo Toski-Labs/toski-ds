@@ -28,6 +28,7 @@ import {
   paletteColorSet,
   paletteShadows,
   palettes,
+  appRadii,
   radii,
   themeIds,
   themeOverrides,
@@ -221,7 +222,7 @@ function mobileData() {
     font: { family: font.family, weights: font.weights },
     typography: mobile.typography,
     radius: {
-      ...Object.fromEntries(radii.map((r) => [r.mobileName, r.value])),
+      ...Object.fromEntries(appRadii.map((r) => [r.mobileName, r.value])),
       ...Object.fromEntries(
         mobileRadii.map((r) => [r.name, r.side ? { radius: r.value, side: r.side } : r.value]),
       ),
@@ -241,17 +242,10 @@ function mobileData() {
 // Ordem das chaves igual à do arquivo do app (só formatação; chaves novas entram no fim).
 const APP_COLOR_ORDER = [
   'background', 'surface', 'tint', 'heroBackground', 'textPrimary', 'textSecondary', 'border', 'accent',
-  'onAccent', 'critical', 'onCritical', 'criticalBackground', 'criticalBorder', 'success', 'successBackground',
-  'tabBar', 'tabIdle', 'segmentSelected', 'switchOff', 'toastBackground', 'toastText', 'toastAction', 'scrim',
-  'faint', 'divider', 'borderStrong', 'barInactive', 'accentDeep',
-  'featureCard', 'onFeatureCard', 'onAccentSubtle', 'lockBackground', 'onLock', 'alertBackground',
-  'bannerBackground', 'previewBackdrop', 'themePreviewCard', 'unreadBackground',
+  'onAccent', 'critical', 'onCritical', 'tabIdle', 'toastAction', 'scrim', 'divider', 'accentDeep',
   'neutralFill', 'glass', 'glassBorder', 'tabGlass', 'checkLine', 'badgeBg', 'petA', 'petB', 'mLine', 'mInk',
 ];
-const APP_RADIUS_ORDER = [
-  'checkbox', 'swatch', 'pdfPage', 'small', 'iconBox', 'buttonSmall', 'segmentTrack', 'input', 'button', 'tile',
-  'card', 'notification', 'sheet', 'appIcon',
-];
+const APP_RADIUS_ORDER = ['pdfPage', 'inset', 'appIcon', 'surface'];
 
 function ordered<T>(entries: [string, T][], order: string[]): [string, T][] {
   const rank = (k: string) => (order.includes(k) ? order.indexOf(k) : order.length);
@@ -287,7 +281,7 @@ function buildAppJson(themeId?: string): string {
     ]),
   );
   const radiusEntries: [string, number | { radius: number; side: number }][] = [
-    ...radii.map((r): [string, number] => [r.mobileName, r.value]),
+    ...appRadii.map((r): [string, number] => [r.mobileName, r.value]),
     ...mobileRadii.map((r): [string, number | { radius: number; side: number }] => [
       r.name,
       r.side ? { radius: r.value, side: r.side } : r.value,
@@ -368,7 +362,7 @@ function buildSwift(): string {
     .join('\n');
 
   const radiusLines = [
-    ...radii.map((r) => `${doc(r.description)}\n    public static let ${r.mobileName}: CGFloat = ${r.value}`),
+    ...appRadii.map((r) => `${doc(r.description)}\n    public static let ${r.mobileName}: CGFloat = ${r.value}`),
     ...mobileRadii.map((r) =>
       r.side
         ? `${doc(r.description)}\n    public static let ${r.name}Radius: CGFloat = ${r.value}\n    public static let ${r.name}Side: CGFloat = ${r.side}\n    /// Raio do ícone para um lado qualquer (proporcional ao de referência).\n    public static func ${r.name}(side: CGFloat) -> CGFloat { side * ${r.name}Radius / ${r.name}Side }`

@@ -34,12 +34,6 @@ public enum ToskiKotiTheme {
     public static let onAccent = dynamic(light: 0xFFF8EE, dark: 0x231B17)
     /// Ação do toast (Desfazer, Abrir)
     public static let toastAction = dynamic(light: 0xE6BFDB, dark: 0x7A3F6E)
-    /// Cartão de destaque (plano de saúde, Fase 2)
-    public static let featureCard = dynamic(light: 0x7A3F6E, dark: 0x5E2F55)
-    /// Fundo do cadeado (recurso do Plus, pet congelado)
-    public static let lockBackground = dynamic(light: 0x8A5280, dark: 0x3A2436)
-    /// Cartões das miniaturas de tema (Aparência)
-    public static let themePreviewCard = dynamic(light: 0x7A3F6E, lightAlpha: 0.35, dark: 0x7A3F6E, darkAlpha: 0.35)
 
     // MARK: Membros da casa
 
