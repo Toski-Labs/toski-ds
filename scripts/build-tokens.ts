@@ -34,6 +34,7 @@ import {
   themeOverrides,
   themedColors,
   themes,
+  validateComponentRadii,
   validatePalettes,
   validateThemes,
   webMotion,
@@ -845,7 +846,7 @@ function buildProductsTs(): string {
 }
 
 function checkThemeAssets(): void {
-  const errors = [...validateThemes(), ...validatePalettes()];
+  const errors = [...validateThemes(), ...validatePalettes(), ...validateComponentRadii()];
   for (const id of themeIds) {
     for (const a of themes[id].assets) {
       if (!existsSync(join(root, 'products', id, a.file))) errors.push(`${id}: falta products/${id}/${a.file}`);

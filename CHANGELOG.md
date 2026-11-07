@@ -5,6 +5,26 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.8.1 — 2026-11-07
+
+Sugestão de número ao lançar: **0.8.1** (correção; o `app-tokens*.json` e o `mobile.json` não mudam).
+
+### Corrigido
+
+- **`component.button` apontava para raios que a 0.8.0 tirou.** `large.radius` e `text.radius` eram `"button"` e
+  `card.radius` era `"buttonSmall"`; agora os três são `"surface"` (22), o que o app usa nos botões. Muda só
+  `ToskiComponent.Button.*.radius` em `ToskiTokens.swift` e `component` em `mobile.json`; o `sync:app` não leva o `component`.
+
+### Adicionado
+
+- **Checagem no build**: todo `radius` em texto dentro de `size.component` precisa ser o nome de um raio do app. Se não for,
+  `tokens:build` e `tokens:check` falham dizendo o caminho e os nomes válidos (teste em `tokens.test.ts`).
+
+### Atenção
+
+- Alturas de `component.button` **não mudaram** e diferem do app: `card` 46 e `text` 48 aqui, 44 nos dois no app
+  (`ToskiButtonStyle.swift`). `large` 54 confere. Decisão pendente.
+
 ## 0.8.0 — 2026-11-06
 
 Sugestão de número ao lançar: **0.8.0** (muda o que o app e a web recebem; pré-1.0, mesma regra do 0.6.0).
