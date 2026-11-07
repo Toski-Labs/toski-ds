@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.8.1 — 2026-11-07
+
 Sugestão de número ao lançar: **0.8.1** (correção). Muda `component` em `mobile.json` e em `ToskiTokens.swift`, e **remove
 `ToskiComponent.Button.Card`**, que é API pública do Swift; pré-1.0, mesma regra do 0.6.0 e do 0.8.0, então segue 0.8.1, e
 nada a usava (nem o DS, nem o app, nem o site; o `sync:app` não leva o `component`). O `app-tokens*.json` não muda.
