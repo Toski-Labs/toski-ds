@@ -280,13 +280,8 @@
         "fontSize": 17,
         "secondaryFontSize": 16
       },
-      "card": {
-        "height": 46,
-        "radius": "surface",
-        "fontSize": 15
-      },
       "text": {
-        "height": 48,
+        "height": 44,
         "radius": "surface",
         "fontSize": 16,
         "horizontalPadding": 4

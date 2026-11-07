@@ -16,13 +16,8 @@ public enum ToskiComponent {
             public static let fontSize: CGFloat = 17
             public static let secondaryFontSize: CGFloat = 16
         }
-        public enum Card {
-            public static let height: CGFloat = 46
-            public static let radius = "surface"
-            public static let fontSize: CGFloat = 15
-        }
         public enum Text {
-            public static let height: CGFloat = 48
+            public static let height: CGFloat = 44
             public static let radius = "surface"
             public static let fontSize: CGFloat = 16
             public static let horizontalPadding: CGFloat = 4

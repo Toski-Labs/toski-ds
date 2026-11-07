@@ -5,23 +5,25 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
-Sugestão de número ao lançar: **0.8.1** (correção; o `app-tokens*.json` e o `mobile.json` não mudam).
+Sugestão de número ao lançar: **0.8.1** (correção). Muda `component` em `mobile.json` e em `ToskiTokens.swift`, e **remove
+`ToskiComponent.Button.Card`**, que é API pública do Swift; pré-1.0, mesma regra do 0.6.0 e do 0.8.0, então segue 0.8.1, e
+nada a usava (nem o DS, nem o app, nem o site; o `sync:app` não leva o `component`). O `app-tokens*.json` não muda.
 
 ### Corrigido
 
 - **`component.button` apontava para raios que a 0.8.0 tirou.** `large.radius` e `text.radius` eram `"button"` e
-  `card.radius` era `"buttonSmall"`; agora os três são `"surface"` (22), o que o app usa nos botões. Muda só
-  `ToskiComponent.Button.*.radius` em `ToskiTokens.swift` e `component` em `mobile.json`; o `sync:app` não leva o `component`.
+  `card.radius` era `"buttonSmall"`; agora `large` e `text` usam `"surface"` (22), o que o app usa nos botões.
+- **As alturas de `component.button` agora descrevem o app** (`ToskiButtonStyle.swift`): `large` 54 (já conferia) e `text`
+  de 48 para 44 (`textoNova`, `minTouchTarget`). O botão `card` (46) saiu, porque o app não tem esse botão.
+
+### Removido
+
+- `size.component.button.card` (`ToskiComponent.Button.Card` no Swift e `component.button.card` em `mobile.json`).
 
 ### Adicionado
 
 - **Checagem no build**: todo `radius` em texto dentro de `size.component` precisa ser o nome de um raio do app. Se não for,
   `tokens:build` e `tokens:check` falham dizendo o caminho e os nomes válidos (teste em `tokens.test.ts`).
-
-### Atenção
-
-- Alturas de `component.button` **não mudaram** e diferem do app (`ToskiButtonStyle.swift`): `large` 54 confere; `text`
-  tem 48 aqui e 44 no app (`textoNova`, `minTouchTarget`); `card` (46) não tem variante equivalente no app. Decisão pendente.
 
 ## 0.8.0 — 2026-11-06
 
