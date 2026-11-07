@@ -5,8 +5,6 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
-## 0.8.1 — 2026-11-07
-
 Sugestão de número ao lançar: **0.8.1** (correção; o `app-tokens*.json` e o `mobile.json` não mudam).
 
 ### Corrigido
@@ -22,8 +20,8 @@ Sugestão de número ao lançar: **0.8.1** (correção; o `app-tokens*.json` e o
 
 ### Atenção
 
-- Alturas de `component.button` **não mudaram** e diferem do app: `card` 46 e `text` 48 aqui, 44 nos dois no app
-  (`ToskiButtonStyle.swift`). `large` 54 confere. Decisão pendente.
+- Alturas de `component.button` **não mudaram** e diferem do app (`ToskiButtonStyle.swift`): `large` 54 confere; `text`
+  tem 48 aqui e 44 no app (`textoNova`, `minTouchTarget`); `card` (46) não tem variante equivalente no app. Decisão pendente.
 
 ## 0.8.0 — 2026-11-06
 
