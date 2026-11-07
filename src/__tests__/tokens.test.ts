@@ -19,6 +19,7 @@ import {
   themeIds,
   themedColors,
   themes,
+  validateComponentRadii,
   validatePalettes,
   validateThemes,
 } from '../tokens';
@@ -277,5 +278,18 @@ describe('paletas (Nova XP)', () => {
     const colors = readFileSync(join(__dirname, '../../build/swift/ToskiColors.swift'), 'utf8');
     expect(colors).toContain('public static let glassNeve = ByMode(');
     expect(colors).toContain('public static let surface: CGFloat = 22');
+  });
+});
+
+describe('component.radius', () => {
+  it('os raios de component existem', () => {
+    expect(validateComponentRadii()).toEqual([]);
+  });
+
+  it('acusa um raio que não existe, com o caminho', () => {
+    const errors = validateComponentRadii({ button: { large: { radius: 'button' }, card: { radius: 'surface' } } });
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain('size.component.button.large.radius');
+    expect(errors[0]).toContain('"button"');
   });
 });

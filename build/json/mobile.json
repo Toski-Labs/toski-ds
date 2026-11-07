@@ -276,18 +276,13 @@
     "button": {
       "large": {
         "height": 54,
-        "radius": "button",
+        "radius": "surface",
         "fontSize": 17,
         "secondaryFontSize": 16
       },
-      "card": {
-        "height": 46,
-        "radius": "buttonSmall",
-        "fontSize": 15
-      },
       "text": {
-        "height": 48,
-        "radius": "button",
+        "height": 44,
+        "radius": "surface",
         "fontSize": 16,
         "horizontalPadding": 4
       },

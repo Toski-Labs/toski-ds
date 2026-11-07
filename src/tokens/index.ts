@@ -550,6 +550,30 @@ export const motion = raw.motion as unknown as {
 /** Medidas dos componentes do app. */
 export const component = raw.mobile.component as unknown as Record<string, Json>;
 
+/**
+ * Todo `radius` em texto dentro de `component` é o nome de um raio do app (ToskiRadius).
+ * Devolve um erro por referência que não existe, com o caminho e os nomes válidos.
+ */
+export function validateComponentRadii(tree: Record<string, Json> = component): string[] {
+  const valid = new Set([...appRadii.map((r) => r.mobileName), ...mobileRadii.map((r) => r.name)]);
+  const errors: string[] = [];
+  const walk = (node: Json, path: string) => {
+    if (typeof node !== 'object' || node === null || Array.isArray(node)) return;
+    for (const [key, value] of Object.entries(node)) {
+      const here = `${path}.${key}`;
+      if (key === 'radius' && typeof value === 'string') {
+        if (!valid.has(value)) {
+          errors.push(`size.component${here}: o raio "${value}" não existe. Raios do app: ${[...valid].join(', ')}`);
+        }
+      } else {
+        walk(value, here);
+      }
+    }
+  };
+  walk(tree, '');
+  return errors;
+}
+
 
 export interface IconEntry {
   /** Nome do arquivo em icons/svg/ (o nome do app quando existe). */
