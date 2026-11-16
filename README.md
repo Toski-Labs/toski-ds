@@ -24,7 +24,7 @@ site (Astro + Tailwind CSS 4), no app iOS (SwiftUI) e nos temas (VS Code e iTerm
 | `build/json/web.json` · `mobile.json` | JSON simples por plataforma (temas do VS Code e do iTerm2, scripts) |
 | `build/json/app-tokens.json` | Tokens no formato do app Pawta (copiado com `npm run sync:app`) |
 | `build/swift/ToskiTokens.swift` | SwiftUI: medidas dos componentes do app (`ToskiComponent`) e animações (`ToskiMotionTokens`) |
-| `icons/` | 64 ícones de traço (`svg/`) e o mapa de nomes web ↔ app (`icons.json`) |
+| `icons/` | 71 ícones de traço (`svg/`) e o mapa de nomes web ↔ app (`icons.json`) |
 | `styles/tailwind.css` | Tudo o que um projeto com Tailwind CSS 4 precisa importar |
 | `src/components/` | Componentes React + TypeScript + Tailwind CSS 4 |
 | `assets/` | SVGs da Paçoca e do ícone do app (para o Xcode) |
@@ -32,7 +32,7 @@ site (Astro + Tailwind CSS 4), no app iOS (SwiftUI) e nos temas (VS Code e iTerm
 
 Componentes: `Button` (primary, secondary, light; lg 54px e md 48px), `Pill` (status, outline, tag, plus),
 `Card` (surface, plain, hero, dashed; raios card 18 e panel 28), `IconBox`, `Kicker`, `SectionHeading`,
-`CheckList`, `Icon` (64 ícones de traço em SVG inline, os mesmos do app), `AppIcon` e `Mascot` (Paçoca).
+`CheckList`, `Icon` (71 ícones de traço em SVG inline, os mesmos do app), `AppIcon` e `Mascot` (Paçoca).
 
 ## Uso rápido
 

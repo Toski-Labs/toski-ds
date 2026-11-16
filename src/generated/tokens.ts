@@ -201,6 +201,7 @@ export const tokens = {
     "location",
     "more",
     "plus",
+    "megaphone",
     "message",
     "snow",
     "weight",

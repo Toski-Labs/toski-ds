@@ -30,6 +30,13 @@ describe('ícones', () => {
     expect(iconData.more.mobile).toBe('mais-opcoes');
   });
 
+  it('megafone (Privacidade dos anúncios) vem do canvas com o tamanho e o traço da linha de Ajustes', () => {
+    expect(iconData.megaphone.mobile).toBe('megafone');
+    expect(iconData.megaphone.size).toBe(16);
+    expect(iconData.megaphone.stroke).toBe(2);
+    expect(iconData.megaphone.shapes[0].d).toBe('M4 10v4a1 1 0 0 0 1 1h2l8 4V5L7 9H5a1 1 0 0 0-1 1z M18.5 9.5a3.5 3.5 0 0 1 0 5 M8 15l1 5');
+  });
+
   it('ícone de traço usa currentColor', () => {
     const { container } = render(<Icon name="vaccine" stroke={2} />);
     const svg = container.querySelector('svg')!;
