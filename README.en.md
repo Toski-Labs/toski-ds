@@ -25,7 +25,7 @@ components used on the website (Astro + Tailwind CSS 4), the iOS app (SwiftUI) a
 | `build/json/web.json` · `mobile.json` | Plain JSON per platform (VS Code and iTerm2 themes, scripts) |
 | `build/json/app-tokens.json` | Tokens in the Pawta app format (copied with `npm run sync:app`) |
 | `build/swift/ToskiTokens.swift` | SwiftUI: app component sizes (`ToskiComponent`) and animations (`ToskiMotionTokens`) |
-| `icons/` | 64 stroke icons (`svg/`) and the web ↔ app name map (`icons.json`) |
+| `icons/` | 71 stroke icons (`svg/`) and the web ↔ app name map (`icons.json`) |
 | `styles/tailwind.css` | Everything a Tailwind CSS 4 project needs to import |
 | `src/components/` | React + TypeScript + Tailwind CSS 4 components |
 | `assets/` | Paçoca (mascot) and app icon SVGs (for Xcode) |
@@ -33,7 +33,7 @@ components used on the website (Astro + Tailwind CSS 4), the iOS app (SwiftUI) a
 
 Components: `Button` (primary, secondary, light; lg 54px and md 48px), `Pill` (status, outline, tag, plus),
 `Card` (surface, plain, hero, dashed; card 18 and panel 28 radii), `IconBox`, `Kicker`, `SectionHeading`,
-`CheckList`, `Icon` (64 inline SVG stroke icons, the same as the app), `AppIcon` and `Mascot` (Paçoca).
+`CheckList`, `Icon` (71 inline SVG stroke icons, the same as the app), `AppIcon` and `Mascot` (Paçoca).
 
 ## Quick start
 

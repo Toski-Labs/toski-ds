@@ -506,6 +506,18 @@ export const iconData = {
       }
     ]
   },
+  "megaphone": {
+    "mobile": "megafone",
+    "size": 16,
+    "stroke": 2,
+    "filled": false,
+    "linejoin": "round",
+    "shapes": [
+      {
+        "d": "M4 10v4a1 1 0 0 0 1 1h2l8 4V5L7 9H5a1 1 0 0 0-1 1z M18.5 9.5a3.5 3.5 0 0 1 0 5 M8 15l1 5"
+      }
+    ]
+  },
   "message": {
     "mobile": "mensagem",
     "size": 22,

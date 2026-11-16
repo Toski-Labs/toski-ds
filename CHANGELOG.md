@@ -5,6 +5,14 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+### Adicionado
+
+- **Ícone `megafone`** (web `megaphone`): o megafone da linha "Privacidade dos anúncios" de Ajustes, no lugar do globo
+  provisório que o app usa (`ToskiIcon.globo`, com um `TODO(ds)` em `SettingsRows.swift`). Aprovado na revisão de
+  paridade com o canvas (20.3, desvio A4, 16 nov 2026); o caminho vem sem alteração do canvas 3 da Nova XP
+  (`NxParte24`, quadros `NxAjOrgGratis` e `NxAjAnuncios`), em 16 px e traço 2, como os outros ícones das linhas de Ajustes.
+- O README passa a contar 71 ícones (dizia 64 desde antes deste, já desatualizado).
+
 ## 0.8.1 — 2026-11-07
 
 Sugestão de número ao lançar: **0.8.1** (correção). Muda `component` em `mobile.json` e em `ToskiTokens.swift`, e **remove

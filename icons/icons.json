@@ -164,6 +164,10 @@
     "web": "plus",
     "mobile": "mais"
   },
+  "megafone": {
+    "web": "megaphone",
+    "mobile": "megafone"
+  },
   "mensagem": {
     "web": "message",
     "mobile": "mensagem"
