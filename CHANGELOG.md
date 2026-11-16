@@ -5,6 +5,8 @@ Escreva as mudanças em "Próxima versão" enquanto trabalha; `npm run release` 
 
 ## Próxima versão
 
+## 0.9.0 — 2026-11-16
+
 ### Adicionado
 
 - **Ícone `megafone`** (web `megaphone`): o megafone da linha "Privacidade dos anúncios" de Ajustes, no lugar do globo
